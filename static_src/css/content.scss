@@ -1,0 +1,67 @@
+#content {
+  width: calc(100% - 300px);
+  padding: 40px;
+  margin-top: 7vh;
+  min-height: 93vh;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .home {
+      text-align: center;
+      margin-top: 10vh;
+
+      h1 {
+        margin: 15px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      h3 {
+        font-size: 20px;
+      }
+
+      .break {
+        border: 1px solid $purple;
+        margin-top: 10vh;
+        width: 50vw;
+        text-align: center;
+        margin: 10vh auto 10vh auto;
+      }
+
+      .popular {
+
+        .popular-title {
+          margin-bottom: 35px;
+        }
+      }
+
+      .item {
+        box-sizing: border-box;
+        color: $purple;
+        border: 1px solid $purple;
+        border-radius: 4px;
+        padding: 14px 24px;
+        text-align: left;
+        margin-bottom: 20px;
+
+        h4 {
+          line-height: 16px;
+          font-size: 18px;
+          margin-top: 8px;
+          margin-bottom: 10px;
+        }
+
+        p {
+          min-height: 75px;
+        }
+
+        .read-more {
+          text-align: right;
+        }
+      }
+  }
+}
