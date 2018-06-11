@@ -1,3 +1,65 @@
 baseURL = "docs.containerum.io"
 languageCode = "en-us"
 title = "Containerum Docs"
+
+
+[[menu.docs]]
+  name = "About"
+  weight = 1
+  identifier = "about"
+  url = "/about/"
+
+[[menu.docs]]
+  name = "Getting Started"
+  weight = 2
+  identifier = "getting-started"
+  url = "/getting-started/"
+
+[[menu.docs]]
+  name = "Self-Hosted"
+  weight = 3
+  identifier = "platform"
+  url = "/platform/"
+
+[[menu.docs]]
+  name = "Online"
+  weight = 4
+  identifier = "online"
+  url = "/online/"
+
+[[menu.docs]]
+  name = "Kubernetes"
+  weight = 5
+  identifier = "kubernetes"
+  url = "/kubernetes/"
+
+[[menu.docs]]
+  name = "CLI"
+  weight = 6
+  identifier = "cli"
+  url = "/cli/"
+
+[[menu.docs]]
+  name = "CI/CD"
+  weight = 7
+  identifier = "ci-cd"
+  url = "/ci-cd/"
+
+[[menu.docs]]
+  name = "FAQ"
+  weight = 8
+  identifier = "faq"
+  url = "/faq/"
+
+[[menu.docs]]
+  name = "Developer Guide - API"
+  weight = 9
+  identifier = "developer-guide"
+  url = "/developer-guide/"
+
+
+[[menu.docs]]
+  name = "Release Notes"
+  weight = 10
+  identifier = "release-notes"
+  url = "/release-notes/"

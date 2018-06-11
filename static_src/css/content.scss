@@ -8,60 +8,80 @@
   top: 0;
   right: 0;
 
+  .item {
+    box-sizing: border-box;
+    color: $purple;
+    border: 1px solid $purple;
+    border-radius: 4px;
+    padding: 14px 24px;
+    text-align: left;
+    margin-bottom: 20px;
+
+    h4 {
+      line-height: 16px;
+      font-size: 18px;
+      margin-top: 8px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      min-height: 75px;
+    }
+
+    .read-more {
+      text-align: right;
+    }
+  }
+
   .home {
-      text-align: center;
+    text-align: center;
+    margin-top: 10vh;
+
+    h1 {
+      margin: 15px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    .break {
+      border: 1px solid $purple;
       margin-top: 10vh;
+      width: 50vw;
+      text-align: center;
+      margin: 10vh auto;
+    }
 
-      h1 {
-        margin: 15px;
+    .popular {
+      .popular-title {
+        margin-bottom: 35px;
       }
+    }
+  }
 
-      h2 {
-        font-size: 22px;
-      }
+  .list {
+    margin-top: 60px;
+  }
 
-      h3 {
-        font-size: 20px;
-      }
+  .contribute {
+    text-align: right;
 
-      .break {
-        border: 1px solid $purple;
-        margin-top: 10vh;
-        width: 50vw;
-        text-align: center;
-        margin: 10vh auto 10vh auto;
-      }
-
-      .popular {
-
-        .popular-title {
-          margin-bottom: 35px;
-        }
-      }
-
-      .item {
-        box-sizing: border-box;
-        color: $purple;
-        border: 1px solid $purple;
-        border-radius: 4px;
-        padding: 14px 24px;
-        text-align: left;
-        margin-bottom: 20px;
-
-        h4 {
-          line-height: 16px;
-          font-size: 18px;
-          margin-top: 8px;
-          margin-bottom: 10px;
-        }
-
-        p {
-          min-height: 75px;
-        }
-
-        .read-more {
-          text-align: right;
-        }
-      }
+    a {
+      box-sizing: border-box;
+      color: white;
+      border: 1px solid $purple;
+      background-color: $purple;
+      border-radius: 4px;
+      line-height: 16px;
+      padding: 14px 24px;
+      font-size: 14px;
+      margin-left: 10px;
+      padding: 12px 18px;
+    }
   }
 }

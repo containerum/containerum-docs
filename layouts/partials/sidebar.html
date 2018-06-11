@@ -1,76 +1,36 @@
+{{ $currentPage := . }}
+
 <nav id="sidebar">
-  <!-- Sidebar Header -->
   <div class="header">
-    <img src="/img/logo.svg" alt="">
+    <a href="/">
+      <img src="/img/logo.svg">
+    </a>
   </div>
   <div class="components">
     <ul>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Getting Started</a></li>
-      <li>
-        <a href="#">Features</a>
-        <ul class="sub">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Getting Started</a></li>
-        </ul>
-      </li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
-      <li><a href="#">CLI Commands</a></li>
+      {{ range .Site.Menus.docs.ByWeight }}
+        <li>
+          <span class="activator">{{ .Name }}</span>
+
+          {{ if .HasChildren }}
+            {{ range .Children.ByWeight }}
+              {{ if eq $currentPage.Params.Menu.Docs.Parent .Parent }}
+                <ul class="sub active">
+                  <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                </ul>
+              {{ else }}
+                <ul class="sub">
+                  <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                </ul>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </li>
+      {{ end }}
     </ul>
   </div>
   <div class="footer">
-    <a href="https://github.com/kubernetes/helm" class="button small primary expand email-support">
+    <a href="https://github.com/containerum/containerum-docs" class="button small primary expand email-support">
       <i class="fab fa-github"></i> Contribute to Docs
     </a>
   </div>
