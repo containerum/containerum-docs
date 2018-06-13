@@ -36,3 +36,8 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+  - provider: script
+    script: chkit set image --deployment documentation --container docs --image containerum/docs:release --force
+    skip_cleanup: true
+    on:
+      branch: master
