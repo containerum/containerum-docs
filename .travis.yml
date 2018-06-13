@@ -28,9 +28,11 @@ deploy:
     script:
       - docker push "${IMAGE_NAME}:latest"
       - docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
+    skip_cleanup: true
     on:
       tags: true
   - provider: script
     script: docker push "${IMAGE_NAME}:release"
+    skip_cleanup: true
     on:
       branch: master
