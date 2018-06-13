@@ -1,6 +1,6 @@
 ---
-title: Getting-Started
-linktitle: Get Started Overview
+title: Contribute
+linktitle: Contribute Overview
 description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
 
 categories: []
@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "getting-started"
+    parent: "contribute"
     weight: 1
 
 draft: false

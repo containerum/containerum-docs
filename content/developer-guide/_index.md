@@ -1,5 +1,5 @@
 ---
-title: Developer Guide
+title: Developer-Guide
 linktitle: Developer Guide Overview
 description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
 

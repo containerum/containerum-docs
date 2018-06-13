@@ -1,5 +1,5 @@
 ---
-title: CI/CD
+title: CI-CD
 linktitle: CI/CD Overview
 description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
 

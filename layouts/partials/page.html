@@ -1,14 +1,17 @@
 {{ $page := .page }}
+{{ $path := .page.File.Path }}
 
-<div class="container-fluid">
+<div class="container">
   {{ .page.Content  }}
 
   <div class="contribute">
-    <a href="https://github.com/containerum" class="button small primary expand">
+    <a href="{{ .page.Site.Params.github }}/issues/new?title={{ .page.Site.Params.issue }} {{ $path }}" class="button small primary expand">
       <i class="fas fa-plus-square"></i> Create Issue
     </a>
-    <a href="https://github.com/containerum" class="button small primary expand">
-      <i class="fas fa-pencil-alt"></i> Edit Page
-    </a>
+    {{ with .page.Site.GetPage "page" "contribute/docs.md" }}
+      <a href="{{ .Permalink }}#{{ $path }}" class="button small primary expand">
+        <i class="fas fa-pencil-alt"></i> Edit Page
+      </a>
+    {{ end }}
   </div>
 </div>

@@ -9,6 +9,9 @@
   <div class="components">
     <ul>
       {{ range .Site.Menus.docs.ByWeight }}
+        {{ if eq .Weight 7 }}
+          <li class="break"></li>
+        {{ end }}
         <li>
           <span class="activator">{{ .Name }}</span>
 
@@ -16,7 +19,11 @@
             {{ range .Children.ByWeight }}
               {{ if eq $currentPage.Params.Menu.Docs.Parent .Parent }}
                 <ul class="sub active">
-                  <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                  {{ if eq $currentPage .Page }}
+                    <li><a href="{{ .URL }}" class="active">{{ .Name }}</a></li>
+                  {{ else }}
+                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                  {{ end }}
                 </ul>
               {{ else }}
                 <ul class="sub">

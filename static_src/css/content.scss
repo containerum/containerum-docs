@@ -8,6 +8,10 @@
   top: 0;
   right: 0;
 
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+
   .item {
     box-sizing: border-box;
     color: $purple;
@@ -68,8 +72,36 @@
     margin-top: 60px;
   }
 
+  .edit-code {
+    display: none;
+
+    .links {
+      margin: 25px 0;
+    }
+  }
+
+  .edit-code, .browse-code {
+    ul {
+      list-style: decimal;
+    }
+
+    a {
+      box-sizing: border-box;
+      color: white;
+      border: 1px solid $purple;
+      background-color: $purple;
+      border-radius: 4px;
+      line-height: 16px;
+      padding: 14px 24px;
+      font-size: 14px;
+      margin-left: 10px;
+      padding: 12px 18px;
+    }
+  }
+
   .contribute {
     text-align: right;
+    margin: 90px 0;
 
     a {
       box-sizing: border-box;

@@ -2,6 +2,10 @@ baseURL = "docs.containerum.io"
 languageCode = "en-us"
 title = "Containerum Docs"
 
+[params]
+  github = "https://github.com/containerum/containerum-docs"
+  issue = "Issue with"
+
 
 [[menu.docs]]
   name = "About"
@@ -63,3 +67,9 @@ title = "Containerum Docs"
   weight = 10
   identifier = "release-notes"
   url = "/release-notes/"
+
+[[menu.docs]]
+  name = "Contribute"
+  weight = 11
+  identifier = "contribute"
+  url = "/contribute/"

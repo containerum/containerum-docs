@@ -3,3 +3,5 @@
 //= "../../node_modules/bootstrap/dist/js/bootstrap.min.js"
 
 //= "sidebar.js"
+
+//= "edit-page.js"
