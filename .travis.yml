@@ -3,6 +3,10 @@ sudo: required
 env:
   global:
   - CHKIT_VERSION=v3.2.0
+  - IMAGE_NAME=containerum/docs
+
+services:
+  - docker
 
 install:
   - wget https://github.com/containerum/chkit/releases/download/${CHKIT_VERSION}/chkit_linux_amd64_${CHKIT_VERSION}.tar.gz
@@ -10,3 +14,15 @@ install:
 
 script:
   - chkit get api
+  - docker build -t "$IMAGE_NAME" .
+
+before_deploy:
+  - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"
+
+deploy:
+  - provider: script
+    script: docker push "${IMAGE_NAME}:latest" && docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
+    on:
+      tags: true
