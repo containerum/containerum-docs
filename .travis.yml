@@ -14,7 +14,7 @@ install:
 
 script:
   - chkit get api
-  - chkit login -u ${LOGIN} -p ${PASSWORD} -n docs
+  - chkit login -u ${LOGIN} -p ${PASSWORD} -n -
   - docker build -t "$IMAGE_NAME" .
 
 before_deploy:
