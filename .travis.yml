@@ -4,6 +4,8 @@ env:
   global:
   - CHKIT_VERSION=v3.2.0
   - IMAGE_NAME=containerum/docs
+  - DEPLOY=documentation
+  - CONTAINER=docs
 
 services:
   - docker
@@ -21,6 +23,7 @@ before_deploy:
   - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:release"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
   - if [ "$TRAVIS_TAG" ]; then docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"; fi
 
 deploy:
@@ -32,12 +35,18 @@ deploy:
     on:
       tags: true
   - provider: script
-    script: docker push "${IMAGE_NAME}:release"
+    script: chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_TAG}" --force
+    skip_cleanup: true
+    on:
+      tags: true
+
+  - provider: script
+    script: docker push "${IMAGE_NAME}:release" && docker push "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
     skip_cleanup: true
     on:
       branch: master
   - provider: script
-    script: chkit set image --deployment documentation --container docs --image containerum/docs:release --force
+    script: chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
     skip_cleanup: true
     on:
       branch: master
