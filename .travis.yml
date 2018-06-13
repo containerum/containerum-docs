@@ -19,15 +19,17 @@ script:
 before_deploy:
   - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
-  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:dev"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:release"
+  - if [ "$TRAVIS_TAG" ]; then docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"; fi
 
 deploy:
   - provider: script
     script:
       - docker push "${IMAGE_NAME}:latest"
-      - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"
       - docker push "${IMAGE_NAME}:${TRAVIS_TAG}"
     on:
       tags: true
   - provider: script
-    script: docker push "${IMAGE_NAME}:dev"
+    script: docker push "${IMAGE_NAME}:release"
+    on:
+      branch: master
