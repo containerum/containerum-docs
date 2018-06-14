@@ -7,30 +7,48 @@
     </a>
   </div>
   <div class="components">
-    <ul>
+    <ul class="parent {{ $currentPage.Params.Menu.Docs.Parent }}">
       {{ range .Site.Menus.docs.ByWeight }}
         {{ if eq .Weight 7 }}
           <li class="break"></li>
         {{ end }}
         <li>
           <span class="activator">{{ .Name }}</span>
-
           {{ if .HasChildren }}
-            {{ range .Children.ByWeight }}
-              {{ if eq $currentPage.Params.Menu.Docs.Parent .Parent }}
-                <ul class="sub active">
-                  {{ if eq $currentPage .Page }}
-                    <li><a href="{{ .URL }}" class="active">{{ .Name }}</a></li>
-                  {{ else }}
-                    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                  {{ end }}
-                </ul>
-              {{ else }}
-                <ul class="sub">
-                  <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                </ul>
+            {{ $page := . }}
+            {{ $.Scratch.Set "class" "none" }}
+            {{ if eq $currentPage.URL $page.URL }} {{ $.Scratch.Set "class" "active" }} {{ end }}
+            {{ with $currentPage.Parent }}
+              {{ if eq .Name $page.Name }} {{ $.Scratch.Set "class" "active" }} {{ end }}
+              {{ with .Parent }}
+                {{ if eq .Name $page.Name }} {{ $.Scratch.Set "class" "active" }} {{ end }}
               {{ end }}
             {{ end }}
+
+            <ul class="sub {{ $.Scratch.Get "class" }} {{ .URL }} {{ $currentPage.URL }}">
+              {{ range .Children.ByWeight }}
+                <li>
+                  {{ if .HasChildren }}
+                    <span class="sub-activator">{{ .Name }}</span>
+                    {{ $page := . }}
+                    {{ $.Scratch.Set "sub-class" "none" }}
+                    {{ with $currentPage.Parent }}
+                      {{ if eq .Name $page.Name }} {{ $.Scratch.Set "sub-class" "active" }} {{ end }}
+                    {{ end }}
+
+                    <ul class="sub-sub {{ $.Scratch.Get "sub-class" }}">
+                      {{ range .Children.ByWeight }}
+                        <li class="{{ if eq .Page.Parent $currentPage.Parent }}active{{ end }}">
+                          <a href="{{ .URL }}" class="{{ if eq $currentPage .Page }}active{{ end }}">{{ .Name }}</a>
+                        </li>
+                      {{ end }}
+                    </ul>
+                  {{ else }}
+                    <a href="{{ .URL }}" class="{{ if eq $currentPage .Page }}active{{ end }}">{{ .Name }}</a>
+                  {{ end }}
+                </li>
+              {{ end }}
+            </ul>
           {{ end }}
         </li>
       {{ end }}

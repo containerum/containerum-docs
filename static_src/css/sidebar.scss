@@ -62,7 +62,16 @@
     overflow-y: auto;
     margin-bottom: 30px;
 
-    .sub {
+    ul {
+      margin: 0;
+      padding: 0;
+      
+      &.parent {
+        padding: 0 40px 0;
+      }
+    }
+
+    .sub, .sub-sub {
       padding-left: 20px;
       font-size: 16px;
       line-height: 24px;

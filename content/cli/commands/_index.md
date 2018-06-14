@@ -1,6 +1,6 @@
 ---
-title: CLI commands
-linktitle: CLI commands
+title: Commands
+linktitle: Commands Overview
 description:
 
 categories: []
@@ -8,8 +8,8 @@ keywords: []
 
 menu:
   docs:
-      parent: "cli-commands"
-      weight: 2
+    parent: "commands"
+    weight: 1
 
 draft: false
 ---

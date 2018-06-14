@@ -8,8 +8,8 @@ keywords: []
 
 menu:
   docs:
-      parent: "cli-commands"
-      weight: 1
+    parent: "commands"
+    weight: 2
 
 weight: 2
 
