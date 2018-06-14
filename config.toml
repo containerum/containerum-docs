@@ -60,7 +60,6 @@ title = "Containerum Docs"
   identifier = "developer-guide"
   url = "/developer-guide/"
 
-
 [[menu.docs]]
   name = "Release Notes"
   weight = 10
@@ -72,3 +71,10 @@ title = "Containerum Docs"
   weight = 11
   identifier = "contribute"
   url = "/contribute/"
+
+[[menu.docs]]
+  name = "Commands"
+  weight = 12
+  identifier = "commands"
+  parent = "cli"
+  url = "/cli/commands"
