@@ -1,7 +1,7 @@
 ---
-title: Developer-Guide
+title: Developer Guide - Containerum
 linktitle: Developer Guide Overview
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+description:
 
 categories: []
 keywords: []
@@ -14,6 +14,7 @@ menu:
 draft: false
 ---
 
-# About overview
+# Developer guide
+This guide provides information about Containerum API that can be used for contributing to the project or for using Containerum API in your projects.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+*API descriptions coming soon*
