@@ -1,6 +1,6 @@
 ---
 title: Components - Containerum
-linktitle: Overview
+linktitle: Containerum Components
 description:
 
 categories: []
@@ -10,8 +10,6 @@ menu:
   docs:
     parent: "components"
     weight: 1
-    identifier: platform-components
-
 
 draft: false
 ---

@@ -1,7 +1,7 @@
 ---
-title: CLI
+title: Update CLI
 linktitle: Update
-description:
+description: Updating chkit to the latest version.
 
 categories: []
 keywords: []
