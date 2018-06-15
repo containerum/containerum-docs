@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "commands"
     weight: 2
+    identifier: "commands-delete"
 
 weight: 2
 

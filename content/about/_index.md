@@ -11,6 +11,7 @@ menu:
   docs:
     parent: "about"
     weight: 1
+    identifier: "about-index"
 
 draft: false
 ---
