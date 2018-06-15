@@ -1,6 +1,6 @@
 ---
 title: CLI
-linktitle: Uninstallation
+linktitle: Uninstall
 description:
 
 categories: []

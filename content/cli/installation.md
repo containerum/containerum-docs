@@ -1,6 +1,6 @@
 ---
 title: CLI
-linktitle: Installation
+linktitle: Install
 description:
 
 categories: []
