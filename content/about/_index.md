@@ -1,10 +1,11 @@
 ---
-title: About
-linktitle: Overview
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+title: Overview - Containerum
+linktitle: Docs overview
+description: Containerum documentation walks you through Containerum installation and usage. API section present information for developers and contributors.
+
 
 categories: []
-keywords: []
+keywords: [containerum]
 
 menu:
   docs:
@@ -14,6 +15,28 @@ menu:
 draft: false
 ---
 
-# About overview
+# Overview
+Containerum documentation walks you through all aspects of Containerum installation and usage.
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+**[About](/about)** contains Documentation overview and Containerum features.
+
+To start working with Containerum, see **[Getting Started](/getting-started)** page. This section
+describes **[object types](/getting-started/object-types)**, basic information about using Containerum **[Self-hosted](/getting-started/self-hosted)** and **[Online](/getting-started/online)** platforms.
+
+**[Self-hosted](/self-hosted)** describes how to install and use Containerum in your Kubernetes cluster.
+
+**[Web Panel](/web-panel/)** describes how to work with Containerum Web UI.
+
+**[CKE](/Kubernetes)** contains information about how to setup and configure Containerum Kubernetes Engine (CKE) distro on-premises.
+
+**[CLI](/cli)** describes Containerum CLI installation, common commands, etc.
+
+To learn how to configure pipelines for application delivery, see **[CI/CD](/ci-cd)** section.
+
+You might also want to check out **[FAQ](/faq)**.
+
+**[API](/developer-guide/)** section contains information about Containerum API for developers.
+
+To find out what's new in the latest releases, refer to **[Release notes](/release-notes/)**
+
+**[Contribute](/contribute/)** section contains instructions about how to contribute to Containerum docs.

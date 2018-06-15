@@ -1,7 +1,7 @@
 ---
-title: Contribute to the Conatinerum Docs
+title: Contribute to Docs - Containerum
 linktitle: Docs
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+description:
 
 categories: []
 keywords: []
@@ -11,12 +11,11 @@ menu:
     parent: "contribute"
     weight: 2
 
-weight: 2
-
 draft: false
 ---
 
 # Contribute to the Containerum Docs
+
 
 {{< edit-code >}}
 {{< browse-code >}}

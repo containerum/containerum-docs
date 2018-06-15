@@ -25,10 +25,10 @@ title = "Containerum Docs"
   url = "/platform/"
 
 [[menu.docs]]
-  name = "Online"
+  name = "Web Panel"
   weight = 4
-  identifier = "online"
-  url = "/online/"
+  identifier = "web-panel"
+  url = "/web-panel/"
 
 [[menu.docs]]
   name = "Kubernetes"

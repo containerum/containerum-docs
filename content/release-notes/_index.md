@@ -1,7 +1,7 @@
 ---
-title: Release Notes
-linktitle: Release Notes Overview
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+title: Release Notes - Containerum
+linktitle: Release Overview
+description:
 
 categories: []
 keywords: []
@@ -14,6 +14,6 @@ menu:
 draft: false
 ---
 
-# About overview
+# Release Notes Overview
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This section contains release notes for chkit CLI, Containerum Kubernetes Engine, Containerum Online and Containerum self-hosted.

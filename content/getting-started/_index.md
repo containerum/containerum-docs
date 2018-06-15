@@ -1,7 +1,7 @@
 ---
-title: Getting-Started
-linktitle: Get Started Overview
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+title: Getting Started
+linktitle: Overview
+description:
 
 categories: []
 keywords: []
@@ -14,6 +14,6 @@ menu:
 draft: false
 ---
 
-# About overview
+# Overview
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Getting Started section contains the basics of working with Containerum and Kubernetes. Object types contains information about the core concepts of Containerum. Self-hosted describes the first steps to start using Containerum on-premises, while Online contains the first steps launch your first application on Containerum Online.
