@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "commands"
+    parent: "components"
     weight: 5
     identifier: platform-permissions
 

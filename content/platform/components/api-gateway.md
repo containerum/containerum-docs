@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "commands"
+    parent: "components"
     weight: 2
     identifier: platform-gateway
 

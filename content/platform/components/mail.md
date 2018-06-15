@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "commands"
+    parent: "components"
     weight: 8
     identifier: platform-mail
 
