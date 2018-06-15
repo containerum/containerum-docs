@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "cli"
-    weight: 4
+    weight: 3
 
 weight: 2
 
