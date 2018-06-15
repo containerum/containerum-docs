@@ -1,5 +1,5 @@
 ---
-title: Build CLI - Containerum
+title: Build CLI
 linktitle: Build CLI
 description:
 
