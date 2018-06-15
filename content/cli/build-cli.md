@@ -8,8 +8,8 @@ keywords: []
 
 menu:
   docs:
-    parent: "platform"
-    weight: 3
+    parent: "cli"
+    weight: 4
 
 draft: false
 ---
@@ -35,5 +35,5 @@ To build chkit from sources:
 cd $GOPATH/src/containerum/chkit
 make single_release CONTAINERUM_API="https://api.containerum.io"  
 # or your Containerum API URL
-then extract executable from tar.gz archive in ./build to $GOPATH/bin or another $PATH dir
 ```
+then extract executable from tar.gz archive to ```./build to $GOPATH/bin or another $PATH dir```.

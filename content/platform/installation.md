@@ -25,4 +25,4 @@ helm repo update
 helm install containerum/containerum
 ```
 
-To run a production-ready Containerum platform, [install](/platform/components) each Containerum component in manual mode.
+To run a production-ready Containerum platform, [install](/platform/components/) each Containerum component in manual mode using Helm.
