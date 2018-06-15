@@ -1,7 +1,7 @@
 ---
 title: User Manager - Containerum
 linktitle: User manager
-description:
+description: User manager is a service for managing users, groups, credentials, user and domain blacklists for Containerum.
 
 categories: []
 keywords: []

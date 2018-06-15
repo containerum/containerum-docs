@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "components"
     weight: 1
+    identifier: platform-overview
 
 draft: false
 ---
