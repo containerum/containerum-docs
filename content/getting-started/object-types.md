@@ -36,7 +36,7 @@ In Containerum a user can generally operate the following objects:
 
 <ul>
 	<li><a href="#service"  style="color: black"><i>Service</i></a></li>
-
+	<li><a href="#ingress"  style="color: black"><i>Ingress</i></a></li>
 	<li><a href="#configmap"  style="color: black"><i>Configmap</i></a></li>
 </ul>
 
@@ -70,8 +70,7 @@ Service состоит из следующих полей:
     </tr>
     <tr>
     	<td>ports:</td>
-    	<td>Список портов.</td>
-    	<td></td>
+    	<td colspan="2">Список портов.</td>
     </tr>
     <tr>
     	<td>
@@ -112,6 +111,90 @@ Service состоит из следующих полей:
   </tbody>
 </table>
 
+<br/>
+<h4><a name="ingress">Ingress</a></h4>
+
+Объект, управляющий доступом к сервисам через домены. Имеет поддержку tls. Может содержать правила для роутинга по нескольким доменам и по разным путям. Например, url hello.hub.containerum.io/ ведет к сервису svc0 основного приложения, а url hello.hub.containerum.io/blog - к svc1 приложения blog.
+
+Ingress состоит из следующих полей:
+
+<table width="100%">
+  <tbody>
+    <tr>
+      <th width="20%">Field</th>
+      <th width="60%">Description</th>
+      <th width="20%">Example</th>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>Имя объекта.</td>
+      <td>myIngress</td>
+    </tr>
+    <tr>
+      <td>rules:</td>
+      <td colspan="2">Список правил для роутинга.</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<li>host</li>
+    		</ul>
+    	</td>
+    	<td>URL Domain. Домен, по которому будет вестись обращение.</td>
+    	<td>hello.hub.containerum.io</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<li>tls_secret</li>
+    		</ul>
+    	</td>
+    	<td>Поддержка tls. Если есть, указывается имя секрета с сертификатом.</td>
+    	<td>tls-cert</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<li>path:</li>
+    		</ul>
+    	</td>
+    	<td colspan="2">Список путей.</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<ul>
+    				<li>path</li>
+    			</ul>
+    		</ul>
+    	</td>
+    	<td>URL path.</td>
+    	<td>/project</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<ul>
+    				<li>service_name</li>
+    			</ul>
+    		</ul>
+    	</td>
+    	<td>Target service.</td>
+    	<td>myService</td>
+    </tr>
+    <tr>
+    	<td>
+    		<ul>
+    			<ul>
+    				<li>service_port</li>
+    			</ul>
+    		</ul>
+    	</td>
+    	<td>Target port of selected service.</td>
+    	<td>8080</td>
+    </tr>
+  </tbody>
+</table>
 
 <br/>
 <h4><a name="configmap">Configmap</a></h4>
