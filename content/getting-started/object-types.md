@@ -40,6 +40,7 @@ draft: false
 In Containerum a user can generally operate the following objects:
 
 <ul>
+	<li><a href="#project"  style="color: black"><i>Project</i></a></li>
 	<li><a href="#deployment"  style="color: black"><i>Deployment</i></a></li>
 	<li><a href="#pod"  style="color: black"><i>Pod</i></a></li>
 	<li><a href="#service"  style="color: black"><i>Service</i></a></li>
@@ -47,6 +48,107 @@ In Containerum a user can generally operate the following objects:
 	<li><a href="#configmap"  style="color: black"><i>Configmap</i></a></li>
 </ul>
 
+<br/>
+<h4><a name="">Project</a></h4>
+
+Объект, представляющий неймспейс в системе kubernetes. Под проект выделяются ресурсы: оперативная память и cpu. Основная сущность, которой управляет система. Остальные объекты существуют только внутри проекта. Проект управляется при помощи идентификаторов, т.к. в системе kubernetes не могут существовать два неймспейса с одним именем.
+
+Project состоит из следующих полей:
+
+<table>
+	<tbody>
+		<tr>
+		  	<th width="20%">Field</th>
+		  	<th width="10%">Type</th>
+		  	<th width="50%">Description</th>
+		  	<th width="20%">Example</th>
+		</tr>
+		<tr>
+		  	<td>id</td>
+		  	<td>Идентификатор объекта.</td>
+		  	<td>8d616b02-1ea7-4842-b8ec-c6e8226fda5b</td>
+		</tr>
+		<tr>
+		  	<td>label</td>
+		  	<td>Имя объекта, запрошенное пользователем.</td>
+		  	<td>myNamespace</td>
+		</tr>
+		<tr>
+			<td>owner</td>
+			<td>ID владельца проекта.</td>
+			<td>20b616d8-1ea7-4842-b8ec-c6e8226fda5b</td>
+		</tr>
+		<tr>
+			<td>access</td>
+			<td>Доступ пользователя к проекту.</td>
+			<td>owner</td>
+		</tr>
+		<tr>
+			<td>resources:</td>
+			<td colspan="2">Ресурсы, выделяемые под проект.</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>hard:</li>
+				</ul>
+			</td>
+			<td colspan="2">Затребованные ресурсы.</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<ul>
+						<li>cpu</li>
+					</ul>
+				</ul>
+			</td>
+			<td>Процессорное время.</td>
+			<td>100</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<ul>
+						<li>memory</li>
+					</ul>
+				</ul>
+			</td>
+			<td>Оперативная память.</td>
+			<td>128</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>used:</li>
+				</ul>
+			</td>
+			<td colspan="2">Занятые ресурсы.</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<ul>
+						<li>cpu</li>
+					</ul>
+				</ul>
+			</td>
+			<td>Процессорное время.</td>
+			<td>50</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<ul>
+						<li>memory</li>
+					</ul>
+				</ul>
+			</td>
+			<td>Оперативная память.</td>
+			<td>100</td>
+		</tr>		
+	</tbody>
+</table>
 
 <br/>
 <h4><a name="deployment">Deployment</a></h4>
