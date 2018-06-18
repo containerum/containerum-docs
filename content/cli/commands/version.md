@@ -1,19 +1,23 @@
----
-title: Version
-linktitle: version
-description: Print version
 
-categories: []
-keywords: []
+### version
 
-menu:
-  docs:
-    parent: "commands"
-    weight: 13
+**Aliases**   :
 
-weight: 2
 
-draft: false
----
 
-# Version
+**Usage**     :
+
+Print version
+
+**Example**   :
+
+
+
+**Flags**     :
+
+  
+
+**Subcommand**:
+
+  
+

@@ -1,17 +1,17 @@
 
-### login
+### get access
 
 **Aliases**   :
 
-
+namespace-access, ns-access
 
 **Usage**     :
 
-Login to system
+Print namespace access data.
 
 **Example**   :
 
-
+chkit get ns-access $ID
 
 **Flags**     :
 

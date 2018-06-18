@@ -1,13 +1,13 @@
 
-### login
+### set default-namespace
 
 **Aliases**   :
 
-
+def-ns, default-ns, defns, def-namespace
 
 **Usage**     :
 
-Login to system
+Set default namespace
 
 **Example**   :
 

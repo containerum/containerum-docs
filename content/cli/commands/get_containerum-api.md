@@ -1,13 +1,13 @@
 
-### login
+### get containerum-api
 
 **Aliases**   :
 
-
+api, current-api, api-addr, API
 
 **Usage**     :
 
-Login to system
+print Containerum API URL
 
 **Example**   :
 

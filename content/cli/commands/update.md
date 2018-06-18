@@ -1,19 +1,25 @@
----
-title: Update
-linktitle: update
-description: Update chkit client
 
-categories: []
-keywords: []
+### update
 
-menu:
-  docs:
-    parent: "commands"
-    weight: 12
+**Aliases**   :
 
-weight: 2
 
-draft: false
----
 
-# Update
+**Usage**     :
+
+Use "chkit update [command] --help" for more information about the command.
+
+**Example**   :
+
+chkit update [from github|dir <path>] [--debug]
+
+**Flags**     :
+
+  + debug  : print debug information
+  
+
+**Subcommand**:
+
+  + from : 
+  
+

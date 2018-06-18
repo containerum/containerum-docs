@@ -1,19 +1,24 @@
----
-title: Rename
-linktitle: rename
-description: Rename resource
 
-categories: []
-keywords: []
+### rename
 
-menu:
-  docs:
-    parent: "commands"
-    weight: 8
+**Aliases**   :
 
-weight: 2
 
-draft: false
----
 
-# Rename
+**Usage**     :
+
+Rename resource
+
+**Example**   :
+
+
+
+**Flags**     :
+
+  
+
+**Subcommand**:
+
+  + namespace : 
+  
+

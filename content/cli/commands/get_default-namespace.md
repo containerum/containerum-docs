@@ -1,13 +1,13 @@
 
-### login
+### get default-namespace
 
 **Aliases**   :
 
-
+default-ns, def-ns
 
 **Usage**     :
 
-Login to system
+Print default namespace.
 
 **Example**   :
 

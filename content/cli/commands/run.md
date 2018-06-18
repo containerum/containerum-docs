@@ -1,19 +1,25 @@
----
-title: Run
-linktitle: run
-description: Run a solution
 
-categories: []
-keywords: []
+### run
 
-menu:
-  docs:
-    parent: "commands"
-    weight: 10
+**Aliases**   :
 
-weight: 2
 
-draft: false
----
 
-# Run
+**Usage**     :
+
+Run solution from public template.
+
+**Example**   :
+
+
+
+**Flags**     :
+
+  + help h : Print help for chkit
+  
+
+**Subcommand**:
+
+  + solution : run solution from public template
+  
+

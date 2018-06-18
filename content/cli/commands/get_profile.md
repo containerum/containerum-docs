@@ -1,17 +1,17 @@
 
-### login
+### get profile
 
 **Aliases**   :
 
-
+me, user
 
 **Usage**     :
 
-Login to system
+Shows profile info.
 
 **Example**   :
 
-
+chkit get profile
 
 **Flags**     :
 

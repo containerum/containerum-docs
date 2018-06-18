@@ -1,5 +1,5 @@
 
-### login
+### update from
 
 **Aliases**   :
 
@@ -7,7 +7,7 @@
 
 **Usage**     :
 
-Login to system
+
 
 **Example**   :
 
@@ -19,5 +19,7 @@ Login to system
 
 **Subcommand**:
 
+  + dir : update from local directory
+  + github : update from github releases
   
 

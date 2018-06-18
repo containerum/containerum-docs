@@ -1,19 +1,35 @@
----
-title: Get
-linktitle: get
-description: Get resource data
 
-categories: []
-keywords: []
+### get
 
-menu:
-  docs:
-    parent: "commands"
-    weight: 4
+**Aliases**   :
 
-weight: 2
 
-draft: false
----
 
-# Get
+**Usage**     :
+
+Get resource data
+
+**Example**   :
+
+
+
+**Flags**     :
+
+  
+
+**Subcommand**:
+
+  + access : print namespace access data
+  + configmap : show configmap data
+  + containerum-api : print Containerum API URL
+  + default-namespace : print default namespace
+  + deployment : show deployment data
+  + deployment-versions : get deployment versions
+  + ingress : show ingress data
+  + namespace : show namespace data or namespace list
+  + pod : show pod info
+  + profile : show profile info
+  + service : show service info
+  + solution : get solutions
+  
+

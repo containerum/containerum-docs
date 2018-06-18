@@ -1,17 +1,17 @@
 
-### login
+### rename namespace
 
 **Aliases**   :
 
-
+ns, namespaces
 
 **Usage**     :
 
-Login to system
+
 
 **Example**   :
 
-
+chkit rename ns $ID $NEW_NAME
 
 **Flags**     :
 
