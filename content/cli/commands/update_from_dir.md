@@ -1,7 +1,7 @@
 ---
-title: Delete Configmap
-linktitle: delete configmap
-description: delete configmap
+title: Update From Dir
+linktitle: update from dir
+description: Update from local directory
 
 categories: []
 keywords: []
@@ -16,21 +16,20 @@ weight: 2
 draft: false
 ---
 
-### delete configmap
+### update from dir
 
 **Description**:
 
-delete configmap
+Update from local directory.
 
 **Example**:
 
-
+chkit update from dir <path> [--debug]
 
 **Flags**:
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-| -f | force | suppress confirmation | false |
 
 
 

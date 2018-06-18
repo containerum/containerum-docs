@@ -1,7 +1,7 @@
 ---
-title: Delete Configmap
-linktitle: delete configmap
-description: delete configmap
+title: Update From Github
+linktitle: update from github
+description: Update from github releases
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### delete configmap
+### update from github
 
 **Description**:
 
-delete configmap
+Update from github releases.
 
 **Example**:
 
@@ -30,7 +30,6 @@ delete configmap
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-| -f | force | suppress confirmation | false |
 
 
 
