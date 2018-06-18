@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "commands"
     weight: 2
+    identifier: "commands-create"
 
 weight: 2
 

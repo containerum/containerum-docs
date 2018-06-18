@@ -1,7 +1,7 @@
 ---
-title: CLI
+title: Install CLI
 linktitle: Install
-description:
+description: Installing CLI
 
 categories: []
 keywords: []
@@ -18,7 +18,7 @@ draft: false
 
 # Installation
 
-You can download binaries for [MacOs](https://web.api.containerum.io:5000/download/chkit?os=mac_x64), [Ubuntu x32](https://web.api.containerum.io:5000/download/chkit?os=linux_x86), [Ubuntu x64](https://web.api.containerum.io:5000/download/chkit?os=linux_x64), [Windows x32](https://web.api.containerum.io:5000/download/chkit?os=windows_x86) and [Windows x64](https://web.api.containerum.io:5000/download/chkit?os=windows_x64).
+You can download [binaries](https://github.com/containerum/chkit/releases) for MacOs, Ubuntu x32, Ubuntu x64, Windows x32 and Windows x64.
 Extract the file to any directory.
 
 for **Ubuntu** and **MacOs**:

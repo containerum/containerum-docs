@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "commands"
     weight: 1
+    identifier: "commands-index"
 
 draft: false
 ---

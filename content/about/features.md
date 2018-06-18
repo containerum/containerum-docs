@@ -12,6 +12,7 @@ menu:
   docs:
     parent: "about"
     weight: 2
+    identifier: about-features
 
 draft: false
 ---

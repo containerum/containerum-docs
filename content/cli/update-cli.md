@@ -1,7 +1,7 @@
 ---
-title: CLI
+title: Update CLI
 linktitle: Update
-description:
+description: Updating chkit to the latest version.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "cli"
-    weight: 4
+    weight: 3
 
 weight: 2
 

@@ -78,3 +78,10 @@ title = "Containerum Docs"
   identifier = "commands"
   parent = "cli"
   url = "/cli/commands"
+
+[[menu.docs]]
+  name = "Components"
+  weight = 13
+  identifier = "components"
+  parent = "platform"
+  url = "/platform/components/"
