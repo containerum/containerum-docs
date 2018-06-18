@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Default-Namespace
+linktitle: get default-namespace
+description: Print default namespace
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### get default-namespace
 
 **Description**:
 
-Print version
+Print default namespace.
 
 **Example**:
 

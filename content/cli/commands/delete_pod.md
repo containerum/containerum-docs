@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Delete Pod
+linktitle: delete pod
+description: Delete pods
 
 categories: []
 keywords: []
@@ -16,20 +16,21 @@ weight: 2
 draft: false
 ---
 
-### version
+### delete pod
 
 **Description**:
 
-Print version
+Delete pods.
 
 **Example**:
 
-
+chkit delete pod pod_name [-n namespace]
 
 **Flags**:
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+| -f | force | delete pod without confirmation | false |
 
 
 

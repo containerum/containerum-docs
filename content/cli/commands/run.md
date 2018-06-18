@@ -1,7 +1,7 @@
 ---
 title: Run
 linktitle: run
-description: Run a solution
+description: Run solution from public template
 
 categories: []
 keywords: []
@@ -9,11 +9,28 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 10
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Run
+### run
+
+**Description**:
+
+Run solution from public template.
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+| -h | help | Print help for chkit | false |
+
+
+

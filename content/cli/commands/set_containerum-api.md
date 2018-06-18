@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Set Containerum-Api
+linktitle: set containerum-api
+description: Set Containerum API URL
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### set containerum-api
 
 **Description**:
 
-Print version
+Set Containerum API URL
 
 **Example**:
 
@@ -30,6 +30,7 @@ Print version
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+|  | allow-self-signed-certs |  | false |
 
 
 

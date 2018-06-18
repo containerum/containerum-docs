@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Access
+linktitle: get access
+description: Print namespace access data
 
 categories: []
 keywords: []
@@ -16,15 +16,15 @@ weight: 2
 draft: false
 ---
 
-### version
+### get access
 
 **Description**:
 
-Print version
+Print namespace access data.
 
 **Example**:
 
-
+chkit get ns-access $ID
 
 **Flags**:
 

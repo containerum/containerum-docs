@@ -9,11 +9,27 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 8
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Rename
+### rename
+
+**Description**:
+
+Rename resource
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+
+
+

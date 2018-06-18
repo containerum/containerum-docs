@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Delete Ingress
+linktitle: delete ingress
+description: Delete ingress
 
 categories: []
 keywords: []
@@ -16,20 +16,21 @@ weight: 2
 draft: false
 ---
 
-### version
+### delete ingress
 
 **Description**:
 
-Print version
+Delete ingress.
 
 **Example**:
 
-
+chkit delete ingress $INGRESS [-n $NAMESPACE] [--force]
 
 **Flags**:
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+| -f | force | delete ingress without confirmation | false |
 
 
 

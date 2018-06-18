@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Pod
+linktitle: get pod
+description: Show pod info
 
 categories: []
 keywords: []
@@ -16,20 +16,22 @@ weight: 2
 draft: false
 ---
 
-### version
+### get pod
 
 **Description**:
 
-Print version
+Show pod info.
 
 **Example**:
 
-
+chkit get pod pod_label [-o yaml/json] [-f output_file]
 
 **Flags**:
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+| -f | file | output file | - |
+| -o | output | output format (json/yaml) |  |
 
 
 

@@ -1,7 +1,7 @@
 ---
 title: Delete
 linktitle: delete
-description: Delete object
+description: Delete resource
 
 categories: []
 keywords: []
@@ -9,12 +9,27 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 2
-    identifier: "commands-delete"
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Delete
+### delete
+
+**Description**:
+
+Delete resource
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+
+
+

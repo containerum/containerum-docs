@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Delete Configmap
+linktitle: delete configmap
+description: delete configmap
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### delete configmap
 
 **Description**:
 
-Print version
+delete configmap
 
 **Example**:
 
@@ -30,6 +30,7 @@ Print version
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+| -f | force | suppress confirmation | false |
 
 
 

@@ -1,7 +1,7 @@
 ---
 title: Help
 linktitle: help
-description: Help about any command
+description: Help provides help for any command in the application
 
 categories: []
 keywords: []
@@ -16,4 +16,20 @@ weight: 2
 draft: false
 ---
 
-# Help
+### help
+
+**Description**:
+
+Help provides help for any command in the application. Simply type chkit help [path to command] for full details.
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+
+
+

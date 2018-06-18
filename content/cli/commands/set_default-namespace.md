@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Set Default-Namespace
+linktitle: set default-namespace
+description: Set default namespace
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### set default-namespace
 
 **Description**:
 
-Print version
+Set default namespace
 
 **Example**:
 
