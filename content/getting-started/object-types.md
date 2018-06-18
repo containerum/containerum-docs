@@ -51,9 +51,9 @@ In Containerum a user can generally operate the following objects:
 <br/>
 <h4><a name="">Project</a></h4>
 
-Объект, представляющий неймспейс в системе kubernetes. Под проект выделяются ресурсы: оперативная память и cpu. Основная сущность, которой управляет система. Остальные объекты существуют только внутри проекта. Проект управляется при помощи идентификаторов, т.к. в системе kubernetes не могут существовать два неймспейса с одним именем.
+Project is the main entity of the Containerum system. To create a project your need to allocate RAM and CPU resources on host nodes. Using self-hosted Containerum you can manage your available resources as you consider it necessary. <a href="https://web.containerum.io">Containerum Online</a> has a few offers for users, that want to try system features and functionality. The remaining system objects(deployments, services, etc.) exist only within the project. As Containerum has teamwork, you can allow any registered user to access your project or receive access to projects of other users.
 
-Project состоит из следующих полей:
+Project consists of the following fields:
 
 <table>
 	<tbody>
@@ -66,31 +66,31 @@ Project состоит из следующих полей:
 		<tr>
 		  	<td>id</td>
 		  	<td><i>uui4</i></td>
-		  	<td>Идентификатор объекта.</td>
+		  	<td>Object identifier.</td>
 		  	<td>8d616b02-1ea7-4842-b8ec-c6e8226fda5b</td>
 		</tr>
 		<tr>
 		  	<td>label</td>
 		  	<td><i>string</i></td>
-		  	<td>Имя объекта, запрошенное пользователем.</td>
+		  	<td>Object name, requested by user.</td>
 		  	<td>myNamespace</td>
 		</tr>
 		<tr>
 			<td>owner</td>
 			<td><i>uui4</i></td>
-			<td>ID владельца проекта.</td>
+			<td>Identifier of project owner.</td>
 			<td>20b616d8-1ea7-4842-b8ec-c6e8226fda5b</td>
 		</tr>
 		<tr>
 			<td>access</td>
 			<td><i>string</i></td>
-			<td>Доступ пользователя к проекту.</td>
+			<td>User access to the project. Values: owner, write, read.</td>
 			<td>owner</td>
 		</tr>
 		<tr>
 			<td>resources:</td>
 			<td><i>object</i></td>
-			<td colspan="2">Ресурсы, выделяемые под проект.</td>
+			<td colspan="2">Resources allocated for the project.</td>
 		</tr>
 		<tr>
 			<td>
@@ -99,7 +99,7 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>object</i></td>
-			<td colspan="2">Затребованные ресурсы.</td>
+			<td colspan="2">Requested resources.</td>
 		</tr>
 		<tr>
 			<td>
@@ -110,7 +110,7 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Процессорное время.</td>
+			<td>Allocated CPU.</td>
 			<td>100</td>
 		</tr>
 		<tr>
@@ -122,7 +122,7 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Оперативная память.</td>
+			<td>Allocated RAM.</td>
 			<td>128</td>
 		</tr>
 		<tr>
@@ -132,7 +132,7 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>object</i></td>
-			<td colspan="2">Занятые ресурсы.</td>
+			<td colspan="2">Currently used resources.</td>
 		</tr>
 		<tr>
 			<td>
@@ -143,7 +143,7 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Процессорное время.</td>
+			<td>Used CPU.</td>
 			<td>50</td>
 		</tr>
 		<tr>
@@ -155,18 +155,18 @@ Project состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Оперативная память.</td>
+			<td>Used RAM.</td>
 			<td>100</td>
 		</tr>		
 	</tbody>
 </table>
 
 <br/>
-<h4><a name="deployment">Deployment</a></h4>
+<h4><a name="deployment">Deployment</a></h4> 
 
-Объект, который содержит конфигурацию запускаемых приложений. Имеет большое количество параметров, основными среди которых являются контейнеры. В контейнерах описываются образы для запуска, ресурсы, переменные окружения и др. В одном деплое может быть запущено одно или более приложений. В таком случае не требуется создавать <a href="#service">внутренний сервис</a>, приложения доступны друг другу по имени контейнера. 
+Deployment is an object that contains the configuration of the running applications. It has a large number of parameters, one of the main of them is container. Containers describe images, resources, environment variables, and so on. One or more applications can be started in one deployment. In this case, you do not need to create an <a href="#service"> internal service </a>, the applications are accessible to each other by the container name.
 
-Deployment состоит из следующих полей:
+Deployment consists of the following fields:
 
 <table width="100%">
 	<tbody>
@@ -179,19 +179,19 @@ Deployment состоит из следующих полей:
 		<tr>
 		  	<td>name</td>
 		  	<td><i>string</i></td>
-		  	<td>Имя объекта.</td>
+		  	<td>Object name.</td>
 		  	<td>myDeployment</td>
 		</tr>
 		<tr>
 		  	<td>replicas</td>
 		  	<td><i>uint</i></td>
-		  	<td>Количество реплик, в которых будут запускаться приложения.</td>
+		  	<td>Replicas count for app to run.</td>
 		 	 <td>1</td>
 		</tr>
 		<tr>
 			<td>containers:</td>
 			<td><i>array</i></td>
-			<td colspan="2">Список контейнеров.</td>
+			<td colspan="2">Container list.</td>
 		</tr>
 		<tr>
 			<td>
@@ -200,7 +200,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Имя контейнера.</td>
+			<td>Container name.</td>
 			<td>myContainer</td>
 		</tr>
 		<tr>
@@ -210,7 +210,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Образ запускаемого приложения.</td>
+			<td>App image.</td>
 			<td>nginx</td>
 		</tr>
 		<tr>
@@ -220,7 +220,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>object</i></td>
-			<td colspan="2">Ресурсы, выделяемые под контейнер.</td>
+			<td colspan="2">Resources allocated for container.</td>
 		</tr>
 		<tr>
 			<td>
@@ -231,7 +231,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Процессорное время.</td>
+			<td>Allocated CPU.</td>
 			<td>100</td>
 		</tr>
 		<tr>
@@ -243,7 +243,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>uint</i></td>
-			<td>Оперативная память.</td>
+			<td>Allocated RAM.</td>
 			<td>128</td>
 		</tr>
 		<tr>
@@ -253,7 +253,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>array objects</i></td>
-			<td colspan="2">Список переменных окружения</td>
+			<td colspan="2">Environments list</td>
 		</tr>
 		<tr>
 			<td>
@@ -264,7 +264,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Имя переменной окружения</td>
+			<td>Environment name</td>
 			<td>CONTAINERUM_API</td>
 		</tr>
 		<tr>
@@ -276,7 +276,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Значение переменной окружения</td>
+			<td>Environment value</td>
 			<td>https://api.containerum.io</td>
 		</tr>
 		<tr>
@@ -286,7 +286,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>array objects</i></td>
-			<td colspan="2">Список конфигмапов.</td>
+			<td colspan="2">Configmap list.</td>
 		</tr>
 		<tr>
 			<td>
@@ -297,7 +297,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Имя конфигмапа</td>
+			<td>Configmap name</td>
 			<td>myConfigmap</td>
 		</tr>
 		<tr>
@@ -309,7 +309,7 @@ Deployment состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Путь в контейнере, куда монтируется конфигмап</td>
+			<td>Path for configmap to mount to.</td>
 			<td>/home/user</td>
 		</tr>
 	</tbody>
@@ -318,14 +318,14 @@ Deployment состоит из следующих полей:
 <br/>
 <h4><a name="pod">Pod</a></h4>
 
-Объект, представляющий собой одну работающую реплику <a href="#deployment">деплоя</a>. При создании деплоя с 4 репликами, создаются 4 пода. При этом каждый из них занимает количество ресурсов, равное сумме контейнеров деплоя. При удалении пода, запускается новый такой же под. Доступен для чтения логов.
+Pod is an object that represents one running <a href="#deployment"> deployment </a>replica. When user creates a deployment with 4 replicas, 4 pods will be created. In this case, each of them occupies the amount of resources equal to the sum of containers of parent deployment. When user deletes a pod, a new one with the same configuration will be created. Pods are available for reading logs.
 
 <br/>
 <h4><a name="service">Service</a></h4>
 
-Объект, предназначенный для связи <a href="#deployment">приложений</a> между собой или с внешним миром. Сервис может быть внутренним или внешним. Внутренний сервис соединяет деплойменты по внутренней сети kubernetes. Внешний сервис позволяет обращаться к деплою через всемирную сеть. Каждый сервис может иметь несколько портов, работающих по TCP или UDP протоколу.
+Service is an object, used for communication between <a href="#deployment"> applications </a> with each other or with the outside world. The service can be internal or external. The internal service connects deployments by internal network of k8s. External service allows you to access the deployment via internet from outside the system. Each service can have several ports running over TCP or UDP protocol.
 
-Service состоит из следующих полей:
+Service consists of the following fields:
 
 <table>
 	<tbody>
@@ -338,19 +338,19 @@ Service состоит из следующих полей:
 		<tr>
 		  	<td>name</td>
 		  	<td><i>string</i></td>
-		  	<td>Имя объекта.</td>
+		  	<td>Object name.</td>
 		  	<td>myService</td>
 		</tr>
 		<tr>
 		  	<td>deploy</td>
 		  	<td><i>string</i></td>
-		  	<td>Target deployment. Необходимо выбрать приложение, к которому будет обращаться сервис.</td>
+		  	<td>Target deployment. It is necessary to choose output app.</td>
 		  	<td>myDeployment</td>
 		</tr>
 		<tr>
 			<td>ports:</td>
 			<td><i>array objects</i></td>
-			<td colspan="2">Список портов.</td>
+			<td colspan="2">Ports list.</td>
 		</tr>
 		<tr>
 			<td>
@@ -359,7 +359,7 @@ Service состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Имя порта.</td>
+			<td>Port name.</td>
 			<td>myPort</td>
 		</tr>
 		<tr>
@@ -368,8 +368,8 @@ Service состоит из следующих полей:
 					<li>port</li>
 				</ul>
 			</td>
-			<td><i>uint</i></td>
-			<td>Внешний порт. Для внешнего сервиса это порт, выброшенный во всемирную сеть. Для внутреннего сервиса это порт, по которому поды выбранного деплоя будут стучаться к другому деплою.</td>
+			<td><i>uint(11000-65535)</i></td>
+			<td>External port. For the external service it is a port, that allows you to access the deployment via internet from outside the system. For the internal service it is a port, that allows selected deploy to communicate with another deployment.</td>
 			<td>8080</td>
 		</tr>
 		<tr>
@@ -378,8 +378,8 @@ Service состоит из следующих полей:
 					<li>target_port</li>
 				</ul>
 			</td>
-			<td><i>uint</i></td>
-			<td>Внутренний порт. Порт деплоя, на котором запущено приложение. В Dockerfile этот порт в команде EXPOSE.</td>
+			<td><i>uint(1-65535)</i></td>
+			<td>Internal port. The port of deployment, where running app exists. In Dockerfile this is a port from EXPOSE instruction.</td>
 			<td>80</td>
 		</tr>
 		<tr>
@@ -389,7 +389,7 @@ Service состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Протокол порта. TCP или UDP.</td>
+			<td>Port protocol. TCP or UDP accepted.</td>
 			<td>TCP</td>
 		</tr>
 	</tbody>
@@ -398,9 +398,9 @@ Service состоит из следующих полей:
 <br/>
 <h4><a name="ingress">Ingress</a></h4>
 
-Объект, управляющий доступом к <a href="#service">сервисам</a> через домены. Имеет поддержку tls. Может содержать правила для роутинга по нескольким доменам и по разным путям. Например, path hello.hub.containerum.io/ ведет к сервису svc0 основного приложения, а path hello.hub.containerum.io/blog - к svc1 приложения blog.
+Ingress is an object that controls access to <a href="#service"> services </a> through domains. Ingresses have tls support. They can contain rules for routing across several domains and different paths. For example, path <i>hello.hub.containerum.io/</i> connects the service <i>svc0</i> of the main application, and path <i>hello.hub.containerum.io/blog</i> - the service <i>svc1</i> of the blog application.
 
-Ingress состоит из следующих полей:
+Ingress consists of the following fields:
 
 <table width="100%">
 	<tbody>
@@ -413,13 +413,13 @@ Ingress состоит из следующих полей:
 		<tr>
 		  	<td>name</td>
 		  	<td><i>string</i></td>
-		  	<td>Имя объекта.</td>
+		  	<td>Object name.</td>
 		  	<td>myIngress</td>
 		</tr>
 		<tr>
 		  	<td>rules:</td>
 		  	<td><i>array objects</i></td>
-		  	<td colspan="2">Список правил для роутинга.</td>
+		  	<td colspan="2">Routing rules list.</td>
 		</tr>
 		<tr>
 			<td>
@@ -428,7 +428,7 @@ Ingress состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>URL Domain. Домен, по которому будет вестись обращение.</td>
+			<td>URL Domain.</td>
 			<td>hello.hub.containerum.io</td>
 		</tr>
 		<tr>
@@ -438,7 +438,7 @@ Ingress состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>Поддержка tls. Если есть, указывается имя секрета с сертификатом.</td>
+			<td>TLS support. If supported, secret name should be specified.</td>
 			<td>tls-cert</td>
 		</tr>
 		<tr>
@@ -448,7 +448,7 @@ Ingress состоит из следующих полей:
 				</ul>
 			</td>
 			<td><i>array objects</i></td>
-			<td colspan="2">Список путей.</td>
+			<td colspan="2">Paths list.</td>
 		</tr>
 		<tr>
 			<td>
@@ -492,9 +492,9 @@ Ingress состоит из следующих полей:
 <br/>
 <h4><a name="configmap">Configmap</a></h4>
 
-Объект, который представляет собой хранилище ключ-значение. Он может содержать любые текстовые данные, будь то конфигурационные артефакты, сертификаты, ключи или переменные окружения. Данные хранятся в "чистом" виде, поэтому здесь следует хранить все, что не имеет дополнительных требований к безопасности.
+Configmap is an object that represents a key-value store. It can contain any text data, for example, configuration artifacts, certificates, keys or environment variables. Configmap data is stored without any encryptions, so you should store everything that does not have additional security requirements.
 
-Configmap состоит из следующих полей:
+Configmap consists of the following fields:
 
 <table>
 	<tbody>
@@ -507,13 +507,13 @@ Configmap состоит из следующих полей:
 		<tr>
 		  	<td>name</td>
 		  	<td><i>string</i></td>
-		  	<td>Имя объекта.</td>
+		  	<td>Object name.</td>
 		  	<td>myConfigmap</td>
 		</tr>
 		<tr>
 		  	<td>data</td>
 		  	<td><i>object</i></td>
-		  	<td>Объект, который содержит данные в формате key0:value0, key1:value1. В общем случае, ключем является имя загружаемого файла, а значением сам файл.</td>
+		  	<td>Data, that contains information in the key-value format, like key0:value0, key1:value1. In general, the key is the name of the downloaded file, and the value is the file data.</td>
 		  	<td>1.txt:Hello World</td>
 		</tr>
 	</tbody>
