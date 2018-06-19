@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Update From Dir
+linktitle: update from dir
+description: Update from local directory
 
 categories: []
 keywords: []
@@ -16,15 +16,15 @@ weight: 2
 draft: false
 ---
 
-### version
+### update from dir
 
 **Description**:
 
-Print version
+Update from local directory.
 
 **Example**:
 
-
+chkit update from dir <path> [--debug]
 
 **Flags**:
 

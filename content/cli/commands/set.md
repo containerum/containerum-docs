@@ -9,11 +9,27 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 11
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Set
+### set
+
+**Description**:
+
+Set configuration variables
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+
+
+

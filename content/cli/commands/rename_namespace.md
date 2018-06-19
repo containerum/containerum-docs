@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Rename Namespace
+linktitle: rename namespace
+description: chkit rename ns $ID $NEW_NAME
 
 categories: []
 keywords: []
@@ -16,15 +16,15 @@ weight: 2
 draft: false
 ---
 
-### version
+### rename namespace
 
 **Description**:
 
-Print version
+chkit rename ns $ID $NEW_NAME
 
 **Example**:
 
-
+chkit rename ns $ID $NEW_NAME
 
 **Flags**:
 

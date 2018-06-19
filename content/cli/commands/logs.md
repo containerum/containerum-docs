@@ -1,7 +1,7 @@
 ---
 title: Logs
 linktitle: logs
-description: View pod logs
+description: view pod logs
 
 categories: []
 keywords: []
@@ -9,11 +9,29 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 7
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Logs
+### logs
+
+**Description**:
+
+view pod logs. Aliases: log
+
+**Example**:
+
+logs pod_label [container] [--follow] [--prev] [--tail n] [--quiet]
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+| -f | follow | follow pod logs | false |
+| -t | tail | print last <value> log lines | 100 |
+
+
+

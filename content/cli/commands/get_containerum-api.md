@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Containerum-Api
+linktitle: get containerum-api
+description: print Containerum API URL
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### get containerum-api
 
 **Description**:
 
-Print version
+print Containerum API URL
 
 **Example**:
 

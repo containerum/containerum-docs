@@ -1,7 +1,7 @@
 ---
 title: Create
 linktitle: create
-description: Create object
+description: Create resource (deployment, service
 
 categories: []
 keywords: []
@@ -9,19 +9,27 @@ keywords: []
 menu:
   docs:
     parent: "commands"
-    weight: 2
-    identifier: "commands-create"
+    weight: 5
 
 weight: 2
 
 draft: false
 ---
 
-# Create
+### create
 
-The `chkit create` command is used to create an object in your *Project*. Types of objects that can be created:
+**Description**:
 
-+ *Deployment*
-+ *Ingress*
-+ *Service*
-+ *Config map*
+Create resource (deployment, service...)
+
+**Example**:
+
+
+
+**Flags**:
+
+| Short | Name | Usage | Default value |
+| ----- | ---- | ----- | ------------- |
+
+
+

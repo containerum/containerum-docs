@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Update From Github
+linktitle: update from github
+description: Update from github releases
 
 categories: []
 keywords: []
@@ -16,11 +16,11 @@ weight: 2
 draft: false
 ---
 
-### version
+### update from github
 
 **Description**:
 
-Print version
+Update from github releases.
 
 **Example**:
 

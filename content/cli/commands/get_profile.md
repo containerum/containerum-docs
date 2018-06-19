@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Profile
+linktitle: get profile
+description: Shows profile info
 
 categories: []
 keywords: []
@@ -16,15 +16,15 @@ weight: 2
 draft: false
 ---
 
-### version
+### get profile
 
 **Description**:
 
-Print version
+Shows profile info.
 
 **Example**:
 
-
+chkit get profile
 
 **Flags**:
 

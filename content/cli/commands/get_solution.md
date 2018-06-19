@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Get Solution
+linktitle: get solution
+description: Show list of available solutions
 
 categories: []
 keywords: []
@@ -16,15 +16,15 @@ weight: 2
 draft: false
 ---
 
-### version
+### get solution
 
 **Description**:
 
-Print version
+Show list of available solutions. To search solution by name add arg.
 
 **Example**:
 
-
+chkit get solution [name]
 
 **Flags**:
 

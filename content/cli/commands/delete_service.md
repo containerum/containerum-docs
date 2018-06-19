@@ -1,7 +1,7 @@
 ---
-title: Version
-linktitle: version
-description: Print version
+title: Delete Service
+linktitle: delete service
+description: Delete service in namespace
 
 categories: []
 keywords: []
@@ -16,20 +16,21 @@ weight: 2
 draft: false
 ---
 
-### version
+### delete service
 
 **Description**:
 
-Print version
+Delete service in namespace.
 
 **Example**:
 
-
+chkit delete service service_label [-n namespace]
 
 **Flags**:
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
+| -f | force | force delete without confirmation | false |
 
 
 
