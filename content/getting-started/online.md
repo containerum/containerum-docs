@@ -1,7 +1,7 @@
 ---
 title: Online Platform - Containerum
 linktitle: Containerum Online
-description: First steps to start using Containerum Online.
+description: First steps to start using Containerum Online
 
 categories: []
 keywords: []
@@ -15,96 +15,96 @@ draft: false
 ---
 
 # Getting started with Containerum Online
-*First steps to start working with Containerum Online*
+Here are the fist steps to launch your first application on Containerum Online.
 
-1.Registration
+##### 1. Registration
+To start using Containerum, register with your email, and prove that you are not a robot.
+
+You will receive a letter with registration confirmation link shortly.
+
+Click the link  - the registration is complete! Now you will see the Dashboard page.
 
 ![Registration](/img/content/getting-started/online/registration.png)
 
-Зарегистрируйтесь, введите адрес электронной почты и придумайте пароль, а также подтвердите что вы 
-не являетесь роботом.
 
-После регистрации вам придет письмо с ссылкой для подтверждения регистрации.
+##### 2. Billing
 
-Перейдя по ней вы окажетесь на странице Dashboard
-
-2.Billing
-
+The next step is to top up your account. In the right drop-down menu choose *Billing*.
 ![moveToBilling](/img/content/getting-started/online/moveToBilling.png)
 
-Теперь вам необходимо пополнить счёт вашего аккаунта, чтобы была возможность 
-воспользоваться функционалом. Для этого выберите в выпадающем меню пункт Billing.
 
-На странице Billing нажмите кнопку add funds, чтобы пополнить счёт через карту 
-или с помощью PayPal.
+On the Billing page click *Add funds* to top up your account with your card or PayPal.
 
 ![Billing](/img/content/getting-started/online/billing.png)
 
-3.Create Project
+##### 3. Create a Project
 
-Теперь создайте свой первый проект
+Now create your first Project.
 
-Перейдите на вкладку Projects главного меню и нажмите add a project
+Go to the Projects tab and click *Add a project*.
 
 ![moveToCreateProject](/img/content/getting-started/online/moveToCreateProject.png)
 
-Далее выбирайте необходимый для вашего проекта объём ресурсов
+Now choose the size of your Project.
 
 ![chooseSize](/img/content/getting-started/online/chooseSize.png)
 
-После того как вы создали проект нужно перейти на его страницу. Все свои проекты 
-вы можете видеть на вкладке Project главного меню.
+Now that you have created a Project you can go the Project page.
 
-4.Create Deployment 
+You can access all your Projects at the Projects tab in the main menu.
 
-Теперь создайте Deployment. На вкладке Deployment нажмите create.
+##### 4. Create a Deployment
+
+Let's create your first Deployment. Click *Create* on the *Deployment* page.
 
 ![createDepl1](/img/content/getting-started/online/createDepl1.png)
 
-Введите имя вашего проекта, колиство реплик - 1.
+Enter the Deployment name and the number of replicas - 1.
 
 ![createDepl2](/img/content/getting-started/online/createDepl2.png)
 
-Далее введите имя контейнера - hello.
-Имя докер образа - containerum/helloworld.
-Ресурсы процессора и памяти - 500.
+Enter the following data:
+- container name - hello.
+- docker image you want to use - containerum/helloworld.
+- CPU (in mCPU) and RAM (in MB) - 500.
 
-После ввода всех необходимых параметров нажмите create deployment.
+Then click *Create deployment*.
 
-5.Create Service 
+##### 5. Create a Service
 
-Теперь необходимо создать внешний сервис для вашего проекта
+Now let's create an external service for your project to make it accessible from the outside.
 
-На вкладке Services вашего проекта нажмите кнопку create
+On the *Services* tab click *Create*.
 
 ![moveToCreateService](/img/content/getting-started/online/moveToCreateService.png)
 
 
-Далее создаём внешний сервис
+Now create an external service.
 
-Вводите имя сервиса, имя порта и адрес порта равный 80 
+Choose the target deployment, enter the service name, port name and port address (80).
 
 ![createService](/img/content/getting-started/online/createService.png)
 
-Далее создаем домен для этого внешнего сервиса. Нажмите create domain.
+Done!
+
+##### 6. Create a Domain
+
+Now let's create a domain for this external service. Click *Create domain*.
 
 ![moveToCreateDomain](/img/content/getting-started/online/moveToCreateDomain.png)
 
-6.Create Domain
-
-Введите имя домена и отметьте использование протокола SSL
+Enter the domain name and check *Enable SSL Security* box.
 
 ![createDomain](/img/content/getting-started/online/createDomain.png)
 
-7.Result
+##### 7. Go to the domain page
 
-После создания домена для внешнего сервиса переходим на вкладку Services 
-вашего проекта заходите на страницу созданного сервиса
+Go to the *Tools* tab in the main menu and choose *Domains*. You will see the list of your domains.
 
-![moveToViewResult](/img/content/getting-started/online/moveToViewResult.png)
+![moveToViewResult](/img/content/getting-started/online/domains.png)
 
-Далее чтобы увидть что базирутеся на созданной домене нажмите на поле link
+Click on the domain or enter the address manually in a new tab to see your application.
 
 ![Result](/img/content/getting-started/online/result.png)
 
-Поздравляем, вы только что успешно создали проект на нашей платформе.
+Congratulations! You've just created a Project and launched an application on Containerum Online Platform. Now it's time to learn more about [Containerum Web Panel](/web-panel/) and [CLI](/cli/).
