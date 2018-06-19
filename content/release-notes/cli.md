@@ -22,6 +22,8 @@ draft: false
 
 **Latest version: v3.2.0**
 
+_7.06.2018_
+
 Improvements:
 
     command "update configmap" added
