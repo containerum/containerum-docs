@@ -74,7 +74,7 @@ Enter the Deployment name and the number of replicas - 1.
 Enter the following data:
 - container name - hello.
 - docker image you want to use - containerum/helloworld.
-- CPU (in mCPU) and RAM (in MB) - 500.
+- CPU (in mCPU) and RAM (in Mi) - 500.
 
 Then click *Create deployment*.
 
