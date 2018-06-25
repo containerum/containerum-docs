@@ -1,7 +1,7 @@
 ---
 title: External Service - Containerum
 linktitle: External Service
-description:
+description: How to create, update, view and delete an External service.
 
 categories: []
 keywords: []
@@ -9,55 +9,73 @@ keywords: []
 menu:
   docs:
     parent: "web-panel"
-    weight: 5
+    weight: 3
 
 draft: false
 ---
 
 # How to work with an External Service
 
-External service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. An internal service connects deployments by the internal network of Kubernetes. External services allow users to access the deployment from the Internet.
+Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. External services allow users to access the deployment from the Internet.
 
 Each service can have several ports using TCP or UDP protocol.
 
 
 ## Create
-    
- To create an External service, you must go to an existing project, under the Services section and click the Create button.
+
+ To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
+
  <img src="/img/content/web-panel/serviceInNS.png" width="100%"/>
-        
-Select Deployment, then click on the EXTERNAL SERVICE switch and fill in the fields:
+
+
+Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](web-panel/deployment) first.
+
+Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the fields:
+
 - Service Name: `helloworld-external-service`
+
 - Ports Name: `helloworld-port`
+
 - Protocol type: `TCP`
+
 <img src="/img/content/web-panel/createExternalService.png" width="100%"/>
-Then click on the Create Service. Done
+
+Then click on the `Create Service`. Done.
 
 ## View
-    
-You can View service in list of services (`/projects/:idNamespace/services`)
+
+You can view all services in the Services tab (`/projects/:idNamespace/services`).
+
 <img src="/img/content/web-panel/getServicesList.png" width="100%"/>
-and specific service (`/project/:idNamespace/services/:serviceName`)
+
+You can also click on a service and see detailed information like IPs, domains, ports, and linked deployments. (`/project/:idNamespace/services/:serviceName`)
+
 <img src="/img/content/web-panel/getService.png" width="100%"/>
-        
+
 ## Update
-    
-You can Update service in list of services or specific service, call the context menu
-or specific service and click update.
+
+You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
+
 <img src="/img/content/web-panel/callContextServiceMenuUpdate.png" width="100%"/>
-Then you will see the service update page.
+
+You can change port parameters, delete or add new ports.
+
 <img src="/img/content/web-panel/updateExternalService.png" width="100%"/>
-Changing all the required fields, click on UPDATE SERVICE
+
+After changing the required information, click on `UPDATE SERVICE`.
 
 ## Delete
-    
-You can Delete service in list of services or specific service, call the context menu or specific service and click delete.
-<img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
-Attention! Deleting will happened immediately irrevocably.
 
-If you delete External service, then you can not see what service is being thrown by the deployment on a certain port
-    
+You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
+
+<img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
+
+Please, note: by clicking `delete` you will delete the service immediately. This action cannot be undone.
+
+If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.
+
 # Connections and dependencies
 
-Connections: correct configuration of the deployment port, for correct operation
-Dependencies: project and deployment availability
+Connections: correct configuration of the deployment port for correct operation.
+
+Dependencies: project and deployment availability.
