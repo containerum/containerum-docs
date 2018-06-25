@@ -26,15 +26,14 @@ _22.06.2018_
 
 Improvements:
 
-    Added Get pod logs exit function
-    Deleted Label block on Create deployment page
-    Added access right to elements control
-    Added run solution
-    Added create domain in namespace
+    Added - Get pod logs exit function
+    Added - New access rights features
+    Added - Launching solutions with customizable environments
+    Added - Domains tab in projects
 
 Bugs fixed:
 
-    Delete profile bug
+    Fixed delete profile bug
     Fixed tour links on Dashboard page
     Fixed update external service
-    Fixed markdown bugs
+    Fixed markup bugs
