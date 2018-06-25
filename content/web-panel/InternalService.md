@@ -16,6 +16,7 @@ draft: false
 
 # How to create Internal Service
 
+Internal Service
 
 Service is an object,
  used by applications for communication 
@@ -23,6 +24,8 @@ Service is an object,
  external applications. A service can be internal or external.
  An internal service connects deployments by the internal
 network of Kubernetes.
+
+## Create
 
 Для того чтобы создать внутренний сервис, перейдите на вкладку Services
 проекта в котором вы работаете.
@@ -59,16 +62,20 @@ network of Kubernetes.
     </li>
 </ul>
 
+## View 
+
 После создания перейдем страницу сервиса. Тут две вкладки - ports and linked deployment.
 
 <img src="/img/content/web-panel/InternalService/servicePage.png" width="100%"/>
 
-Вы можете обновить или удалить сервис.
+## Update 
 
 При обновлении вам будет предложенно изменить параметры порта, а также
 добавитьили удалить порты.
 
 <img src="/img/content/web-panel/InternalService/updateService.png" width="100%"/>
+
+## Delete
 
 После удаления внутреннего сервиса разорвется связь между deployments, 
 которые он соединял.
