@@ -62,7 +62,7 @@ You can also click on a service and see detailed information like ports and link
 ## Update
 You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
 
-<img src="/img/content/web-panel/callContextServiceMenuUpdate.png" width="100%"/>
+<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
 
 You can change port parameters, delete or add new ports.
 
@@ -75,3 +75,5 @@ After changing the required information, click on `UPDATE SERVICE`.
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service. Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 
 When you delete an Internal Service you will also delete the connection between deployments that were linked by this service.
+
+<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
