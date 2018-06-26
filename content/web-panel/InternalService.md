@@ -34,10 +34,10 @@ Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the
     </li>
     <li>
       Port - for an internal service it is a port,
-      that allows a target deployment to communicate with another deployment within the cluster.  
+      that allows current deployment to communicate with another deployment within the cluster.  
     </li>
     <li>
-      Target port - Internal port. The port of deployment, where a running app is launched.
+      Target port - Internal port. The port of the target deployment that has to be connected with the current deployment.
       In Dockerfile this is a port from EXPOSE instruction  
     </li>
     <li>
@@ -49,7 +49,6 @@ Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the
 
 
 ## View
-
 You can view all services in the services tab (`/projects/:idNamespace/services`).
 
 <img src="/img/content/web-panel/getServicesList.png" width="100%"/>
@@ -71,9 +70,14 @@ You can change port parameters, delete or add new ports.
 After changing the required information, click on `UPDATE SERVICE`.
 
 ## Delete
-
-You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service. Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
-
-When you delete an Internal Service you will also delete the connection between deployments that were linked by this service.
+You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
 
 <img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
+
+Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
+When you delete an Internal Service you will also delete the connection between deployments that were linked by this service.
+
+# Connections and dependencies
+Connections: specify correct ports of deployments to be connected.
+Dependencies: project and deployment are required.
+
