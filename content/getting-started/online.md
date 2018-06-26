@@ -32,7 +32,7 @@ You will receive a letter with registration confirmation link shortly.
 
 Click the link  - the registration is complete! Now you will see the Dashboard page.
 
-<img src="/img/content/getting-started/online/registration.png"/>
+<img src="/img/content/getting-started/online/newRegistration.png"/>
 
 
 ##### 2. Billing
