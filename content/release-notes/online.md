@@ -19,4 +19,21 @@ draft: false
 
 
 # Containerum Online Release Notes
-*Notes coming soon*
+
+**Latest version: v1.0.1**
+
+_22.06.2018_
+
+Improvements:
+
+    Added - Get pod logs exit function
+    Added - New access rights features
+    Added - Launching solutions with customizable environments
+    Added - Domains tab in projects
+
+Bugs fixed:
+
+    Fixed delete profile bug
+    Fixed tour links on Dashboard page
+    Fixed update external service
+    Fixed markup bugs

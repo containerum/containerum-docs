@@ -49,7 +49,6 @@ Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the
 
 
 ## View
-
 You can view all services in the services tab (`/projects/:idNamespace/services`).
 
 <img src="/img/content/web-panel/getServicesList.png" width="100%"/>
@@ -62,7 +61,7 @@ You can also click on a service and see detailed information like ports and link
 ## Update
 You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
 
-<img src="/img/content/web-panel/callContextServiceMenuUpdate.png" width="100%"/>
+<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
 
 You can change port parameters, delete or add new ports.
 
@@ -71,16 +70,14 @@ You can change port parameters, delete or add new ports.
 After changing the required information, click on `UPDATE SERVICE`.
 
 ## Delete
-
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
 
-<img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
+<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
 
 Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
+When you delete an Internal Service you will also delete the connection between deployments that were linked by this service.
 
 # Connections and dependencies
-
-When you delete an Internal Service you will also delete the connection between the deployments that were linked by this service.
-
 Connections: specify correct ports of deployments to be connected.
 Dependencies: project and deployment are required.
+
