@@ -21,7 +21,7 @@ Service is an object, used by applications for communication with each other wit
 Each service can have several ports using TCP or UDP protocol.
 
 
-## Create
+### Create
 
  To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
 
@@ -42,7 +42,7 @@ Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the
 
 Then click on the `Create Service`. Done.
 
-## View
+### View
 
 You can view all services in the Services tab (`/projects/:idNamespace/services`).
 
@@ -52,7 +52,7 @@ You can also click on a service and see detailed information like IPs, domains, 
 
 <img src="/img/content/web-panel/getService.png" width="100%"/>
 
-## Update
+### Update
 
 You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
 
@@ -64,7 +64,7 @@ You can change port parameters, delete or add new ports.
 
 After changing the required information, click on `UPDATE SERVICE`.
 
-## Delete
+### Delete
 
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
 
@@ -73,6 +73,6 @@ You can Delete a service by clicking `Delete` in the context menu on the Service
 Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.
 
-# Connections and dependencies
+## Connections and dependencies
 Connections: external service port must be the same as deployment port.
 Dependencies: project and deployment are required.
