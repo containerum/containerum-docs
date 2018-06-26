@@ -72,10 +72,8 @@ You can Delete a service by clicking `Delete` in the context menu on the Service
 
 Please, note: by clicking `delete` you will delete the service immediately. This action cannot be undone.
 
+# Connections and dependencies
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.
 
-# Connections and dependencies
-
-Connections: correct configuration of the deployment port for correct operation.
-
-Dependencies: project and deployment availability.
+Connections: external service port must be the same as deployment port.
+Dependencies: project and deployment are required.
