@@ -89,6 +89,6 @@ title = "Containerum Docs"
 [[menu.docs]]
   name = "Installation"
   weight = 14
-  identifier = "kube-install"
+  identifier = "installation"
   parent = "kubernetes"
   url = "/kubernetes/installation/"
