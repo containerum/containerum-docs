@@ -1,6 +1,6 @@
 ---
 title: Kubernetes Installation - Containerum
-linktitle: Installation
+linktitle: Kubernetes
 description:
 
 categories: []

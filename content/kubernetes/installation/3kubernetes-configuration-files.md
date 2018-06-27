@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Configuration - Containerum
-linktitle: Installation
-description: Kubernetes Configuration
+linktitle: Kubeconfig
+description: Creating Kubernetes authentication configuration files.
 
 categories: []
 keywords: []
@@ -14,15 +14,14 @@ menu:
 draft: false
 ---
 
-# Создание конфигурационных файлов аутентификации
+# Create authentication configuration files
 
-## Конфигурационный файл аутентификации клиента
+### Client authentication configuration file
+Create kubeconfig for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user.
 
-Создаем kubeconfig для `controller manager`, `kubelet`, `kube-proxy`, `scheduler` и пользователя `admin`.
+#### Public Kubernetes IP-address
 
-### Публичный IP-адрес Kubernetes
-
-Каждый файл kubeconfig требует Kubernetes API Server для подключения. Чтобы поддерживать высокую доступность IP-адрес, присвоенный внешнему балансировщику нагрузки, определяет какой Kubernetes API Server будет использован.
+Each kubeconfig file requires Kubernetes API Server for connection. To ensure high availability, the IP-address of your load balancer will determine which Kubernetes API Server will be used.
 
 Retrieve the `kubernetes-the-hard-way` static IP address:
 
@@ -30,11 +29,10 @@ Retrieve the `kubernetes-the-hard-way` static IP address:
 KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
 ```
 
-### Файл конфигурации kubelet
+#### Create a kubelet configuration file
+When generating kubeconfig for Kubelets the client certificate matching the Kubelet's node name must be used. This will ensure Kubelets are properly authorized by the Kubernetes Node Authorizer.
 
-Когда создаются файлы конфигурации kubeconfig для kubelet, клиентский сертификат указывает, какое имя ноды kubelet должно быть использовано. Это позовляет kubelet убедиться, что авторизация Node Authorizer пройдет должным образом.
-
-Создаем kubeconfig для каждого слейва:
+Create a kubeconfig file for each worker:
 
 ```bash
 for instance in worker-0 worker-1 worker-2; do
@@ -59,9 +57,9 @@ for instance in worker-0 worker-1 worker-2; do
 done
 ```
 
-### Конфигурация kube-proxy
+#### Create a kube-proxy configuraton file
 
-Создание kubeconfig для kube-proxy:
+Create a kubeconfig file for `kube-proxy`:
 
 
 ```bash
@@ -87,7 +85,8 @@ done
 }
 ```
 
-### Создание kubeconfig для `kube-controller-manager`
+#### Create a kube-controller-manager configuration file
+Create a kubeconfig file for `kube-controller-manager`:
 
 ```bash
 {
@@ -112,7 +111,8 @@ done
 }
 ```
 
-### Конфигурационный файл kube-scheduler
+#### Create a kube-scheduler configuration file
+Create a kubeconfig file for `kube-scheduler`:
 
 ```bash
 {
@@ -137,7 +137,7 @@ done
 }
 ```
 
-### Конфигурационный файл для пользователя admin
+####  Create admin user configuration file
 
 ```bash
 {
@@ -162,9 +162,9 @@ done
 }
 ```
 
-## Распределение файлов конфигурации
+### Distribute configuration files
 
-Скопируем соответсвующие файлы kubeconfig для `kubelet` и `kube-proxy` на каждый слейв:
+Copy the appropriate kubeconfig files for `kubelet` and `kube-proxy` to each worker node:
 
 ```bash
 for instance in worker-0 worker-1 worker-2; do
@@ -172,7 +172,7 @@ for instance in worker-0 worker-1 worker-2; do
 done
 ```
 
-Скопируем соответсвующие файлы kubeconfig для `kube-controller-manager` и `kube-scheduler` на каждый контроллер:
+Copy the appropriate kubeconfig files for `kube-controller-manager` и `kube-scheduler` to each controller:
 
 ```bash
 for instance in controller-0 controller-1 controller-2; do
@@ -180,21 +180,21 @@ for instance in controller-0 controller-1 controller-2; do
 done
 ```
 
-# Создание конфигурационного файла для шифрования данных и ключа
+### Create a configuration file for data and key encryption
 
-Kubernetes хранит различные данные о состоянии кластера, конфигурации приложений и секреты. Kubernetes поддерживает возможность зашифровать все данные кластера.
+Kubernetes stores data about cluster state, application configuration and secrets. Kubernetes supports encrypting all cluster data.
 
-## Ключ шифрования
+#### Encryption key
 
-Создаем ключ шифрования:
+Create an encryption key:
 
 ```bash
 ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 ```
 
-## Конфигурационный файл
+#### Configuration file
 
-Создаем `encryption-config.yaml` со следующими параметрами:
+Create `encryption-config.yaml` as follows:
 
 ```yaml
 cat > encryption-config.yaml <<EOF
@@ -212,10 +212,14 @@ resources:
 EOF
 ```
 
-Копируем `encryption-config.yaml` на каждый контроллер:
+Copy `encryption-config.yaml` to each controller:
 
 ```bash
 for instance in controller-0 controller-1 controller-2; do
   scp encryption-config.yaml ${instance}:~/
 done
 ```
+
+Done!
+
+Now you can proceed to [etcd installation](/kubernetes/installation/4etcd).

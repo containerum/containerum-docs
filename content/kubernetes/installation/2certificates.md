@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Certificates - Containerum
-linktitle: Installation
-description: Certificates
+linktitle: Certificates
+description: Generation of certificated for etcd, kube-apiserver, kubelet, etc.
 
 categories: []
 keywords: []
@@ -14,13 +14,12 @@ menu:
 draft: false
 ---
 
-# Подгтовка и создание сертификатов
+# Certs preparation and generation
 
-С помощью cfssl создаем корневой сертификат и на его основе генерируем сертификаты для etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, kube-proxy.
+Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
-## Создание CA
-
-Создаем файл конфигурации для CA и приватного ключа:
+### Creating a CA
+Create a configuration file and a private key for CA:
 
 ```bash
 {
@@ -65,9 +64,8 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 }
 ```
 
-## Сертификаты для сервера и клиента
-
-Создаем сертификаты для каждого компонента Kubernetes и клиентский сертификат для пользователя Kubernetes `admin`
+### Client and server certificates
+Create certificates for each Kubernetes component and a client certificate for `admin`
 
 ```bash
 {
@@ -101,14 +99,17 @@ cfssl gencert \
 }
 ```
 
-### Сертификаты для клиентов Kubelet
+#### Generate a certificate for Kubelet clients
 
-Kubernetes использует особый вид авторизации - Node Authorizer, который также принимает запросы к API от Kubelet. Для авторизации через Node Authorizer Kubelet должен использовать учетные данные указанные в группе `system:nodes` и именем пользователя `system:node:<nodeName>`. Создадим сертификаты для каждой ноды, которая соответствует параметрам Node Authorizer.
+Kubernetes uses a special mode of authorization, Node Authorizer, which also authorizes requests from Kubelet to API.
+To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:<nodeName>` username.
+Create a certificate for each node to meet to Node Authorizer requirements.
 
-Пример скрипта.
 
-В переменных `EXTERNAL_IP` и `INTERNAL_IP` указываем внешний и приватный IP-адрес соответсвенно.
-<nodeName> - hostname ноды, для которой гененрируем сертификат.
+Script example:
+
+Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly.
+\<nodeName> is the hostname of the node, for which a certificate is to be generated.
 
 ```bash
 cat > <nodeName>-csr.json <<EOF
@@ -143,8 +144,8 @@ cfssl gencert \
 done
 ```
 
-### Сертификат для Kube Controller Manager
-
+#### Generate a certificate for Kube Controller Manager
+Generate a certificate:
 
 ```bash
 {
@@ -178,7 +179,8 @@ cfssl gencert \
 }
 ```
 
-### Сертификат для Kube Proxy
+#### Generate a certificate for Kube Proxy
+Generate a certificate:
 
 ```bash
 {
@@ -212,7 +214,8 @@ cfssl gencert \
 }
 ```
 
-### Сертификат для Kube Scheduler
+#### Generate a certificate for Kube Scheduler
+Generate a certificate:
 
 ```bash
 {
@@ -246,11 +249,11 @@ cfssl gencert \
 }
 ```
 
-### Сертификат для Kube API Server
+#### Generate a certificate for Kube API Server
+To generate a certificate you need to provide a static IP address into the the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
 
-Для сертификата потребуется статичный IP-адрес, который должен быть включен в список доменных имен Kubernetes API Server. Это будет гарантировать, что сертификат будет одобрен удаленными клиентами.
 
-Скрипт для создания сертификата:
+Generate a certificate:
 
 ```bash
 {
@@ -286,11 +289,11 @@ cfssl gencert \
 }
 ```
 
-## Пара ключей для сервис-аккаунта
+### The service account key pair
 
-Kubernetes Controller Manager оперирует парой ключей для создания и подписывание токенов для сервис-аккаунта.
+Kubernetes Controller Manager uses a key pair to create and sign tokens for the service account.
 
-Скрипт:
+Run the script:
 
 ```bash
 {
@@ -307,7 +310,7 @@ cat > service-account-csr.json <<EOF
       "C": "US",
       "L": "Portland",
       "O": "Kubernetes",
-      "OU": "Kubernetes The Hard Way",
+      "OU": "Сontainerum",
       "ST": "Oregon"
     }
   ]
@@ -324,9 +327,9 @@ cfssl gencert \
 }
 ```
 
-## Распределение сертификатов для клиентов и серверов
+### Distribution of certificates for clients and servers
 
-Скопируйте соответствующие сертификаты и приватные ключи на каждую ноду
+Copy the appropriate certificates and the private key to each node:
 
 ```bash
 for instance in <nodeName>-1 <nodeName>-2; do
@@ -334,7 +337,7 @@ for instance in <nodeName>-1 <nodeName>-2; do
 done
 ```
 
-Скопируйте соответствующие сертификаты и приватные ключи на каждый контроллер:
+Copy the appropriate certificates and the private key to each controller:
 
 ```bash
 for instance in controller-1 controller-2; do
@@ -342,3 +345,7 @@ for instance in controller-1 controller-2; do
     service-account-key.pem service-account.pem <nodeName>:~/
 done
 ```
+
+Done!
+
+Now you can proceed to [Kubernetes authentication configs](/kubernetes/installation/3kubernetes-configuration-files).

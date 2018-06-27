@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Configure Kubectl - Containerum
-linktitle: Installation
-description: Configure Kubectl
+linktitle: Kubectl
+description: Configuring the Kubernetes command line utility `kubectl`
 
 categories: []
 keywords: []
@@ -14,17 +14,17 @@ menu:
 draft: false
 ---
 
-# Конфигурирование kubectl для удаленного доступа
+# Configure kubectl for remote access
 
-Сгененрируем kubeconfig для `kubectl` с основой на учетной записи `admin`.
+Generate the kubeconfig file for `kubectl` based on `admin` user credentials.
 
-Команды нужно запускать из той же директории, в которой генерировались сертификаты.
+Execute commands from the same directory used to generate the certificates.
 
-## Конфигурационный файл для admin
+### Create the configuration file for admin
 
-Каждый kubeconfig требует подключения к Kubernetes API Server. Для поддержки высокой доступности, будет использваться IP-адрес, назначенный не внешний балансировщик нагрузки.
+Each kubeconfig requires connection to the Kubernetes API Server. To ensure high availability we will use the IP address assigned for the external load balancer.
 
-Сгенерируем kubeconfig подходящий для аутентификации как пользователь `admin`:
+Generate the kubeconfig file suitable for authenticating the `admin` user:
 
 ```bash
 {
@@ -45,13 +45,13 @@ draft: false
 }
 ```
 
-## Проверка
+### Verification
 
 ```bash
 kubectl get componentstatuses
 ```
 
-Вывод:
+Output:
 
 ```
 NAME                 STATUS    MESSAGE             ERROR
@@ -62,13 +62,13 @@ etcd-2               Healthy   {"health":"true"}
 etcd-0               Healthy   {"health":"true"}
 ```
 
-Перечислим ноды кластера:
+Print the list of cluster nodes:
 
 ```bash
 kubectl get nodes
 ```
 
-Вывод:
+Output:
 
 ```
 NAME       STATUS    ROLES     AGE       VERSION
@@ -76,3 +76,7 @@ worker-0   Ready     <none>    1m        v1.10.2
 worker-1   Ready     <none>    1m        v1.10.2
 worker-2   Ready     <none>    1m        v1.10.2
 ```
+
+Done!
+
+Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).

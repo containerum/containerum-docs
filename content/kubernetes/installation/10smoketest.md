@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Smoke Test - Containerum
-linktitle: Installation
-description: Smoke Test
+linktitle: Smoke test
+description: Running a smoke test to make sure the cluster is up and running.
 
 categories: []
 keywords: []
@@ -14,22 +14,22 @@ menu:
 draft: false
 ---
 
-# Тестирование
+# Testing
 
-Сделаем полный набор проверок, с помощью которых мы сможем убедиться в том, что кластер Kubernetes функционирует правильно.
+This section describes how to run a full set of tests to make sure that the Kubernetes cluster functions correctly.
 
-## Шифрование данных
+### Data encryption
 
-Проверим возможность [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
+Verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
 
-Создадим общий secret:
+Create a generic secret:
 
 ```bash
 kubectl create secret generic kubernetes-the-hard-way \
   --from-literal="mykey=mydata"
 ```
 
-Сделаем вывод хеша `kubernetes-the-hard-way` secret расположенного в etcd:
+Print a hexdump of the `kubernetes-the-hard-way` secret stored in etcd:
 
 ```bash
 ssh controller-0 \
@@ -41,7 +41,7 @@ ssh controller-0 \
   /registry/secrets/default/kubernetes-the-hard-way | hexdump -C"
 ```
 
-> вывод
+> Output:
 
 ```
 00000000  2f 72 65 67 69 73 74 72  79 2f 73 65 63 72 65 74  |/registry/secret|
@@ -62,75 +62,76 @@ ssh controller-0 \
 000000ea
 ```
 
-Ключ etcd должен быть соединен с `k8s:enc:aescbc:v1:key1`, который показывает, что `aescbc` провайдер был использован для шифрования данных с ключом `key1`.
+The etcd key must be prefixed with `k8s:enc:aescbc:v1:key1`, which shows that the `aescbc` provider was used for data encryption with `key1`.
 
-## Деплойменты
+### Deployment tests
+Run tests to ensure that deployments are created and managed correctly.
 
-### Подготовка к созданию деплойментов
+#### Preparation for deployment creation
 
-Добавляем репозиторий epel-release
+Add the epel-release repository:
 
 ```bash
 sudo yum install epel-release
 ```
 
-В файле `/etc/selinux/config` необходимо отключить SELinux Policy, для этого необходимо в файле изменить значение:
+Disable SELinux Policy in the `/etc/selinux/config` file. Change it as follows:
+
 ```bash
 SELINUX=disabled
 ```
-а затем перезагрузить инстанс для применения изменений.
+Then reboot the instance to apply changes.
 
-### Проверка возможности создания и управления деплоем.
+#### Test the ability to create and manage deployments
 
-Создадим деплой nginx:
+Create an nginx deployment:
 
 ```bash
 kubectl run nginx --image=nginx
 ```
 
-Перечислим поды созданные деплоем `nginx`:
+Lust the pods of the `nginx` deployment:
 
 ```bash
 kubectl get pods -l run=nginx
 ```
 
-> Вывод
+> Output:
 
 ```
 NAME                     READY     STATUS    RESTARTS   AGE
 nginx-65899c769f-xkfcn   1/1       Running   0          15s
 ```
 
-### Проброс портов
+#### Port forwarding
+Verify the ability to get remote access to applications.
 
-Проверим возможность получать удаленный доступ к приложениям:
-
-Получим полное имя пода `nginx`:
+Get the full name of the `nginx` pod:
 
 ```bash
 POD_NAME=$(kubectl get pods -l run=nginx -o jsonpath="{.items[0].metadata.name}")
 ```
 
-Пробросим порт 8080 на локальной машине на порт 80 пода nginx:
+Forward the port `8080` on the local machine to the port `80` of the nginx pod:
 
 ```bash
 kubectl port-forward $POD_NAME 8080:80
 ```
 
-> Вывод
+> Output:
 
 ```
 Forwarding from 127.0.0.1:8080 -> 80
 Forwarding from [::1]:8080 -> 80
 ```
 
-В новом терминале пошлем HTTP запрос на выброшенный адрес:
+Send an HTTP request to the forwarded address in a new terminal:
 
 ```bash
 curl --head http://127.0.0.1:8080
 ```
 
-> Вывод
+> Output:
 
 ```
 HTTP/1.1 200 OK
@@ -144,7 +145,7 @@ ETag: "5acb8e45-264"
 Accept-Ranges: bytes
 ```
 
-Вернемся в предыдущий терминал и остановим пробрасывание портов из пода nginx:
+Return to the previous terminal and stop port forwarding from the nginx pod:
 
 ```
 Forwarding from 127.0.0.1:8080 -> 80
@@ -153,58 +154,58 @@ Handling connection for 8080
 ^C
 ```
 
-### Логи
+#### Logs
 
-Выведем логи пода `nginx`:
+Get the logs for the `nginx` pod:
 
 ```bash
 kubectl logs $POD_NAME
 ```
 
-> Вывод
+> Output:
 
 ```
 127.0.0.1 - - [14/May/2018:13:59:21 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.52.1" "-"
 ```
 
-### Выполнение команд внутри пода
+#### Command execution inside pods
 
-Выведем версию nginx командой `nginx -v` в контейнере `nginx`:
+Print the nginx version with the command `nginx -v` in `nginx` container:
 
 ```bash
 kubectl exec -ti $POD_NAME -- nginx -v
 ```
 
-> Вывод
+> Output:
 
 ```
 nginx version: nginx/1.13.12
 ```
 
-## Сервисы
+### Services
 
-Проверим возможность достучаться до [сервисов](https://kubernetes.io/docs/concepts/services-networking/service/).
+Verify the ability to retrieve [services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
-Выбросим наружу деплой `nginx` с помощью [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
+Expose the `nginx` deployment with [NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport):
 
 ```bash
 kubectl expose deployment nginx --port 80 --type NodePort
 ```
 
-Получим порт присвоенный сервису `nginx`:
+Print the port assigned to the `nginx` service:
 
 ```bash
 NODE_PORT=$(kubectl get svc nginx \
   --output=jsonpath='{range .spec.ports[0]}{.nodePort}')
 ```
 
-Сделаем HTTP запрос на внешний IP и порт `nginx`:
+Make an HTTP request to the external IP and the `nginx` port:
 
 ```bash
 curl -I http://${EXTERNAL_IP}:${NODE_PORT}
 ```
 
-> вывод
+> Output:
 
 ```
 HTTP/1.1 200 OK
@@ -218,11 +219,11 @@ ETag: "5acb8e45-264"
 Accept-Ranges: bytes
 ```
 
-## Незащищенная (недоверенная???) нагрузка
+### Untrusted workload
 
-Проверим возможность запуска недоверенной нагрузки используя [gVisor](https://github.com/google/gvisor).
+Verify the ability to launch untrusted workload using [gVisor](https://github.com/google/gvisor).
 
-Создадим `недоверенный` под:
+Create an `untrusted` pod:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -239,16 +240,16 @@ spec:
 EOF
 ```
 
-### Проверка
+#### Verification
 
-Удостоверимся, что `недоверенный` под работает под gVisor, инспектируя назначенную ноду слейва.
+Verify that the `untrusted` pod is running under gVisor, inspecting the assigned worker node.
 
-Проверяем, что под `untrusted` запущен:
+Make sure that the `untrusted` pod is running:
 
 ```bash
 kubectl get pods -o wide
 ```
-> Вывод
+> Output:
 
 ```
 NAME                       READY     STATUS    RESTARTS   AGE       IP           NODE
@@ -257,25 +258,25 @@ nginx-65899c769f-xkfcn     1/1       Running   0          4m        10.200.1.2  
 untrusted                  1/1       Running   0          10s       10.200.0.3   worker-0
 ```
 
-Запросим на какой ноде запущен под `untrusted`:
+Request the node where the `untrusted` is running:
 
 ```bash
 INSTANCE_NAME=$(kubectl get pod untrusted --output=jsonpath='{.spec.nodeName}')
 ```
 
-Подключимся по SSH к ноде:
+SSH to the node:
 
 ```bash
 ssh ${INSTANCE_NAME}
 ```
 
-Посмотрим какие контейнеры запущены под gVisor
+List the containers running under  gVisor:
 
 ```bash
 sudo runsc --root  /run/containerd/runsc/k8s.io list
 ```
 
-> Вывод
+> Output:
 
 ```
 I0514 14:03:56.108368   14988 x:0] ***************************
@@ -296,27 +297,27 @@ ID                                                                 PID         S
 I0514 14:03:56.111287   14988 x:0] Exiting with status: 0
 ```
 
-Получим ID пода `untrusted`:
+Get the `untrusted` pod ID:
 
 ```bash
 POD_ID=$(sudo crictl -r unix:///var/run/containerd/containerd.sock \
   pods --name untrusted -q)
 ```
 
-Получим ID контейнера `webserver` запущенного в поде `untrusted`:
+Get the `webserver` container ID running in the `untrusted` pod:
 
 ```bash
 CONTAINER_ID=$(sudo crictl -r unix:///var/run/containerd/containerd.sock \
   ps -p ${POD_ID} -q)
 ```
 
-Используем gVisor `runsc` команду, чтобы показать процессы запущенные внутри контейнера `webserver`:
+Use the gVisor `runsc` command to display the processes running inside the `webserver` container:
 
 ```bash
 sudo runsc --root /run/containerd/runsc/k8s.io ps ${CONTAINER_ID}
 ```
 
-> вывод
+> Output:
 
 ```
 I0514 14:05:16.499237   15096 x:0] ***************************
@@ -335,3 +336,5 @@ UID       PID       PPID      C         STIME     TIME      CMD
 0         1         0         0         14:02     40ms      app
 I0514 14:05:16.501354   15096 x:0] Exiting with status: 0
 ```
+
+Now you can proceed to [Containerum installation](/platform/installation).

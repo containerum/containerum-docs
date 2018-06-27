@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Bootstrap Workers - Containerum
-linktitle: Installation
-description: Bootstrap Workers
+linktitle: Bootstrap Workers
+description: Bootstrapping three worker nodes for Kubernetes cluster.
 
 categories: []
 keywords: []
@@ -14,13 +14,13 @@ menu:
 draft: false
 ---
 
-# Запуск слейвов
+# Initialize worker nodes
 
-Запустим три слейва и установим следующие компоненты: [runc](https://github.com/opencontainers/runc), [gVisor](https://github.com/google/gvisor), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
+This section covers how to launch three worker nodes and install the following components: [runc](https://github.com/opencontainers/runc), [gVisor](https://github.com/google/gvisor), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
 
-## Подготовка слейва
+### Provision a worker node
 
-Установим зависимости ОС:
+Install the OS dependencies:
 
 ```bash
 {
@@ -29,9 +29,9 @@ draft: false
 }
 ```
 
-> `socat` включает поддержку команды `kubectl port-forward`.
+> `socat` enables support for `kubectl port-forward` command.
 
-### Скачиваем и устанавливаем бинарные файлы
+#### Download and install the binaries
 
 ```bash
 wget https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
@@ -44,7 +44,7 @@ wget https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-
   https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubelet
 ```
 
-Создаем директории для инсталяции:
+Create installation directories:
 
 ```bash
 sudo mkdir -p \
@@ -56,7 +56,7 @@ sudo mkdir -p \
   /var/run/kubernetes
 ```
 
-Установка:
+Install:
 
 ```bash
 {
@@ -73,19 +73,18 @@ sudo mkdir -p \
 }
 ```
 
-### Настройка сети CNI
+#### Configure the CNI network
 
-Определяем диапазон IP-адреcов для Pod CIDR на текущей машине:
+Retrieve the Pod CIDR IP range for the current node:
 
-
-> Как мы определяем CIDR?
+> How to retrieve the CIDR?
 
 ```bash
 POD_CIDR=$(curl -s -H "Metadata-Flavor: Google" \
   http://metadata.google.internal/computeMetadata/v1/instance/attributes/pod-cidr)
 ```
 
-Создаем мостовую `bridge` сеть:
+Create the `bridge` network:
 
 ```bash
 cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
@@ -107,7 +106,7 @@ cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
 EOF
 ```
 
-Создаем сеть `loopback`:
+Create the `loopback` network:
 
 ```bash
 cat <<EOF | sudo tee /etc/cni/net.d/99-loopback.conf
@@ -118,9 +117,9 @@ cat <<EOF | sudo tee /etc/cni/net.d/99-loopback.conf
 EOF
 ```
 
-### Настраиваем containerd
+#### Configure containerd
 
-Создаем файл конфигурации `containerd`:
+Create the `containerd` configuration file:
 
 ```bash
 sudo mkdir -p /etc/containerd/
@@ -142,7 +141,7 @@ cat << EOF | sudo tee /etc/containerd/config.toml
 EOF
 ```
 
-Создаем юнит systemd `containerd.service`:
+Create the `containerd.service` systemd unit file:
 
 ```bash
 cat <<EOF | sudo tee /etc/systemd/system/containerd.service
@@ -168,7 +167,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Настраиваем Kubelet
+#### Configure Kubelet
 
 ```bash
 {
@@ -178,7 +177,7 @@ EOF
 }
 ```
 
-Пишем `kubelet-config.yaml`:
+Create the `kubelet-config.yaml` configuration file:
 
 ```bash
 cat <<EOF | sudo tee /var/lib/kubelet/kubelet-config.yaml
@@ -203,7 +202,7 @@ tlsPrivateKeyFile: "/var/lib/kubelet/${HOSTNAME}-key.pem"
 EOF
 ```
 
-Создаем юнит systemd для `kubelet.service`,:
+Create the `kubelet.service` systemd unit file:
 
 ```bash
 cat <<EOF | sudo tee /etc/systemd/system/kubelet.service
@@ -232,13 +231,13 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Настраиваем Kubernetes Proxy
+#### Configure Kubernetes Proxy
 
 ```bash
 sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
 ```
 
-Пишем конфигурацию `kube-proxy-config.yaml`:
+Create the `kube-proxy-config.yaml` configuration file:
 
 ```bash
 cat <<EOF | sudo tee /var/lib/kube-proxy/kube-proxy-config.yaml
@@ -251,7 +250,7 @@ clusterCIDR: "10.200.0.0/16"
 EOF
 ```
 
-Создаем юнит systemd для `kube-proxy.service`:
+Create the `kube-proxy.service` systemd unit file:
 
 ```bash
 cat <<EOF | sudo tee /etc/systemd/system/kube-proxy.service
@@ -270,7 +269,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Запускаем службы на слейвах
+#### Start services on the slave nodes
 
 ```bash
 {
@@ -280,18 +279,18 @@ EOF
 }
 ```
 
-> Все эти команды нужно выполнять на каждой ноде
+> Don't forget to run all the commands on each node.
 
-## Проверка
+### Verification
 
 
-Получаем список нод:
+Print the list of nodes:
 
 ```bash
 kubectl get nodes --kubeconfig admin.kubeconfig
 ```
 
-> Вывод
+> Output
 
 ```
 NAME       STATUS    ROLES     AGE       VERSION
@@ -300,4 +299,8 @@ worker-1   Ready     <none>    20s       v1.10.2
 worker-2   Ready     <none>    20s       v1.10.2
 ```
 
-**Заметка**: Иногда ноды не отображаются со статусом `Ready` в выводе. Нет ничего страшного в перезапуске нод.
+**Note**: Some nodes may have a status different from `Ready`. It's alright if some nodes are restarting.
+
+Done!
+
+Now you can proceed to [configuring kubectl](/kubernetes/installation/7configure-kubectl).

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes DNS Cluster Add-on - Containerum
-linktitle: Installation
-description: DNS Cluster Add-on
+linktitle: DNS Cluster
+description: Launching service discovery to applications running inside the Kubernetes cluster.
 
 categories: []
 keywords: []
@@ -14,15 +14,15 @@ menu:
 draft: false
 ---
 
-# Запускаем DNS Cluster Add-on
+# Launch DNS Cluster Add-on
 
-[DNS add-on](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/) - основанный на DNS сервис обнаружения приложений запущенных в кластере Kubernetes.
+[DNS add-on](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/) is a DNS-based service discovery to applications running in the Kubernetes cluster.
 
-## DNS Cluster Add-on
+### DNS Cluster Add-on
 
 Deploy the `kube-dns` cluster add-on:
 
-Запускаем `kube-dns`:
+Launch `kube-dns`:
 
 ```bash
 kubectl create -f https://storage.googleapis.com/kubernetes-the-hard-way/kube-dns.yaml
@@ -35,7 +35,7 @@ configmap "kube-dns" created
 deployment.extensions "kube-dns" created
 ```
 
-Получаем список подов деплоя `kube-dns`:
+List the pods of the `kube-dns` deployment:
 
 ```bash
 kubectl get pods -l k8s-app=kube-dns -n kube-system
@@ -46,15 +46,15 @@ NAME                        READY     STATUS    RESTARTS   AGE
 kube-dns-3097350089-gq015   3/3       Running   0          20s
 ```
 
-## Проверка
+### Verification
 
-Создаем `busybox` деплой:
+Create a `busybox` deployment:
 
 ```bash
 kubectl run busybox --image=busybox --command -- sleep 3600
 ```
 
-Перечислим поды `busybox`:
+List the pods of the `busybox` deployment:
 
 ```bash
 kubectl get pods -l run=busybox
@@ -65,13 +65,13 @@ NAME                       READY     STATUS    RESTARTS   AGE
 busybox-2125412808-mt2vb   1/1       Running   0          15s
 ```
 
-Получим полное имя подв `busybox`:
+Get the full name of the `busybox` pod:
 
 ```bash
 POD_NAME=$(kubectl get pods -l run=busybox -o jsonpath="{.items[0].metadata.name}")
 ```
 
-Выполним DNS lookup для сервиса `kubernetes` внутри пода `busybox`:
+Execute a DNS lookup for the `kubernetes` service inside the `busybox` pod:
 
 ```bash
 kubectl exec -ti $POD_NAME -- nslookup kubernetes
@@ -84,3 +84,7 @@ Address 1: 10.32.0.10 kube-dns.kube-system.svc.cluster.local
 Name:      kubernetes
 Address 1: 10.32.0.1 kubernetes.default.svc.cluster.local
 ```
+
+Congratulations! You've just bootstrapped your Kubernetes cluster.
+
+Now it's time to [run tests](/kubernetes/installation/10smoketest) to make sure the cluster is up and running.

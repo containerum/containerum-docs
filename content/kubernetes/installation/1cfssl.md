@@ -1,7 +1,7 @@
 ---
-title: Kubernetes Installation CFSSL - Containerum
-linktitle: Installation
-description: CFSSL Installation
+title: CFSSL Installation - Containerum
+linktitle: CFSSL
+description: Installing CFSSL for PKI infrastructure and TLS certificates.
 
 categories: []
 keywords: []
@@ -15,11 +15,11 @@ draft: false
 ---
 
 
-### Установка CFSSL
+# cfssl setup
 
-Утилиты cfssl и cfssljson будут нужны для PKI инфраструктуры и создания TLS сертификатов.
+Cfssl and cfssljson utilities are required for PKI infrastructure and TLS certificates.
 
-Скачаем и установим cfssl и cfssljson из официального репозитория:
+Download and install cfssl and cfssljson from the official repositories:
 
 ```bash
 $ yum install -y wget
@@ -30,7 +30,7 @@ $ sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
 $ sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
 ```
 
-Проверяем, что установленная версия cfssl 1.2.0 или выше5:
+Make sure that cfssl version is 1.2.0 or higher:
 
 ```bash
 $ cfssl version
@@ -39,11 +39,11 @@ Revision: dev
 Runtime: go1.6
 ```
 
-Cfssljson не поддерживает вывод его версии в командную строку.
+> Cfssljson cannot print version to the command line.
 
-### Установка kubectl
+### Install kubectl
 
-Kubectl используется для взаимодействия с API сервером Kubernetes. Скачайте и установите kubectl из официальных бинарных файлов:
+Kubectl communicates with Kubernetes API server. Install and setup kubectl from the official binaries:
 
 ```bash
 $ wget https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl
@@ -51,9 +51,12 @@ $ chmod +x kubectl
 $ sudo mv kubectl /usr/local/bin/
 ```
 
-И удостоверяемся что версия kubectl 1.10.2 или выше
+Make sure that kubectl version is 1.10.2 or higher:
 
 ```bash
 $ kubectl version --client
 Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.2", GitCommit:"81753b10df112992bf51bbc2c2f85208aad78335", GitTreeState:"clean", BuildDate:"2018-04-27T09:22:21Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"linux/amd64"}
 ```
+Done!
+
+Now you can proceed to [Certificate configuration](/kubernetes/installation/2certificates).
