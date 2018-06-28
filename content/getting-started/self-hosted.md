@@ -1,7 +1,7 @@
 ---
-title: Self-hosted Platform - Containerum
+title: Containerum Platform 
 linktitle: Containerum self-hosted
-description: The first steps to start using Containerum on-premises.
+description: Fast installation of Containerum Platform in your Kubernetes cluster.
 
 categories: []
 keywords: []
@@ -17,10 +17,10 @@ draft: false
 # Getting started with Containerum self-hosted
 Before installing Containerum make sure you have the following components:
 
-[Docker](/kubernetes/prerequisites)
-- Kubernetes 1.5 or higher
+- [Docker](/kubernetes/prerequisites)
+- [Kubernetes](/kubernetes/) 1.5 or higher
 - Helm
-- Installed Kubernetes Ingress Controller
+- Installed Kubernetes [Ingress Controller](https://github.com/kubernetes/ingress-nginx)
 
 or
 

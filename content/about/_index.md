@@ -1,5 +1,5 @@
 ---
-title: Overview - Containerum
+title: Docs overview - Containerum
 linktitle: Docs overview
 description: Containerum documentation walks you through Containerum installation and usage. API section present information for developers and contributors.
 
@@ -22,13 +22,13 @@ Containerum documentation walks you through all aspects of Containerum installat
 **[About](/about)** contains Documentation overview and Containerum features.
 
 To start working with Containerum, see **[Getting Started](/getting-started)** page. This section
-describes **[object types](/getting-started/object-types)**, basic information about using Containerum **[Self-hosted](/getting-started/self-hosted)** and **[Online](/getting-started/online)** platforms.
+describes **[object types](/getting-started/object-types)**, basic information necessary to start using Containerum **[Self-hosted](/getting-started/self-hosted)** and **[Online](/getting-started/online)** platforms.
 
 **[Self-hosted](/self-hosted)** describes how to install and use Containerum in your Kubernetes cluster.
 
 **[Web Panel](/web-panel/)** describes how to work with Containerum Web UI.
 
-**[CKE](/Kubernetes)** contains information about how to setup and configure Containerum Kubernetes Engine (CKE) distro on-premises.
+**[Kubernetes](/kubernetes/)** contains information on how to bootstrap Kubernetes on-premises.
 
 **[CLI](/cli)** describes Containerum CLI installation, common commands, etc.
 
@@ -40,4 +40,4 @@ You might also want to check out **[FAQ](/faq)**.
 
 To find out what's new in the latest releases, refer to **[Release notes](/release-notes/)**
 
-**[Contribute](/contribute/)** section contains instructions about how to contribute to Containerum docs.
+**[Contribute](/contribute/)** section contains instructions for contributing to Containerum docs.

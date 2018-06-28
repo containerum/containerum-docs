@@ -1,7 +1,7 @@
 ---
-title: User Manager - Containerum
+title: User Manager
 linktitle: User manager
-description: User manager is a service for managing users, groups, credentials, user and domain blacklists for Containerum.
+description: User manager is a service for managing users, groups, credentials, user and domain blacklists.
 
 categories: []
 keywords: []
@@ -18,7 +18,7 @@ draft: false
 
 # User manager
 
-User manager is a service for managing users, groups, credentials, user and domain blacklists for Containerum.
+User manager is a service for managing users, groups, credentials, user and blacklists.
 
 ### Prerequisites
 
@@ -33,3 +33,5 @@ Using Helm:
   helm repo update
   helm install containerum/user-manager
 ```
+
+Congratulations! You've just installed Containerum Platform. To learn more about using Containerum, please see our [Web Panel Guide](/web-panel/) and [CLI Guide](/cli).

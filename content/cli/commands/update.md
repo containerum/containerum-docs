@@ -1,12 +1,5 @@
 ---
-description: |-
-  Update chkit from github or local filesystem.
-
-  Just run
-
-  ```bash
-  > chkit update
-  ```
+description: Update chkit CLI
 draft: false
 linktitle: update
 menu:
@@ -43,7 +36,7 @@ chkit update [from github|dir <path>] [--debug]
 
 **Subcommands**:
 
-* **[update from](#update_from)** 
+* **[update from](#update_from)**
 
 
 #### <a name="update_from">update from</a>
@@ -66,5 +59,3 @@ chkit update [from github|dir <path>] [--debug]
 
 * **[update from dir](#update_from_dir)** update from local directory
 * **[update from github](#update_from_github)** update from github releases
-
-

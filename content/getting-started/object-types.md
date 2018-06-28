@@ -1,5 +1,5 @@
 ---
-title: Object types - Containerum
+title: Object types
 linktitle: Object types
 description: The core concepts of Containerum (project, deployment, ingress, etc.).
 

@@ -1,5 +1,5 @@
 ---
-title: Kubernetes prerequisites - Containerum
+title: Kubernetes prerequisites
 linktitle: Prerequisites
 description: Kubernetes can be deployed on Docker environments with etcd.
 
@@ -122,4 +122,4 @@ $ sudo systemctl start etcd
 
 Done!
 
-Now you can proceed to [Kubernetes installation](/kubernetes).
+Now you can proceed to [Kubernetes installation](/kubernetes/installation/1cfssl).
