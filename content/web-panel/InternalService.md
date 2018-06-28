@@ -31,18 +31,19 @@ Please note, that each service has to be linked to a particular deployment. If t
 Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the fields:
 <ul>
     <li>
-        Name (example: my-1-internal-service)
+        Name (a-z, 0-9, -). Example: `my-1-internal-service`
     </li>
     <li>
       Port - for an internal service it is a port,
-      that allows current deployment to communicate with another deployment within the cluster (example: 8080)  
+      that allows current deployment to communicate with another deployment within the cluster (0-9). 
+       Example: `8080`  
     </li>
     <li>
       Target port - Internal port. The port of the target deployment that has to be connected with the current deployment.
-      In Dockerfile this is a port from EXPOSE instruction (example: 80)  
+      In Dockerfile this is a port from EXPOSE instruction (0-9). Example: `80`  
     </li>
     <li>
-        Port protocol (example: TCP)
+        Port protocol. Example: `TCP`
     </li>
 </ul>
 
