@@ -1,5 +1,5 @@
 ---
-title: Gateway - Containerum
+title: Gateway
 linktitle: Gateway
 description: Gateway is an API service that provides routing for Containerum components.
 
@@ -32,3 +32,5 @@ Using Helm:
   helm repo update
   helm install containerum/api-gateway
   ```
+
+  Now you can proceed to [installing the auth component](/platform/components/auth).

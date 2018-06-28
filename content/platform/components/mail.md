@@ -1,5 +1,5 @@
 ---
-title: Mail - Containerum
+title: Mail
 linktitle: Mail
 description: Mail is a mail server and newsletter template manager.
 
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 8
+    weight: 5
     identifier: platform-mail
 
 
@@ -40,3 +40,4 @@ Using Helm:
   helm repo update
   helm install containerum/mail
   ```
+  Now you can proceed to [installing the permissions component](/platform/components/permissions).

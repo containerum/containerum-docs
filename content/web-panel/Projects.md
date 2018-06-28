@@ -1,6 +1,7 @@
 ---
-title: Projects - Containerum
-linktitle: Projects
+title: Project - Containerum
+linktitle: Project
+description: How to create, update, view and delete an Project.
 description:
 
 categories: []
@@ -10,11 +11,12 @@ menu:
   docs:
     parent: "web-panel"
     weight: 2
+    weight: 3
 
 draft: false
 ---
 
-# How to work with Projects
+# How to work with an Project
 
 Project is the main object of Containerum system.
 To create a project a user needs to allocate RAM and CPU 

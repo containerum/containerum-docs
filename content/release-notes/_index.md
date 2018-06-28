@@ -1,6 +1,6 @@
 ---
 title: Release Notes - Containerum
-linktitle: Release Overview
+linktitle: Overview
 description:
 
 categories: []
@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "release-notes"
     weight: 1
+    identifier: overview-release
 
 draft: false
 ---

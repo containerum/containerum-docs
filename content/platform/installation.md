@@ -1,7 +1,7 @@
 ---
-title: Installation - Containerum
+title: Containerum installation
 linktitle: Containerum Installation
-description:
+description: How to install Containerum in Kubernetes cluster.
 
 categories: []
 keywords: []

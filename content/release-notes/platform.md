@@ -1,5 +1,5 @@
 ---
-title: Self-hosted release notes - Containerum
+title: Self-hosted release notes
 linktitle: "Self-hosted"
 description: Release notes for Containerum Self-hosted
 
