@@ -1,7 +1,7 @@
 ---
 title: Kubernetes prerequisites
 linktitle: Prerequisites
-description: Kubernetes can be deployed on Docker environments with etcd.
+description: Kubernetes can be deployed in any Docker environment.
 
 categories: []
 keywords: []
@@ -19,7 +19,6 @@ Before installing Kubernetes make sure you have the following components:
 
 - CentOS 7
 - Docker-1.13
-- etcd  3.2.18.
 
 ## How to Install Docker
 Install Docker 1.13 on CentOS 7
@@ -39,6 +38,7 @@ $ sudo systemctl enable docker && systemctl start docker
 ```
 Done!
 
+<!--
 ## How to Install etcd
 Standard CentOS 7 repositories contain etcd v. 3.2.18.
 
@@ -121,5 +121,6 @@ $ sudo systemctl start etcd
 ```
 
 Done!
+-->
 
 Now you can proceed to [Kubernetes installation](/kubernetes/installation/1cfssl).

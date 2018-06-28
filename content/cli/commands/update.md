@@ -15,13 +15,7 @@ weight: 2
 
 **Description**:
 
-Update chkit from github or local filesystem.
-
-Just run
-
-```bash
-> chkit update
-```
+Use "chkit update [command] --help" for more information about the command.
 
 **Example**:
 
