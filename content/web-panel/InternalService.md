@@ -18,6 +18,7 @@ draft: false
 
 Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. An internal service connects deployments by the internal
 network of Kubernetes.
+To create a Service a project and a deployment are required.
 
 ### Create
 
@@ -76,7 +77,3 @@ You can Delete a service by clicking `Delete` in the context menu on the Service
 
 Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 When you delete an Internal Service you will also delete the connection between deployments that were linked by this service.
-
-## Connections and dependencies
-Connections: specify correct ports of deployments to be connected.
-Dependencies: project and deployment are required.
