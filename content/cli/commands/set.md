@@ -25,7 +25,6 @@ Set configuration variables
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-| -n | --namespace |  |  |
 
 
 **Subcommands**:
@@ -63,8 +62,7 @@ chkit set replicas [-n namespace_label] [-d depl_label] [N_replicas]
 
 **Description**:
 
-Set container image for specific deployment
-If a deployment contains only one container, the command will use that container by default.
+Set container image for specific deployment If a deployment contains only one container, the command will use that container by default.
 
 **Example**:
 
@@ -129,13 +127,7 @@ Set Containerum API URL
 
 **Description**:
 
-Set namespace access rights.
-Available access levels are:
-  none
-  owner
-  read
-  read-delete
-  write
+Set namespace access rights. Available access levels are:   none   owner   read   read-delete   write
 
 **Example**:
 

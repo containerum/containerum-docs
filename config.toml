@@ -85,3 +85,10 @@ title = "Containerum Docs"
   identifier = "components"
   parent = "platform"
   url = "/platform/components/"
+
+[[menu.docs]]
+  name = "Installation"
+  weight = 14
+  identifier = "installation"
+  parent = "kubernetes"
+  url = "/kubernetes/installation/"
