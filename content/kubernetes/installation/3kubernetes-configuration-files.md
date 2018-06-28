@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Configuration - Containerum
+title: Kubeconfig files
 linktitle: Kubeconfig
 description: Creating Kubernetes authentication configuration files.
 
@@ -14,7 +14,7 @@ menu:
 draft: false
 ---
 
-# Create authentication configuration files
+# Create authentication kubeconfig files
 
 ### Client authentication configuration file
 Create kubeconfig for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user.

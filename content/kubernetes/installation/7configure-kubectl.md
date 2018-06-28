@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Configure Kubectl - Containerum
+title: Kubernetes Configure Kubectl
 linktitle: Kubectl
 description: Configuring the Kubernetes command line utility `kubectl`
 

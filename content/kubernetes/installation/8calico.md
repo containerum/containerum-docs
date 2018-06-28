@@ -1,5 +1,5 @@
 ---
-title: Calico Installation - Containerum
+title: Calico Installation
 linktitle: Calico
 description: Installing Calico for network security in the cluster.
 

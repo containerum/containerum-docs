@@ -1,5 +1,5 @@
 ---
-title: Internal Service - Containerum
+title: Internal Service
 linktitle: Internal Service
 description: How to create, update, view and delete an Internal service.
 
@@ -80,4 +80,3 @@ When you delete an Internal Service you will also delete the connection between 
 ## Connections and dependencies
 Connections: specify correct ports of deployments to be connected.
 Dependencies: project and deployment are required.
-

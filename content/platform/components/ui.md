@@ -1,5 +1,5 @@
 ---
-title: UI - Containerum
+title: UI
 linktitle: UI
 description: Containerum UI project is Web User Interface for Containerum.
 
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 3
+    weight: 8
     identifier: platform-ui
 
 
@@ -33,3 +33,5 @@ Using Helm:
   helm repo update
   helm install containerum/ui
 ```
+
+Now you can proceed to [installing the user manager component](/platform/components/user-manager).

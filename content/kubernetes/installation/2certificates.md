@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Certificates - Containerum
+title: Kubernetes Certificates
 linktitle: Certificates
 description: Generation of certificated for etcd, kube-apiserver, kubelet, etc.
 
@@ -348,4 +348,4 @@ done
 
 Done!
 
-Now you can proceed to [Kubernetes authentication configs](/kubernetes/installation/3kubernetes-configuration-files).
+Now you can proceed to [authentication kubeconfig files](/kubernetes/installation/3kubernetes-configuration-files).

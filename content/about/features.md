@@ -20,7 +20,7 @@ draft: false
 
 # Features
 
-Containerum is an open source Kubernetes platform that combines the features of resource management and revision control for fast and effortless application delivery.
+Containerum is an open source Kubernetes platform for automated delivery and simple CI/CD. It combines the features of resource management and revision control for fast and effortless application delivery.
 
 - **Revision control**
 

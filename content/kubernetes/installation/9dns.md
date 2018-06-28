@@ -1,5 +1,5 @@
 ---
-title: Kubernetes DNS Cluster Add-on - Containerum
+title: Kubernetes DNS Cluster Add-on
 linktitle: DNS Cluster
 description: Launching service discovery to applications running inside the Kubernetes cluster.
 

@@ -1,7 +1,7 @@
 ---
-title: Online Platform - Containerum
+title: Online Platform
 linktitle: Containerum Online
-description: First steps to start using Containerum Online
+description: First steps to start using Containerum Online.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "getting-started"
-    weight: 5
+    weight: 3
 
 draft: false
 ---
@@ -36,7 +36,6 @@ Click the link  - the registration is complete! Now you will see the Dashboard p
 
 
 ##### 2. Billing
-
 The next step is to top up your account. In the right drop-down menu choose *Billing*.
 <img src="/img/content/getting-started/online/moveToBilling.png"/>
 

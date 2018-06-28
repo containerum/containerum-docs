@@ -1,5 +1,5 @@
 ---
-title: Kubernetes ETCD Installation - Containerum
+title: Kubernetes ETCD Installation
 linktitle: Etcd
 description: Installing and configuring an etcd cluster.
 

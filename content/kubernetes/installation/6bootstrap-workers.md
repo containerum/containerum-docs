@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Bootstrap Workers - Containerum
+title: Bootstrapping Workers
 linktitle: Bootstrap Workers
 description: Bootstrapping three worker nodes for Kubernetes cluster.
 

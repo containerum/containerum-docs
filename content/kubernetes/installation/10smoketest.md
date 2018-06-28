@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Smoke Test - Containerum
+title: Kubernetes Smoke Test
 linktitle: Smoke test
 description: Running a smoke test to make sure the cluster is up and running.
 

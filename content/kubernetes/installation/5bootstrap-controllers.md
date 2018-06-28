@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Bootstrap Controllers - Containerum
+title: Bootstrapping Controllers
 linktitle: Bootstrap Controllers
 description: Bootstrapping Kubernetes Control Plane and configuring high availability.
 

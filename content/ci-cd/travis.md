@@ -1,8 +1,7 @@
 ---
 title: Travis
 linktitle: Travis
-description: Configuring CI/CD pipelines for Containerum
-identifier: travis
+description: Configuring CI/CD pipelines with Travis and Containerum
 
 categories: []
 keywords: []
@@ -11,6 +10,7 @@ menu:
   docs:
     parent: "ci-cd"
     weight: 1
+    identifier: travis
 
 draft: false
 ---
@@ -19,26 +19,13 @@ draft: false
 
 This instruction describes how to setup a CI pipeline in Travis. It will allow the deployments launched in Containerum to update automatically once you push code to GitHub.
 
-You have to follow these 6 steps for each deployment just once. After that your code will be built, tested and deployed by Travis once you push `git push` command.
+You have to follow these 3 steps for each deployment just once. After that your code will be built, tested and deployed by Travis once you push `git push` command.
 
 Step 1. Create a project and push it to your repo on GitHub
 
 Step 2. Register in [Travis](https://travis-ci.org) and add a repository from GitHub
 
-Step 3. Sign up on hub.docker.com
-
-Step 4. Write a [Dockerfile](https://docs.docker.com/engine/reference/builder/) and add it to your repo on GitHub. You can [contact](https://containerum.com/support/) our engineers if you need help writing a dockerfile.
-
-Step 5. Build an image an push it to your Docker Hub:
-
-`docker build -t "$IMAGE_NAME" .`
-
-`docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD`
-
-`docker push "${IMAGE_NAME}:latest`
-
-
-Step 6. Add `.travis.yaml` to your project on GitHub with the following content:
+Step 3. Add `.travis.yaml` to your project on GitHub with the following content:
 
 ```
 sudo: required
