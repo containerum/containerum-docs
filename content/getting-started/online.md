@@ -27,15 +27,15 @@ Click the link  - the registration is complete! Now you will see the Dashboard p
 
 <img src="/img/content/getting-started/online/newRegistration.png" width="100%"/>
 
-
 ##### 2. Billing
 The next step is to top up your account. In the right drop-down menu choose *Billing*.
-<img src="/img/content/getting-started/online/moveToBilling.png" width="100%"/>
 
+<img src="/img/content/getting-started/online/moveToBilling.png" width="100%"/>
 
 On the Billing page click *Add funds* to top up your account with your card or PayPal.
 
 <img src="/img/content/getting-started/online/billing.png" width="100%"/>
+
 
 ##### 3. Create a Project
 
@@ -48,6 +48,7 @@ Go to the Projects tab and click *Add a project*.
 Now choose the size of your Project.
 
 <img src="/img/content/getting-started/online/chooseSize.png" width="100%"/>
+
 
 Now that you have created a Project you can go the Project page.
 
@@ -106,5 +107,6 @@ Go to the *Tools* tab in the main menu and choose *Domains*. You will see the li
 Click on the domain or enter the address manually in a new tab to see your application.
 
 <img src="/img/content/getting-started/online/result.png" width="100%"/>
+
 
 Congratulations! You've just created a Project and launched an application on Containerum Online Platform. Now it's time to learn more about [Containerum Web Panel](/web-panel/) and [CLI](/cli/).
