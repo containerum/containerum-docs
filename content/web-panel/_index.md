@@ -15,5 +15,6 @@ draft: false
 ---
 
 # About Web Panel
-Containerum Web Panel is intuitive Web UI for managing Projects, Deployments, Services and other key concepts of Containerum.
-This section describes key operations with Containerum Web Panel like creating, updating, and deleting objects via Web UI.
+Containerum Web Panel is Web UI for managing applications, resources, users, etc.
+
+# Using Web Panel
