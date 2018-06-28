@@ -31,18 +31,18 @@ Please note, that each service has to be linked to a particular deployment. If t
 Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the fields:
 <ul>
     <li>
-        Name
+        Name (example: my-1-internal-service)
     </li>
     <li>
       Port - for an internal service it is a port,
-      that allows current deployment to communicate with another deployment within the cluster.  
+      that allows current deployment to communicate with another deployment within the cluster (example: 8080)  
     </li>
     <li>
       Target port - Internal port. The port of the target deployment that has to be connected with the current deployment.
-      In Dockerfile this is a port from EXPOSE instruction  
+      In Dockerfile this is a port from EXPOSE instruction (example: 80)  
     </li>
     <li>
-        Port protocol
+        Port protocol (example: TCP)
     </li>
 </ul>
 
@@ -52,7 +52,7 @@ Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the
 ### View
 You can view all services in the services tab (`/projects/:idNamespace/services`).
 
-<img src="/img/content/web-panel/getServicesList.png" width="100%"/>
+<img src="/img/content/web-panel/InternalService/services.png" width="100%"/>
 
 You can also click on a service and see detailed information like ports and linked deployments. (`/project/:idNamespace/services/:serviceName`).
 
