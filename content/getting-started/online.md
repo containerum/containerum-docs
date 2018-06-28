@@ -77,7 +77,7 @@ Now let's create an external service for your project to make it accessible from
 
 On the *Services* tab click *Create*.
 
-<img src="/img/content/getting-started/online/moveToCreateService.png"/>
+<img src="/img/content/getting-started/online/moveToCreateService.png" width="100%"/>
 
 
 Now create an external service.
