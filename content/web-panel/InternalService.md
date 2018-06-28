@@ -1,5 +1,5 @@
 ---
-title: Internal Service
+title: Internal Service - Containerum
 linktitle: Internal Service
 description: How to create, update, view and delete an Internal service.
 

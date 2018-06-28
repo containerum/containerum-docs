@@ -14,14 +14,6 @@ menu:
 draft: false
 ---
 
-<head>
-  <style type="text/css">
-  img {
-  	width: 100%;
-  }
-  </style>
-</head>
-
 # Getting started with Containerum Online
 Here are the fist steps to launch your first application on Containerum Online.
 

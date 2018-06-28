@@ -16,7 +16,6 @@ draft: false
 ---
 
 # CI/CD Overview
-Continuous Integration and Continuous Delivery practices aim at automating delivery processes to allow IT teams release updates incrementally on a regular basis.
 
 **Continuous Integration (CI)** is a practice where codes from different sources are integrated, built and tested automatically using special tools. In case tests fail, the code is further reviewed by developers to resolve conflicts, and in case of success the build is deployed. Code is generally integrated several times into a repository (e.g., GitHub).
 
