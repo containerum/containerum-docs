@@ -1,5 +1,5 @@
 ---
-description: Use "chkit update [command] --help" for more information about the command.
+description: Update chkit CLI
 draft: false
 linktitle: update
 menu:
@@ -30,7 +30,7 @@ chkit update [from github|dir <path>] [--debug]
 
 **Subcommands**:
 
-* **[update from](#update_from)** 
+* **[update from](#update_from)**
 
 
 #### <a name="update_from">update from</a>
@@ -53,5 +53,3 @@ chkit update [from github|dir <path>] [--debug]
 
 * **[update from dir](#update_from_dir)** update from local directory
 * **[update from github](#update_from_github)** update from github releases
-
-

@@ -1,5 +1,5 @@
 ---
-title: Online release notes - Containerum
+title: Online release notes
 linktitle: "Online"
 description: Release notes for Containerum Online
 

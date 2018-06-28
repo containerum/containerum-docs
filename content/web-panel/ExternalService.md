@@ -1,5 +1,5 @@
 ---
-title: External Service - Containerum
+title: External Service
 linktitle: External Service
 description: How to create, update, view and delete an External service.
 
@@ -19,7 +19,7 @@ draft: false
 Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. External services allow users to access the deployment from the Internet.
 
 Each service can have several ports using TCP or UDP protocol.
-
+To create a Service a project and a deployment are required.
 
 ### Create
 
@@ -35,6 +35,10 @@ Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the
 - Service Name: `helloworld-external-service`
 
 - Ports Name: `helloworld-port`
+
+- Target port: `5000`
+
+> Note: external service port must be the same as deployment port.
 
 - Protocol type: `TCP`
 
@@ -72,7 +76,3 @@ You can Delete a service by clicking `Delete` in the context menu on the Service
 
 Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.
-
-## Connections and dependencies
-Connections: external service port must be the same as deployment port.
-Dependencies: project and deployment are required.

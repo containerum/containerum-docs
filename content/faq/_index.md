@@ -18,7 +18,7 @@ draft: false
 
 ##### **Q:** What is Containerum?
 
-**A:** Containerum is a Platform for managing Kubernetes which allows automating CI/CD operations for managing small, medium and large-scale projects via Web UI and CLI.
+**A:** Containerum is a Platform for application delivery and management in Kubernetes clusters. It allows automating CI/CD operations for small, medium and large-scale projects via Web UI and CLI.
 
 </br>
 

@@ -1,7 +1,7 @@
 ---
-title: Install CLI
+title: Install chkit CLI
 linktitle: Install
-description: Installing CLI
+description: Installing chkit CLI from binaries.
 
 categories: []
 keywords: []

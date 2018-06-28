@@ -1,5 +1,5 @@
 ---
-title: Kubernetes release notes - Containerum
+title: Kubernetes release notes
 linktitle: "Kubernetes Engine"
 description: Release notes for Containerum Kubernetes Engine
 
