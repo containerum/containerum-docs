@@ -18,6 +18,8 @@ draft: false
 
 # How to work with an Project
 
+## Description
+
 Project is the main object of Containerum system.
 To create a project a user needs to allocate RAM and CPU 
 resources to the project. With Containerum self-hosted a 
@@ -28,6 +30,14 @@ All other system objects (deployments, services, etc.)
 exist only within a Project. As part of teamwork, 
 project owners can share their projects with other users 
 and set access levels to create new software together.
+
+Подробное описание свойств проекта находится 
+<a href="/getting-started/object-types/#project">здесь</a>
+
+## Requarements
+
+Для того чтобы создать проект, необходимо чтобы на вашем счёте 
+было достаточное количество средств.
 
 ## Create
 
@@ -84,3 +94,10 @@ or на вкладке projects главного меню
 
 После удаления проекта удаляются все принадлежащие ему Deployments,
 Services, Domains, Configmaps and Solutions.
+
+## Relations
+
+Над проектом может работать несколько разработчиков.Будучи владельцем 
+проекта, чтобы управлять командой нажмите на manage team на старнице проекта.
+
+Как работать с командой подробно описанно <a href="">здесь</a>
