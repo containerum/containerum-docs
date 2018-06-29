@@ -2,7 +2,7 @@ sudo: required
 
 env:
   global:
-  - CHKIT_VERSION=v3.3.5-alpha
+  - CHKIT_VERSION=v3.4.0-alpha
   - IMAGE_NAME=containerum/docs
   - DEPLOY=documentation
   - CONTAINER=docs
@@ -47,7 +47,7 @@ deploy:
     on:
       branch: master
   - provider: script
-    script: chkit set default-namespace docs && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
+    script: chkit set default-namespace -n docs && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
     skip_cleanup: true
     on:
       branch: master
@@ -58,7 +58,7 @@ deploy:
     on:
       branch: develop
   - provider: script
-    script: chkit set default-namespace docs-staging && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
+    script: chkit set default-namespace -n docs-staging && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
     skip_cleanup: true
     on:
       branch: develop
