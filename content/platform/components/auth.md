@@ -1,7 +1,7 @@
 ---
-title: Auth - Containerum
+title: Auth
 linktitle: Auth
-description: Auth is a OAuth authentication server for Containerum that handles user authorization and token management.
+description: Auth is a OAuth authentication server for Containerum that manages authorization and tokens.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 7
+    weight: 3
     identifier: platform-auth
 
 
@@ -41,3 +41,4 @@ Using Helm:
   helm repo update
   helm install containerum/auth
   ```
+Now you can proceed to [installing the kube-api component](/platform/components/kube-api).

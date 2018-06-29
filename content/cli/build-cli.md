@@ -1,7 +1,7 @@
 ---
-title: Build CLI
+title: Build chkit CLI
 linktitle: Build CLI
-description:
+description: Building chkit CLI from source code.
 
 categories: []
 keywords: []
@@ -16,6 +16,7 @@ draft: false
 
 # How to build chkit
 If you change Containerum API to use in your projects, you may need to make changes to chkit CLI.
+Make sure you have Golang >= 1.8 installed.
 
 To get chkit source:
 
@@ -24,7 +25,7 @@ go get -u -v github.com/containerum/chkit
 or
 ```
 
-```bash
+``` bash
 # in $GOPATH/src/containerum
 git clone https://github.com/containerum/chkit.git
 ```

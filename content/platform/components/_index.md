@@ -1,6 +1,6 @@
 ---
-title: Components - Containerum
-linktitle: Containerum Components
+title: Components Overview - Containerum
+linktitle: Overview
 description:
 
 categories: []
@@ -28,12 +28,5 @@ Containerum consists of several components:
 - ui is Web User Interface for Containerum
 - [chkit](/cli/) is CLI for Containerum
 
-and 2 databases:
 
-- MongoDB
-- PostgreSQL
-
-Basically, Containerum architecture looks like this:
-![Containerum_components](https://github.com/containerum/containerum/raw/master/components.svg?sanitize=true)
-
-To install Containerum Platform on-premises, please follow the installation steps for each component.
+To install Containerum Platform on-premises, please follow the installation steps for each component. [Begin](/platform/components/api-gateway).

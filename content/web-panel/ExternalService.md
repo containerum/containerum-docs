@@ -1,5 +1,5 @@
 ---
-title: External Service - Containerum
+title: External Service
 linktitle: External Service
 description: How to create, update, view and delete an External service.
 
@@ -19,9 +19,9 @@ draft: false
 Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. External services allow users to access the deployment from the Internet.
 
 Each service can have several ports using TCP or UDP protocol.
+To create a Service a project and a deployment are required.
 
-
-## Create
+### Create
 
  To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
 
@@ -36,13 +36,17 @@ Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the
 
 - Ports Name: `helloworld-port`
 
+- Target port: `5000`
+
+> Note: external service port must be the same as deployment port.
+
 - Protocol type: `TCP`
 
 <img src="/img/content/web-panel/createExternalService.png" width="100%"/>
 
 Then click on the `Create Service`. Done.
 
-## View
+### View
 
 You can view all services in the Services tab (`/projects/:idNamespace/services`).
 
@@ -52,7 +56,7 @@ You can also click on a service and see detailed information like IPs, domains, 
 
 <img src="/img/content/web-panel/getService.png" width="100%"/>
 
-## Update
+### Update
 
 You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
 
@@ -64,18 +68,11 @@ You can change port parameters, delete or add new ports.
 
 After changing the required information, click on `UPDATE SERVICE`.
 
-## Delete
+### Delete
 
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
 
 <img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
 
-Please, note: by clicking `delete` you will delete the service immediately. This action cannot be undone.
-
+Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.
-
-# Connections and dependencies
-
-Connections: correct configuration of the deployment port for correct operation.
-
-Dependencies: project and deployment availability.
