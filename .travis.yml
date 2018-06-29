@@ -2,7 +2,7 @@ sudo: required
 
 env:
   global:
-  - CHKIT_VERSION=v3.2.0
+  - CHKIT_VERSION=v3.3.5-alpha
   - IMAGE_NAME=containerum/docs
   - DEPLOY=documentation
   - CONTAINER=docs
