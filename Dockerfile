@@ -14,6 +14,9 @@ RUN node node_modules/gulp/bin/gulp.js build
 #### Build WEB ####
 FROM alpine:3.6 as web-builder
 
+ARG DOCS_VERSION=""
+ARG DOCS_COMMIT=""
+
 COPY --from=static-builder /site /site
 WORKDIR /site
 
@@ -24,9 +27,6 @@ RUN /bin/hugo
 
 #### Run Server ####
 FROM nginx:1.12
-
-ARG DOCS_VERSION=""
-ARG DOCS_COMMIT=""
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=web-builder /site/public/ /usr/share/nginx/html/
