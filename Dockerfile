@@ -25,5 +25,8 @@ RUN /bin/hugo
 #### Run Server ####
 FROM nginx:1.12
 
+ARG DOCS_VERSION=""
+ARG DOCS_COMMIT=""
+
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=web-builder /site/public/ /usr/share/nginx/html/
