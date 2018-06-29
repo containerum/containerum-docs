@@ -3,6 +3,17 @@
       <span class="italic">docs</span>
       <span>are maintained by</span>
       <span class="label">Exon Lab</span>
+      <div class="version">
+
+        {{ if eq (getenv "DOCS_VERSION") ""}}
+          Commit:
+          <a href='{{ .Site.Params.github }}/commit/{{ getenv "DOCS_COMMIT" }}'>{{ getenv "DOCS_COMMIT" }}</a>
+        {{ else }}
+          Version:
+          <a href='{{ .Site.Params.github }}/tree/{{ getenv "DOCS_VERSION" }}'>{{ getenv "DOCS_VERSION" }}</a>
+        {{ end }}
+
+      </div>
     </div>
   </body>
 </html>
