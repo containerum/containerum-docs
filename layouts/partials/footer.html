@@ -3,6 +3,19 @@
       <span class="italic">docs</span>
       <span>are maintained by</span>
       <span class="label">Exon Lab</span>
+      <div class="version">
+
+        {{ with getenv "DOCS_COMMIT" }}
+          Commit:
+          <a href='{{ .Site.Params.github }}/commit/{{ . }}'>{{ . }}</a>
+        {{ end }}
+
+        {{ with getenv "DOCS_VERSION" }}
+          Version:
+          <a href='{{ .Site.Params.github }}/tree/{{ . }}'>{{ . }}</a>
+        {{ end }}
+
+      </div>
     </div>
   </body>
 </html>
