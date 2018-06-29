@@ -116,4 +116,59 @@
       padding: 12px 18px;
     }
   }
+
+  img {
+    padding: 20px;
+    width: 100%;
+  }
+
+  div.link {
+    display: inline;
+    padding-left: 10px;
+    font-size: 19px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  pre {
+    padding: 15px;
+    background-color: black;
+
+    code {
+      font-family: "Roboto-mono", monospace;
+      font-size: 13px !important;
+      color: white;
+    }
+
+    .copy {
+      float: right;
+      font-size: 16px;
+      color: white;
+
+      &:hover {
+        color: $grey_;
+        cursor: pointer;
+      }
+    }
+  }
+
+  p code {
+    font-family: "Roboto-mono", monospace;
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    color: #0b056d;
+  }
+
+  .highlight {
+    pre {
+      padding: 0;
+      background-color: black !important;
+    }
+
+    .copy {
+      display: none;
+    }
+  }
 }

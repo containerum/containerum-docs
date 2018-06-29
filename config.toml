@@ -1,5 +1,8 @@
 languageCode = "en-us"
 title = "Containerum Docs"
+# pygmentsStyle = "monokai"
+pygmentsUseClassic = true
+pygmentsStyle = "monokai"
 
 [params]
   github = "https://github.com/containerum/containerum-docs"

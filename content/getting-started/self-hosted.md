@@ -30,7 +30,7 @@ or
 
 To launch Containerum on your Kubernetes Cluster in demo mode run
 
-```
+```bash
 helm repo add containerum https://charts.containerum.io
 helm repo update
 helm install containerum/containerum
