@@ -50,3 +50,14 @@ deploy:
     skip_cleanup: true
     on:
       branch: master
+
+  - provider: script
+    script: docker push "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
+    skip_cleanup: true
+    on:
+      branch: develop
+  - provider: script
+    script: chkit set image --deployment ${DEPLOY} --namespace "docs-staging" --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
+    skip_cleanup: true
+    on:
+      branch: develop
