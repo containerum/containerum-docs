@@ -5,12 +5,12 @@
       <span class="label">Exon Lab</span>
       <div class="version">
 
-        {{ if eq (getenv "DOCS_VERSION") ""}}
+        {{ if eq (getenv "TRAVIS_TAG") ""}}
           Commit:
-          <a href='{{ .Site.Params.github }}/commit/{{ getenv "DOCS_COMMIT" }}'>{{ getenv "DOCS_COMMIT" }}</a>
+          <a href='{{ .Site.Params.github }}/commit/{{ getenv "TRAVIS_COMMIT" }}'>{{ getenv "TRAVIS_COMMIT" }}</a>
         {{ else }}
           Version:
-          <a href='{{ .Site.Params.github }}/tree/{{ getenv "DOCS_VERSION" }}'>{{ getenv "DOCS_VERSION" }}</a>
+          <a href='{{ .Site.Params.github }}/tree/{{ getenv "TRAVIS_TAG" }}'>{{ getenv "TRAVIS_TAG" }}</a>
         {{ end }}
 
       </div>
