@@ -22,6 +22,7 @@ Create a root certificate with cfssl and generate certificates for etcd, kube-ap
 Create a configuration file and a private key for CA:
 
 ```bash
+{{< highlight bash >}}
 {
 
 cat > ca-config.json <<EOF
@@ -62,12 +63,14 @@ EOF
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
 }
+{{< / highlight >}}
 ```
 
 ### Client and server certificates
 Create certificates for each Kubernetes component and a client certificate for `admin`
 
 ```bash
+{{< highlight bash >}}
 {
 
 cat > admin-csr.json <<EOF
@@ -97,6 +100,7 @@ cfssl gencert \
   admin-csr.json | cfssljson -bare admin
 
 }
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kubelet clients
@@ -112,6 +116,7 @@ Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspo
 \<nodeName> is the hostname of the node, for which a certificate is to be generated.
 
 ```bash
+{{< highlight bash >}}
 cat > <nodeName>-csr.json <<EOF
 {
   "CN": "system:node:<nodeName>",
@@ -142,12 +147,14 @@ cfssl gencert \
   -profile=kubernetes \
   <nodeName>-csr.json | cfssljson -bare <nodeName>
 done
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kube Controller Manager
 Generate a certificate:
 
 ```bash
+{{< highlight bash >}}
 {
 
 cat > kube-controller-manager-csr.json <<EOF
@@ -177,6 +184,7 @@ cfssl gencert \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 
 }
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kube Proxy
