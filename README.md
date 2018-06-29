@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/containerum/containerum-docs.svg?branch=master)](https://travis-ci.org/containerum/containerum-docs)
 
+[Stable documentation](docs.containerum.com)  
+[Staging documentation](docs-stage.hub.containerum.io)
+
 
 ## Requirements
 * [Hugo](https://github.com/gohugoio/hugo) > v0.39
