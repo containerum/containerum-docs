@@ -14,8 +14,11 @@ RUN node node_modules/gulp/bin/gulp.js build
 #### Build WEB ####
 FROM alpine:3.6 as web-builder
 
-ARG DOCS_VERSION=""
-ARG DOCS_COMMIT=""
+ARG DOCS_VERSION
+ARG DOCS_COMMIT
+
+ENV DOCS_VERSION=$DOCS_VERSION \
+    DOCS_COMMIT=$DOCS_COMMIT
 
 COPY --from=static-builder /site /site
 WORKDIR /site
