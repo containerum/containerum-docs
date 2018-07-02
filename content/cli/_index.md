@@ -1,7 +1,8 @@
 ---
-title: CLI
-linktitle: CLI Overview
-description: Containerum assumes that the same structure that works to organize your source content is used to organize the rendered site.
+title: chkit CLI - Containerum
+linktitle: Overview
+description: Commands for chkit - Containerum CLI.
+identifier: cli-overview
 
 categories: []
 keywords: []
@@ -14,6 +15,6 @@ menu:
 draft: false
 ---
 
-# About overview
+# Chkit overview
 
-CLI for Containerum Platform
+Chkit is a powerful desktop CLI client for Containerum. This section describes chkit commands for managing Containerum objects.

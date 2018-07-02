@@ -5,3 +5,13 @@
 //= "sidebar.js"
 
 //= "edit-page.js"
+
+//= "alert.js"
+
+//= "clipboard.js"
+
+//= "google.js"
+
+//= "yandex.js"
+
+//= "pixel.js"

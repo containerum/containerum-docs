@@ -1,5 +1,5 @@
 ---
-title: Permissions - Containerum
+title: Permissions
 linktitle: Permissions
 description: Permissions is a service for Containerum that manages user access and enables teamwork.
 
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 5
+    weight: 6
     identifier: platform-permissions
 
 
@@ -33,3 +33,4 @@ Using Helm:
   helm repo update
   helm install containerum/permissions
   ```
+Now you can proceed to [installing the resource component](/platform/components/resource).

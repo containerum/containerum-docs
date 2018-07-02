@@ -2,7 +2,7 @@ sudo: required
 
 env:
   global:
-  - CHKIT_VERSION=v3.2.0
+  - CHKIT_VERSION=v3.4.0-alpha
   - IMAGE_NAME=containerum/docs
   - DEPLOY=documentation
   - CONTAINER=docs
@@ -17,12 +17,13 @@ install:
 script:
   - chkit get api
   - chkit login -u ${LOGIN} -p ${PASSWORD} -n -
-  - docker build -t "$IMAGE_NAME" .
+  - docker build -t "$IMAGE_NAME" --build-arg DOCS_VERSION="${TRAVIS_TAG}" --build-arg DOCS_COMMIT="${TRAVIS_COMMIT::8}" .
 
 before_deploy:
   - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:latest"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:release"
+  - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:dev"
   - docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
   - if [ "$TRAVIS_TAG" ]; then docker tag "$IMAGE_NAME" "${IMAGE_NAME}:${TRAVIS_TAG}"; fi
 
@@ -46,7 +47,18 @@ deploy:
     on:
       branch: master
   - provider: script
-    script: chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
+    script: chkit set default-namespace -n docs && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
     skip_cleanup: true
     on:
       branch: master
+
+  - provider: script
+    script: docker push "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
+    skip_cleanup: true
+    on:
+      branch: develop
+  - provider: script
+    script: chkit set default-namespace -n docs-staging && chkit set image --deployment ${DEPLOY} --container ${CONTAINER} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force
+    skip_cleanup: true
+    on:
+      branch: develop

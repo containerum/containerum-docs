@@ -1,7 +1,7 @@
 ---
-title: Kube-api - Containerum
+title: Kube-api
 linktitle: Kube-api
-description: Kube-api is a set of API for communication between Containerum components and Kubernetes.
+description: Kube-api is a set of API for communication between Containerum and Kubernetes.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 6
+    weight: 4
     identifier: platform-kube
 
 
@@ -33,3 +33,4 @@ Using Helm:
   helm repo update
   helm install containerum/kube
 ```
+Now you can proceed to [installing the mail component](/platform/components/mail).

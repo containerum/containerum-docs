@@ -1,7 +1,7 @@
 ---
-title: CLI release notes - Containerum
+title: CLI release notes
 linktitle: "CLI"
-description: Chkit CLI release notes.
+description: Release notes for chkit CLI.
 
 date: 2018-06-15
 
@@ -35,4 +35,3 @@ Bugs fixed:
 
     correct build-version forming
     fix crush on "get default-namespace" (invalid chkit initialisation)
-
