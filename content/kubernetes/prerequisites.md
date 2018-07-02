@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "kubernetes"
-    weight: 2
+    weight: 3
 
 draft: false
 ---
