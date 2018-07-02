@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/containerum/containerum-docs.svg?branch=master)](https://travis-ci.org/containerum/containerum-docs)
 
 [Stable documentation](https://docs.containerum.com)  
-[Staging documentation](https://docs-stage.hub.containerum.io)
+[Staging documentation](http://docs-stage.hub.containerum.io)
 
 
 ## Requirements
