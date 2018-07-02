@@ -47,7 +47,7 @@ In Containerum a user can generally operate the following objects:
 </ul>
 
 <br/>
-<h4><a name="project">Project</a></h4>
+<h4><a id="project" name="project">Project</a></h4>
 
 Project is the main object of Containerum system. To create a project a user needs to allocate RAM and CPU resources to the project. With <a href="https://github.com/containerum/containerum">Containerum self-hosted</a> a user can allocate as much of the available server resources as necessary. <a href="https://web.containerum.io">Containerum Online</a> offers several preconfigured options (custom configurations available upon [request](https://containerum.com/sales/)). All other system objects (deployments, services, etc.) exist only within a Project. As part of teamwork, project owners can share their projects with other users and set access levels to create new software together.
 
