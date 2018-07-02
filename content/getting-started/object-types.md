@@ -319,7 +319,7 @@ Deployment consists of the following fields:
 Pod is an object that constitutes one running <a href="#deployment"> deployment </a>replica. Although a deployment contains configuration data, pod is actually a running application. A pod cannot exist without a deployment, while a deployment can have no pods. When a user creates a deployment with 4 replicas, 4 pods will be created. In this case, each of them utilizes the amount of resources utilized by all containers in the parent deployment. When a user deletes a pod, a new one with the same configuration will be created. Containerum allows viewing logs for pods.
 
 <br/>
-<h4><a name="service">Service</a></h4>
+<h4><a id="service" name="service">Service</a></h4>
 
 Service is an object, used by <a href="#deployment"> applications </a> for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. An internal service connects deployments by the internal network of Kubernetes. External services allow users to access the deployment from the Internet. Each service can have several ports using TCP or UDP protocol.
 
