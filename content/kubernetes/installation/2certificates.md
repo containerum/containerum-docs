@@ -40,7 +40,7 @@ If you want to restore a default config for CSR generation, remove the .conf fil
 `./gen-kube-ca.sh default`
 
 
-### cfssl 
+### cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
 ### Creating a CA
