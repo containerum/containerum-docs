@@ -50,7 +50,7 @@ When possible, back etcd’s storage with a SSD. A SSD usually provides lower wr
 ### Cluster model
 For highly available setups, you will need to decide how to host your etcd cluster. A cluster is composed of at least 3 members. We recommend one of the following models:
 
-- Hosting etcd cluster on separate compute nodes (Virtual Machines)
+- Hosting etcd cluster on separate compute nodes (Virtual Machines).
 - Hosting etcd cluster on the master nodes.
 
 While the first option provides more performance and better hardware isolation, it is also more expensive and requires an additional support burden.
