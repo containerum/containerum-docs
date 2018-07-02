@@ -6,6 +6,8 @@
 
     {{ block "main" . }}{{ end }}
 
-  <div>
+    {{ partial "footer.html" . }}
 
-{{ partial "footer.html" . }}
+  </div>
+
+  <div class="alert" id="alert" />

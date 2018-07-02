@@ -1,6 +1,6 @@
 ---
-title: Kubernetes Installation - Containerum
-linktitle: Installation
+title: Kubernetes Installation Overview - Containerum
+linktitle: Overview
 description:
 
 categories: []
@@ -10,9 +10,10 @@ menu:
   docs:
     parent: "kubernetes"
     weight: 1
+    identifier: kubernetes-overview
 
 draft: false
 ---
 
-# Installing Kubernetes
-*Containerum Kubernetes installation coming soon*
+# Kubernetes Installation Overview
+This section describes how to bootstrap a high availability Kubernetes cluster from scratch. Make sure that your VMs meet the [requirements] (/kubernetes/prerequisites) and then proceed to [installation instructions](/kubernetes/installation/1cfssl).

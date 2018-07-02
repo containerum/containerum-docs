@@ -5,3 +5,7 @@
 //= "sidebar.js"
 
 //= "edit-page.js"
+
+//= "alert.js"
+
+//= "clipboard.js"

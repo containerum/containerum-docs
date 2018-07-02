@@ -1,7 +1,7 @@
 ---
-title: Resource - Containerum
+title: Resource
 linktitle: Resource
-description: Resource is a service that manages Kubernetes namespace objects (deployments, ingresses, etc.) in Containerum.
+description: Resource is a service that manages Kubernetes namespace objects in Containerum.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 4
+    weight: 7
     identifier: platform-resource
 
 
@@ -33,3 +33,5 @@ Using Helm:
   helm repo update
   helm install containerum/resource
 ```
+
+Now you can proceed to [installing the ui component](/platform/components/ui).

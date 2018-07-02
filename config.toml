@@ -1,5 +1,8 @@
 languageCode = "en-us"
 title = "Containerum Docs"
+# pygmentsStyle = "monokai"
+pygmentsUseClassic = true
+pygmentsStyle = "monokai"
 
 [params]
   github = "https://github.com/containerum/containerum-docs"
@@ -89,7 +92,6 @@ title = "Containerum Docs"
 [[menu.docs]]
   name = "Installation"
   weight = 14
-  identifier = "kube-install"
-  parent = "Kubernetes"
+  identifier = "installation"
+  parent = "kubernetes"
   url = "/kubernetes/installation/"
-

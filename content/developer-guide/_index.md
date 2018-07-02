@@ -1,6 +1,6 @@
 ---
 title: Developer Guide - Containerum
-linktitle: Developer Guide Overview
+linktitle: Overview
 description:
 
 categories: []
@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "developer-guide"
     weight: 1
+    identifier: devguide-overview
 
 draft: false
 ---
