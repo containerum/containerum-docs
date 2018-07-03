@@ -39,22 +39,18 @@ wget "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linu
 ```
 
 ```bash
-{
   chmod +x kube-apiserver kube-controller-manager kube-scheduler kubectl
   sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/local/bin/
-}
 ```
 
 #### Configure the Kubernetes API Server
 
 ```bash
-{
   sudo mkdir -p /var/lib/kubernetes/
 
   sudo mv ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
     service-account-key.pem service-account.pem \
     encryption-config.yaml /var/lib/kubernetes/
-}
 ```
 The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `INTERNAL_IP` variable.
 
@@ -188,11 +184,9 @@ EOF
 Run:
 
 ```bash
-{
   sudo systemctl daemon-reload
   sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler
   sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
-}
 ```
 
 > It can take about 10 seconds or more to initialize the Kubernetes API Server.
