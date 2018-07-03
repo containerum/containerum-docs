@@ -14,6 +14,7 @@ menu:
 draft: false
 ---
 
+<!--
 # Bootstrapping the etcd cluster
 Kubernetes stores cluster state information in etcd. This section covers how to launch a 3-node etcd cluster, configure high availability and secure remote access.
 
@@ -22,7 +23,6 @@ Kubernetes stores cluster state information in etcd. This section covers how to 
 Run each command from this section on each controller. Login to each controller via ssh.
 
 #### Download and Install the etcd binaries
-
 
 Download the official etcd binaries from the [coreos/etcd](https://github.com/coreos/etcd) project:
 
@@ -33,20 +33,66 @@ wget "https://github.com/coreos/etcd/releases/download/v3.3.5/etcd-v3.3.5-linux-
 Extract and install the `etcd` server and the `etcdctl` command line utility:
 
 ```bash
-{
-  tar -xvf etcd-v3.3.5-linux-amd64.tar.gz
-  sudo mv etcd-v3.3.5-linux-amd64/etcd* /usr/local/bin/
-}
+tar -xvf etcd-v3.3.5-linux-amd64.tar.gz
+sudo mv etcd-v3.3.5-linux-amd64/etcd* /usr/local/bin/
+```
+-->
+
+## How to Install etcd
+Standard CentOS 7 repositories contain etcd v. 3.2.18.
+
+Run:
+```
+$ sudo yum install etcd
 ```
 
+#### Single node etcd server 
+
+Open ```/etc/etcd/etcd.conf``` and change it as follows:
+
+```
+ETCD_LISTEN_CLIENT_URLS="https://127.0.0.1:2379,https://$INTERNAL_IP:2379"
+ETCD_NAME=${ETCD_NAME}
+ETCD_ADVERTISE_CLIENT_URLS="https://$INTERNAL_IP:2379"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-1"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_CERT_FILE="/etc/etcd/kubernetes.pem"
+ETCD_KEY_FILE="/etc/etcd/kubernetes-key.pem"
+ETCD_CLIENT_CERT_AUTH="true"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
+```
+
+#### etcd cluster
+
+Open ```/etc/etcd/etcd.conf``` and change it as follows:
+
+```
+ETCD_LISTEN_PEER_URLS="https://${INTERNAL_IP}:2380"
+ETCD_LISTEN_CLIENT_URLS="https://127.0.0.1:2379,https://${INTERNAL_IP}:2379"
+ETCD_NAME=${ETCD_NAME}
+ETCD_INITIAL_ADVERTISE_PEER_URLS="https://${INTERNAL_IP}:2380"
+ETCD_ADVERTISE_CLIENT_URLS="https://${INTERNAL_IP}:2379"
+ETCD_INITIAL_CLUSTER="master-1=https://${ETCD_NODE-1_IP}:2380,master-2=https://${ETCD_NODE-2_IP}:2380,master-3=https://${ETCD_NODE-3_IP}:2380"
+ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-1"
+ETCD_INITIAL_CLUSTER_STATE="new"
+ETCD_CERT_FILE="/etc/etcd/kubernetes.pem"
+ETCD_KEY_FILE="/etc/etcd/kubernetes-key.pem"
+ETCD_CLIENT_CERT_AUTH="true"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
+ETCD_PEER_CERT_FILE="/etc/etcd/kubernetes.pem"
+ETCD_PEER_KEY_FILE="/etc/etcd/kubernetes-key.pem"
+ETCD_PEER_CLIENT_CERT_AUTH="true"
+ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
+
+```
+
+<!-- 
 #### Configure the etcd server
 Run:
 
 ```bash
-{
-  sudo mkdir -p /etc/etcd /var/lib/etcd
-  sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
-}
+sudo mkdir -p /etc/etcd /var/lib/etcd
+sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
 ```
 
 The node internal IP address will be used to receive client requests and communicate with other cluster members. The internal IP address for each node must be unique and should be stored in `INTERNAL_IP` variable.
@@ -56,51 +102,14 @@ Each etcd node must have a unique name within the cluster. Set the etcd node nam
 ```bash
 ETCD_NAME=$(hostname -s)
 ```
-
-Create the `etcd.service` systemd unit file:
-
-```bash
-cat <<EOF | sudo tee /etc/systemd/system/etcd.service
-[Unit]
-Description=etcd
-Documentation=https://github.com/coreos
-
-[Service]
-ExecStart=/usr/local/bin/etcd \\
-  --name ${ETCD_NAME} \\
-  --cert-file=/etc/etcd/kubernetes.pem \\
-  --key-file=/etc/etcd/kubernetes-key.pem \\
-  --peer-cert-file=/etc/etcd/kubernetes.pem \\
-  --peer-key-file=/etc/etcd/kubernetes-key.pem \\
-  --trusted-ca-file=/etc/etcd/ca.pem \\
-  --peer-trusted-ca-file=/etc/etcd/ca.pem \\
-  --peer-client-cert-auth \\
-  --client-cert-auth \\
-  --initial-advertise-peer-urls https://${INTERNAL_IP}:2380 \\
-  --listen-peer-urls https://${INTERNAL_IP}:2380 \\
-  --listen-client-urls https://${INTERNAL_IP}:2379,https://127.0.0.1:2379 \\
-  --advertise-client-urls https://${INTERNAL_IP}:2379 \\
-  --initial-cluster-token etcd-cluster-0 \\
-  --initial-cluster controller-0=https://${WORKER_IP_1}:2380,controller-1=https://${WORKER_IP_2}:2380,controller-2=https://${WORKER_IP_3}:2380 \\
-  --initial-cluster-state new \\
-  --data-dir=/var/lib/etcd
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
+ -->
 
 #### Launch the etcd server
 Run:
 
 ```bash
-{
-  sudo systemctl daemon-reload
-  sudo systemctl enable etcd
-  sudo systemctl start etcd
-}
+sudo systemctl enable etcd
+sudo systemctl start etcd
 ```
 
 > Don't forget to run all the commands on each controller: `controller-0`, `controller-1`, and `controller-2`.
