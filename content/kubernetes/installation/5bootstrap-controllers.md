@@ -18,45 +18,64 @@ draft: false
 
 This section describes how to launch Kubernetes Control Plane on 3 nodes and configure high availability. It also demonstrates how to create an external load balancer to expose Kubernetes API for remote clients in the external network. The following components will be installed on each node: Kubernetes API Server, Scheduler, Controller Manager.
 
-Don't forget to run all commands on all controllers.
+Don't forget to run all commands on all master nodes.
+
+> **Note**: In the case of launching on the one host PUBLIC_KUBERNETES_IP(IP address of kubernetes load balancer) can be replaced to MASTER_IP
 
 ### Prepare Kubernetes Control Plane
 
 Create a directory for Kubernetes configuration files:
 
 ```bash
+{{< highlight bash >}}
+
 sudo mkdir -p /etc/kubernetes/config
+
+{{< / highlight >}}
 ```
 
 #### Download and install the official Kubernetes binaries
 Run:
 
 ```bash
-wget "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-apiserver" \
+{{< highlight bash >}}
+
+curl -O "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-apiserver" \
   "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-controller-manager" \
   "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-scheduler" \
   "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl"
+
+{{< / highlight >}}
 ```
 
 ```bash
-  chmod +x kube-apiserver kube-controller-manager kube-scheduler kubectl
-  sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/local/bin/
+{{< highlight bash >}}
+
+chmod +x kube-apiserver kube-controller-manager kube-scheduler kubectl
+sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/local/bin/
+
+{{< / highlight >}}
 ```
 
 #### Configure the Kubernetes API Server
 
 ```bash
-  sudo mkdir -p /var/lib/kubernetes/
+{{< highlight bash >}}
 
-  sudo mv ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem \
-    encryption-config.yaml /var/lib/kubernetes/
+sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
+  service-account-key.pem service-account.pem \
+  encryption-config.yaml /var/lib/kubernetes/
+
+{{< / highlight >}}
 ```
+
 The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `INTERNAL_IP` variable.
 
 Сreate the `kube-apiserver.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service
 [Unit]
 Description=Kubernetes API Server
@@ -79,9 +98,8 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --etcd-cafile=/var/lib/kubernetes/ca.pem \\
   --etcd-certfile=/var/lib/kubernetes/kubernetes.pem \\
   --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem \\
-  --etcd-servers=https://${NODE1_INTERNAL_IP}:2379,https://${NODE2_INTERNAL_IP}:2379,https://${NODE3_INTERNAL_IP}:2379 \\
+  -etcd-servers=https://${ETCD_NODE1_IP}:2379,https://${ETCD_NODE2_IP}:2379,https://${ETCD_NODE3_IP}:2379 \\
   --event-ttl=1h \\
-  --experimental-encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml \\
   --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem \\
   --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem \\
   --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem \\
@@ -99,19 +117,29 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
+
+>**Note**: You may use --experimental-encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
 
 #### Configure Kubernetes Controller Manager
 
 Move `kube-controller-manager.kubeconfig`
 
 ```bash
+{{< highlight bash >}}
+
 sudo mv kube-controller-manager.kubeconfig /var/lib/kubernetes/
+
+{{< / highlight >}}
 ```
 
 Create the `kube-controller-manager.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/kube-controller-manager.service
 [Unit]
 Description=Kubernetes Controller Manager
@@ -137,6 +165,8 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Configure Kubernetes Scheduler
@@ -144,12 +174,18 @@ EOF
 Move `kube-scheduler.kubeconfig`:
 
 ```bash
+{{< highlight bash >}}
+
 sudo mv kube-scheduler.kubeconfig /var/lib/kubernetes/
+
+{{< / highlight >}}
 ```
 
 Create the `kube-scheduler.yaml` configuration file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/kubernetes/config/kube-scheduler.yaml
 apiVersion: componentconfig/v1alpha1
 kind: KubeSchedulerConfiguration
@@ -158,11 +194,15 @@ clientConnection:
 leaderElection:
   leaderElect: true
 EOF
+
+{{< / highlight >}}
 ```
 
 Create the `kube-scheduler.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/kube-scheduler.service
 [Unit]
 Description=Kubernetes Scheduler
@@ -178,15 +218,21 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Launch Controller Services
 Run:
 
 ```bash
-  sudo systemctl daemon-reload
-  sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler
-  sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
+{{< highlight bash >}}
+
+sudo systemctl daemon-reload
+sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler
+sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
+
+{{< / highlight >}}
 ```
 
 > It can take about 10 seconds or more to initialize the Kubernetes API Server.
@@ -198,10 +244,25 @@ Run:
 
 > The `/healthz` endpoint doesn't require authorization.
 
+
+Execute below command to add `epel-release` repo:
+
+```bash
+{{< highlight bash >}}
+
+sudo yum install epel-release
+
+{{< / highlight >}}
+```
+
 Install nginx:
 
 ```bash
+{{< highlight bash >}}
+
 sudo yum install -y nginx
+
+{{< / highlight >}}
 ```
 
 Add the following lines to `/etc/nginx/nginx.conf`:
@@ -218,19 +279,25 @@ server {
 }
 ```
 
-
-
 ```bash
+{{< highlight bash >}}
+
 sudo setsebool -P httpd_can_network_connect=on
 sudo systemctl restart nginx
 sudo systemctl enable nginx
+
+{{< / highlight >}}
 ```
 
 #### Verification
 Run:
 
 ```bash
+{{< highlight bash >}}
+
 kubectl get componentstatuses --kubeconfig admin.kubeconfig
+
+{{< / highlight >}}
 ```
 
 > Output:
@@ -272,6 +339,8 @@ Configure RBAC permissions that will allow Kubernetes API Server to access Kubel
 Create `system:kube-apiserver-to-kubelet` [ClusterRole](https://kubernetes.io/docs/admin/authorization/rbac/#role-and-clusterrole), allow access to Kubelet API and execute the key tasks associated with managing pods:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
@@ -293,6 +362,8 @@ rules:
     verbs:
       - "*"
 EOF
+
+{{< / highlight >}}
 ```
 
 Kubernetes API authenticates to kubelet as `kubernetes` user, using the client certificate defined by the `--kubelet-client-certificate` flag.
@@ -300,6 +371,8 @@ Kubernetes API authenticates to kubelet as `kubernetes` user, using the client c
 Bind the `system:kube-apiserver-to-kubelet` ClusterRole for the `kubernetes` user:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | kubectl apply --kubeconfig admin.kubeconfig -f -
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
@@ -315,6 +388,8 @@ subjects:
     kind: User
     name: kubernetes
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Verification

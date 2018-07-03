@@ -16,6 +16,8 @@ draft: false
 
 # Certs preparation and generation
 
+> **Note**: All of steps in this article can be performed on your host machine on any other machine with the ssh access to all of your nodes.
+
 ### Containerum script
 
 <a href="/files/gen-kube-ca.sh" target="_blank">`This script`</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
@@ -124,52 +126,7 @@ cfssl gencert \
 {{< / highlight >}}
 ```
 
-#### Generate a certificate for Kubelet clients
 
-Kubernetes uses a special mode of authorization, Node Authorizer, which also authorizes requests from Kubelet to API.
-To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:<nodeName>` username.
-Create a certificate for each node to meet to Node Authorizer requirements.
-
-
-Script example:
-
-Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly.
-\<nodeName> is the hostname of the node, for which a certificate is to be generated.
-
-```bash
-{{< highlight bash >}}
-cat > <nodeName>-csr.json <<EOF
-{
-  "CN": "system:node:<nodeName>",
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "US",
-      "L": "Portland",
-      "O": "system:nodes",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
-    }
-  ]
-}
-EOF
-
-EXTERNAL_IP=
-INTERNAL_IP=
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -hostname=<nodeName>,${EXTERNAL_IP},${INTERNAL_IP} \
-  -profile=kubernetes \
-  <nodeName>-csr.json | cfssljson -bare <nodeName>
-done
-{{< / highlight >}}
-```
 
 #### Generate a certificate for Kube Controller Manager
 Generate a certificate:
@@ -206,43 +163,11 @@ cfssl gencert \
 {{< / highlight >}}
 ```
 
-#### Generate a certificate for Kube Proxy
-Generate a certificate:
-
-```bash
-
-cat > kube-proxy-csr.json <<EOF
-{
-  "CN": "system:kube-proxy",
-  "key": {
-    "algo": "rsa",
-    "size": 2048
-  },
-  "names": [
-    {
-      "C": "US",
-      "L": "Portland",
-      "O": "system:node-proxier",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
-    }
-  ]
-}
-EOF
-
-cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
-  -config=ca-config.json \
-  -profile=kubernetes \
-  kube-proxy-csr.json | cfssljson -bare kube-proxy
-
-```
-
 #### Generate a certificate for Kube Scheduler
 Generate a certificate:
 
 ```bash
+{{< highlight bash >}}
 
 cat > kube-scheduler-csr.json <<EOF
 {
@@ -270,15 +195,20 @@ cfssl gencert \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kube API Server
 To generate a certificate you need to provide a static IP address into the the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
 
+`10.32.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
+
+`MASTER_NODES_IP` is a sequence of all IP addresses of master nodes. In the case of one master node, only its IP address should be specified there.
 
 Generate a certificate:
 
 ```bash
+{{< highlight bash >}}
 
 KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
 cat > kubernetes-csr.json <<EOF
@@ -304,10 +234,11 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=10.32.0.1, ${MASTER_NODES_IPS}, ${ETC_NODE_IP}, ${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
+  -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
+{{< / highlight >}}
 ```
 
 ### The service account key pair
@@ -317,6 +248,7 @@ Kubernetes Controller Manager uses a key pair to create and sign tokens for the 
 Run the script:
 
 ```bash
+{{< highlight bash >}}
 
 cat > service-account-csr.json <<EOF
 {
@@ -346,23 +278,114 @@ cfssl gencert \
 
 ```
 
+#### Generate a certificate for Kubelet clients
+
+Kubernetes uses a special mode of authorization, Node Authorizer, which also authorizes requests from Kubelet to API.
+To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:${NODE_NAME}` username.
+Create a certificate for each node to meet to Node Authorizer requirements.
+
+
+Script example:
+
+Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly. If you don't have private network, you may use only `EXTERNAL_IP`.
+${NODE_NAME} is the hostname of the node, for which a certificate is to be generated.
+
+```bash
+{{< highlight bash >}}
+
+cat > ${NODE_NAME}-csr.json <<EOF
+{
+  "CN": "system:node:${NODE_NAME}",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "US",
+      "L": "Portland",
+      "O": "system:nodes",
+      "OU": "Kubernetes The Hard Way",
+      "ST": "Oregon"
+    }
+  ]
+}
+EOF
+
+EXTERNAL_IP=
+INTERNAL_IP=
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -hostname=${NODE_NAME},${EXTERNAL_IP},${INTERNAL_IP} \
+  -profile=kubernetes \
+  ${NODE_NAME}-csr.json | cfssljson -bare ${NODE_NAME}
+
+{{< / highlight >}}
+```
+
+#### Generate a certificate for Kube Proxy
+Generate a certificate:
+
+```bash
+{{< highlight bash >}}
+
+cat > kube-proxy-csr.json <<EOF
+{
+  "CN": "system:kube-proxy",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "US",
+      "L": "Portland",
+      "O": "system:node-proxier",
+      "OU": "Kubernetes The Hard Way",
+      "ST": "Oregon"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -profile=kubernetes \
+  kube-proxy-csr.json | cfssljson -bare kube-proxy
+
+{{< / highlight >}}
+```
+
 ### Distribution of certificates for clients and servers
 
 Copy the appropriate certificates and the private key to each node:
 
 ```bash
-for instance in <nodeName>-1 <nodeName>-2; do
-  scp ca.pem <nodeName>-key.pem <nodeName>.pem <nodeName>:~/
+{{< highlight bash >}}
+
+for instance in ${NODE_NAME_1} ${NODE_NAME_2} ${NODE_NAME_3}; do
+  scp ca.pem ${instance}-key.pem ${instance}.pem ${instance}:~/
 done
+
+{{< / highlight >}}
 ```
 
 Copy the appropriate certificates and the private key to each controller:
 
 ```bash
-for instance in controller-1 controller-2; do
+{{< highlight bash >}}
+
+for instance in master-1 master-2 master-3; do
   scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem <nodeName>:~/
+    service-account-key.pem service-account.pem ${instance}:~/
 done
+
+{{< highlight bash >}}
 ```
 
 Done!
