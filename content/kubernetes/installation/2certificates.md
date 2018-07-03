@@ -18,7 +18,7 @@ draft: false
 
 ### Containerum script
 
-[This script](ССЫЛКА) generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
+[This script]() generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 

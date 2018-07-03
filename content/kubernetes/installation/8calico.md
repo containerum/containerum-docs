@@ -37,7 +37,7 @@ In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP 
 
 **Tip**: You can specify more than one using commas as delimiters.
 
-Prepare `calico.yaml` file:
+Prepare <a href="/files/calico.yaml" target="_blank">`calico.yaml`</a> file:
 
 - Replace ${ETCD_NODE1_IP}, ${ETCD_NODE2_IP}, ${ETCD_NODE3_IP} to your real etcd node ips.
 - Execute the command below to get kubernetes key:
