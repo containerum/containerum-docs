@@ -23,10 +23,12 @@ This section covers how to launch three worker nodes and install the following c
 Install the OS dependencies:
 
 ```bash
-{
-  sudo yum update
-  sudo yum -y install socat conntrack ipset
-}
+{{< highlight bash >}}
+
+sudo yum update
+sudo yum -y install socat conntrack ipset
+
+{{< / highlight >}}
 ```
 
 > `socat` enables support for `kubectl port-forward` command.
@@ -34,7 +36,9 @@ Install the OS dependencies:
 #### Download and install the binaries
 
 ```bash
-wget https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
+{{< highlight bash >}}
+
+curl -O https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
   https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
   https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
   https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
@@ -42,11 +46,15 @@ wget https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-
   https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl \
   https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-proxy \
   https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubelet
+
+{{< / highlight >}}
 ```
 
 Create installation directories:
 
 ```bash
+{{< highlight bash >}}
+
 sudo mkdir -p \
   /etc/cni/net.d \
   /opt/cni/bin \
@@ -54,39 +62,46 @@ sudo mkdir -p \
   /var/lib/kube-proxy \
   /var/lib/kubernetes \
   /var/run/kubernetes
+
+{{< / highlight >}}
 ```
 
 Install:
 
 ```bash
-{
-  chmod +x kubectl kube-proxy kubelet runc.amd64 runsc
-  sudo mv runc.amd64 runc
-  sudo mv kubectl kube-proxy kubelet runc runsc /usr/local/bin/
-  mkdir crictl
-  sudo tar -xvf crictl-v1.0.0-beta.0-linux-amd64.tar.gz -C crictl/
-  mv crictl/crictl /usr/local/bin/
-  mkdir cni  
-  sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
-  mv cni/ /opt/cni/bin/
-  sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C /
-}
+{{< highlight bash >}}
+
+chmod +x kubectl kube-proxy kubelet runc.amd64 runsc
+sudo mv runc.amd64 runc
+sudo mv kubectl kube-proxy kubelet runc runsc /usr/local/bin/
+mkdir crictl
+sudo tar -xvf crictl-v1.0.0-beta.0-linux-amd64.tar.gz -C crictl/
+mv crictl/crictl /usr/local/bin/
+mkdir cni  
+sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
+mv cni/ /opt/cni/bin/
+mkdir containerd/
+sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
+sudo mv containerd/bin/* /bin/
+
+{{< / highlight >}}
 ```
 
 #### Configure the CNI network
 
-Retrieve the Pod CIDR IP range for the current node:
+Specify the Pod CIDR IP range for the current node:
 
-> How to retrieve the CIDR?
+<!-- (TODO): How do we specify POD_CIDR -->
 
 ```bash
-POD_CIDR=$(curl -s -H "Metadata-Flavor: Google" \
-  http://metadata.google.internal/computeMetadata/v1/instance/attributes/pod-cidr)
+POD_CIDR=POD_CIDR=10.200.0.0/16
 ```
 
 Create the `bridge` network:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
 {
     "cniVersion": "0.3.1",
@@ -104,17 +119,23 @@ cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
     }
 }
 EOF
+
+{{< / highlight >}}
 ```
 
 Create the `loopback` network:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/cni/net.d/99-loopback.conf
 {
     "cniVersion": "0.3.1",
     "type": "loopback"
 }
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Configure containerd
@@ -122,10 +143,16 @@ EOF
 Create the `containerd` configuration file:
 
 ```bash
+{{< highlight bash >}}
+
 sudo mkdir -p /etc/containerd/
+
+{{< / highlight >}}
 ```
 
 ```bash
+{{< highlight bash >}}
+
 cat << EOF | sudo tee /etc/containerd/config.toml
 [plugins]
   [plugins.cri.containerd]
@@ -139,11 +166,15 @@ cat << EOF | sudo tee /etc/containerd/config.toml
       runtime_engine = "/usr/local/bin/runsc"
       runtime_root = "/run/containerd/runsc"
 EOF
+
+{{< / highlight >}}
 ```
 
 Create the `containerd.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/containerd.service
 [Unit]
 Description=containerd container runtime
@@ -165,21 +196,27 @@ LimitCORE=infinity
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Configure Kubelet
 
 ```bash
-{
-  sudo mv ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
-  sudo mv ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
-  sudo mv ca.pem /var/lib/kubernetes/
-}
+{{< highlight bash >}}
+
+sudo cp ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
+sudo cp ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
+sudo cp ca.pem /var/lib/kubernetes/
+
+{{< / highlight >}}
 ```
 
 Create the `kubelet-config.yaml` configuration file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /var/lib/kubelet/kubelet-config.yaml
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
@@ -200,11 +237,15 @@ runtimeRequestTimeout: "15m"
 tlsCertFile: "/var/lib/kubelet/${HOSTNAME}.pem"
 tlsPrivateKeyFile: "/var/lib/kubelet/${HOSTNAME}-key.pem"
 EOF
+
+{{< / highlight >}}
 ```
 
 Create the `kubelet.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/kubelet.service
 [Unit]
 Description=Kubernetes Kubelet
@@ -229,17 +270,25 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Configure Kubernetes Proxy
 
 ```bash
+{{< highlight bash >}}
+
 sudo mv kube-proxy.kubeconfig /var/lib/kube-proxy/kubeconfig
+
+{{< / highlight >}}
 ```
 
 Create the `kube-proxy-config.yaml` configuration file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /var/lib/kube-proxy/kube-proxy-config.yaml
 kind: KubeProxyConfiguration
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
@@ -248,11 +297,15 @@ clientConnection:
 mode: "iptables"
 clusterCIDR: "10.200.0.0/16"
 EOF
+
+{{< / highlight >}}
 ```
 
 Create the `kube-proxy.service` systemd unit file:
 
 ```bash
+{{< highlight bash >}}
+
 cat <<EOF | sudo tee /etc/systemd/system/kube-proxy.service
 [Unit]
 Description=Kubernetes Kube Proxy
@@ -267,16 +320,20 @@ RestartSec=5
 [Install]
 WantedBy=multi-user.target
 EOF
+
+{{< / highlight >}}
 ```
 
 #### Start services on the slave nodes
 
 ```bash
-{
-  sudo systemctl daemon-reload
-  sudo systemctl enable containerd kubelet kube-proxy
-  sudo systemctl start containerd kubelet kube-proxy
-}
+{{< highlight bash >}}
+
+sudo systemctl daemon-reload
+sudo systemctl enable containerd kubelet kube-proxy
+sudo systemctl start containerd kubelet kube-proxy
+
+{{< / highlight >}}
 ```
 
 > Don't forget to run all the commands on each node.
