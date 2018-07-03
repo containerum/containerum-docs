@@ -27,7 +27,6 @@ Each kubeconfig requires connection to the Kubernetes API Server. To ensure high
 Generate the kubeconfig file suitable for authenticating the `admin` user:
 
 ```bash
-{
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
     --embed-certs=true \
@@ -42,7 +41,6 @@ Generate the kubeconfig file suitable for authenticating the `admin` user:
     --user=admin
 
   kubectl config use-context kubernetes-the-hard-way
-}
 ```
 
 ### Verification

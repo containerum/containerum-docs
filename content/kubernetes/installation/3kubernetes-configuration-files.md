@@ -63,7 +63,6 @@ Create a kubeconfig file for `kube-proxy`:
 
 
 ```bash
-{
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
     --embed-certs=true \
@@ -82,14 +81,12 @@ Create a kubeconfig file for `kube-proxy`:
     --kubeconfig=kube-proxy.kubeconfig
 
   kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
-}
 ```
 
 #### Create a kube-controller-manager configuration file
 Create a kubeconfig file for `kube-controller-manager`:
 
 ```bash
-{
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
     --embed-certs=true \
@@ -108,14 +105,12 @@ Create a kubeconfig file for `kube-controller-manager`:
     --kubeconfig=kube-controller-manager.kubeconfig
 
   kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconfig
-}
 ```
 
 #### Create a kube-scheduler configuration file
 Create a kubeconfig file for `kube-scheduler`:
 
 ```bash
-{
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
     --embed-certs=true \
@@ -134,13 +129,11 @@ Create a kubeconfig file for `kube-scheduler`:
     --kubeconfig=kube-scheduler.kubeconfig
 
   kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
-}
 ```
 
 ####  Create admin user configuration file
 
 ```bash
-{
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
     --embed-certs=true \
@@ -159,7 +152,6 @@ Create a kubeconfig file for `kube-scheduler`:
     --kubeconfig=admin.kubeconfig
 
   kubectl config use-context default --kubeconfig=admin.kubeconfig
-}
 ```
 
 ### Distribute configuration files

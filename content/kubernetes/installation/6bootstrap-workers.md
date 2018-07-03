@@ -23,10 +23,8 @@ This section covers how to launch three worker nodes and install the following c
 Install the OS dependencies:
 
 ```bash
-{
   sudo yum update
   sudo yum -y install socat conntrack ipset
-}
 ```
 
 > `socat` enables support for `kubectl port-forward` command.
@@ -59,7 +57,6 @@ sudo mkdir -p \
 Install:
 
 ```bash
-{
   chmod +x kubectl kube-proxy kubelet runc.amd64 runsc
   sudo mv runc.amd64 runc
   sudo mv kubectl kube-proxy kubelet runc runsc /usr/local/bin/
@@ -70,7 +67,6 @@ Install:
   sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
   mv cni/ /opt/cni/bin/
   sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C /
-}
 ```
 
 #### Configure the CNI network
@@ -170,11 +166,9 @@ EOF
 #### Configure Kubelet
 
 ```bash
-{
   sudo mv ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
   sudo mv ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
   sudo mv ca.pem /var/lib/kubernetes/
-}
 ```
 
 Create the `kubelet-config.yaml` configuration file:
@@ -272,11 +266,9 @@ EOF
 #### Start services on the slave nodes
 
 ```bash
-{
   sudo systemctl daemon-reload
   sudo systemctl enable containerd kubelet kube-proxy
   sudo systemctl start containerd kubelet kube-proxy
-}
 ```
 
 > Don't forget to run all the commands on each node.
