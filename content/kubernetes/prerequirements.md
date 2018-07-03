@@ -1,3 +1,20 @@
+---
+title: Hardware prerequirements
+linktitle: Prerequirements
+description: Hardware requirements to Kubernetes nodes.
+
+categories: []
+keywords: []
+
+menu:
+  docs:
+    parent: "kubernetes"
+    weight: 2
+    identifier: prerequirements
+
+draft: false
+---
+
 # Prerequirements
 
 ## Nodes hardware recommendations
