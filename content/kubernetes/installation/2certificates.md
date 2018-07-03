@@ -48,7 +48,6 @@ Create a configuration file and a private key for CA:
 
 ```bash
 {{< highlight bash >}}
-{
 
 cat > ca-config.json <<EOF
 {
@@ -87,7 +86,6 @@ EOF
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
-}
 {{< / highlight >}}
 ```
 
@@ -96,7 +94,6 @@ Create certificates for each Kubernetes component and a client certificate for `
 
 ```bash
 {{< highlight bash >}}
-{
 
 cat > admin-csr.json <<EOF
 {
@@ -124,7 +121,6 @@ cfssl gencert \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
 
-}
 {{< / highlight >}}
 ```
 
@@ -180,7 +176,6 @@ Generate a certificate:
 
 ```bash
 {{< highlight bash >}}
-{
 
 cat > kube-controller-manager-csr.json <<EOF
 {
@@ -208,7 +203,6 @@ cfssl gencert \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 
-}
 {{< / highlight >}}
 ```
 
@@ -216,7 +210,6 @@ cfssl gencert \
 Generate a certificate:
 
 ```bash
-{
 
 cat > kube-proxy-csr.json <<EOF
 {
@@ -244,14 +237,12 @@ cfssl gencert \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
 
-}
 ```
 
 #### Generate a certificate for Kube Scheduler
 Generate a certificate:
 
 ```bash
-{
 
 cat > kube-scheduler-csr.json <<EOF
 {
@@ -279,7 +270,6 @@ cfssl gencert \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 
-}
 ```
 
 #### Generate a certificate for Kube API Server
@@ -289,7 +279,6 @@ To generate a certificate you need to provide a static IP address into the the l
 Generate a certificate:
 
 ```bash
-{
 
 KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
 cat > kubernetes-csr.json <<EOF
@@ -319,7 +308,6 @@ cfssl gencert \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
-}
 ```
 
 ### The service account key pair
@@ -329,7 +317,6 @@ Kubernetes Controller Manager uses a key pair to create and sign tokens for the 
 Run the script:
 
 ```bash
-{
 
 cat > service-account-csr.json <<EOF
 {
@@ -357,7 +344,6 @@ cfssl gencert \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
 
-}
 ```
 
 ### Distribution of certificates for clients and servers
