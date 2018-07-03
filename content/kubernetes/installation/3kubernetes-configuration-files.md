@@ -179,9 +179,11 @@ Copy the appropriate kubeconfig files for `kubelet` and `kube-proxy` to each wor
 
 ```bash
 {{< highlight bash >}}
+
 for instance in worker-1 worker-2 worker-3; do
   scp ${instance}.kubeconfig kube-proxy.kubeconfig ${instance}:~/
 done
+
 {{< / highlight >}}
 ```
 
@@ -189,9 +191,11 @@ Copy the appropriate kubeconfig files for `kube-controller-manager` и `kube-sch
 
 ```bash
 {{< highlight bash >}}
+
 for instance in master-1 master-2 master-3; do
   scp admin.kubeconfig kube-controller-manager.kubeconfig kube-scheduler.kubeconfig ${instance}:~/
 done
+
 {{< / highlight >}}
 ```
 
@@ -239,9 +243,11 @@ Copy `encryption-config.yaml` to each controller:
 
 ```bash
 {{< highlight bash >}}
+
 for instance in controller-0 controller-1 controller-2; do
   scp encryption-config.yaml ${instance}:~/
 done
+
 {{ < / highlight >}}
 ```
 

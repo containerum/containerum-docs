@@ -30,7 +30,9 @@ There's etcd version 3.2.18 in official repos for CentOS.
 Run to install it:
 ```bash
 {{< highlight bash >}}
+
 sudo yum install etcd
+
 {{< / highlight >}}
 ```
 
@@ -39,7 +41,9 @@ sudo yum install etcd
 Run:
 ```bash
 {{< highlight bash >}}
+
 sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
+
 {{< / highlight >}}
 ```
 
@@ -78,11 +82,14 @@ ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
 #### Launch the etcd server
 
 Run:
+
 ```bash
 {{< highlight bash >}}
+
 sudo systemctl daemon-reload
 sudo systemctl enable etcd
 sudo systemctl start etcd
+
 {{< / highlight >}}
 ```
 
@@ -92,11 +99,13 @@ List the etcd cluster member:
 
 ```bash
 {{< highlight bash >}}
+
 sudo ETCDCTL_API=3 etcdctl member list \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.pem \
   --cert=/etc/etcd/kubernetes.pem \
   --key=/etc/etcd/kubernetes-key.pem
+
 {{< / highlight >}}
 ```
 

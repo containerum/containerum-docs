@@ -20,7 +20,7 @@ draft: false
 
 ### Containerum script
 
-[This script](ССЫЛКА) generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
+<a href="/files/gen-kube-ca.sh" target="_blank">`This script`</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 
@@ -163,8 +163,6 @@ cfssl gencert \
 {{< / highlight >}}
 ```
 
-
-
 #### Generate a certificate for Kube Scheduler
 Generate a certificate:
 
@@ -278,7 +276,6 @@ cfssl gencert \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
 
-{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kubelet clients
@@ -385,7 +382,7 @@ Copy the appropriate certificates and the private key to each controller:
 
 for instance in master-1 master-2 master-3; do
   scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem ${NODE_NAME}:~/
+    service-account-key.pem service-account.pem ${instance}:~/
 done
 
 {{< highlight bash >}}
