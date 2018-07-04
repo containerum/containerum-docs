@@ -22,23 +22,36 @@ draft: false
 
 Arguments:
 
-default              Initialize a CA and generate default set of certificates.
-prepare file.csr     Generate an extra certificate signing request.
-sign file.crt        Use CA to sign a CSR in file.csr. Result in file.crt.
+```
+default				Initialize a CA and generate default set of certificates.
+prepare file.csr	Generate an extra certificate signing request.
+sign file.crt		Use CA to sign a CSR in file.csr. Result in file.crt.
+```
 
 The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
 
-For example, if you put files admin.key and ca.key into an empty directory, and call this script from there, the script will use .key files provided by you for generation of CA certificate and admin.csr (and, consequtively, admin.crt).
+For example, if you put files `admin.key` and `ca.key` into an empty directory, and call this script from there, the script will use `.key` files provided by you for generation of CA certificate and `admin.csr` (and, consequtively, admin.crt).
 
-If you want to re-issue a certificate from the same .csr, remove just its .crt and re-run the script.
+If you want to re-issue a certificate from the same `.csr`, remove just its `.crt` and re-run the script.
 
 If you want to update certificate fields (i.e. commonName/CN, organization/O, etc.), you have to re-generate the certificate signing request.
-Remove the related .crt and .csr files, edit .conf file to your pleasure and re-run the script.
+Remove the related `.crt` and `.csr` files, edit `.conf` file to your pleasure and re-run the script.
 
-If you want to restore a default config for CSR generation, remove the .conf file.
+If you want to restore a default config for CSR generation, remove the `.conf` file.
 
+#### Use cases
+
+Run this command to generate all certs:
 `./gen-kube-ca.sh default`
 
+Run this command to create `.conf` file. Edit `.conf` file for your case:
+`./gen-kube-ca.sh prepare worker-1.conf`
+
+Then run this command to prepare `.csr` file:
+`./gen-kube-ca.sh prepare worker-1.csr`
+
+And run this command to sign certificate:
+`./gen-kube-ca.sh sign worker-1.crt`
 
 ### cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
