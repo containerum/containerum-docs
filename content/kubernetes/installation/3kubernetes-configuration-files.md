@@ -239,12 +239,12 @@ EOF
 {{< / highlight >}}
 ```
 
-Copy `encryption-config.yaml` to each controller:
+Copy `encryption-config.yaml` to each master:
 
 ```bash
 {{< highlight bash >}}
 
-for instance in controller-0 controller-1 controller-2; do
+for instance in master-1 master-2 master-3; do
   scp encryption-config.yaml ${instance}:~/
 done
 
