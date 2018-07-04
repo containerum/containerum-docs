@@ -261,13 +261,13 @@ untrusted                  1/1       Running   0          10s       10.200.0.3  
 Request the node where the `untrusted` is running:
 
 ```bash
-INSTANCE_NAME=$(kubectl get pod untrusted --output=jsonpath='{.spec.nodeName}')
+NODE_NAME=$(kubectl get pod untrusted --output=jsonpath='{.spec.nodeName}')
 ```
 
 SSH to the node:
 
 ```bash
-ssh ${INSTANCE_NAME}
+ssh ${NODE_NAME}
 ```
 
 List the containers running under  gVisor:

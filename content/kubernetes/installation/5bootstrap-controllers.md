@@ -108,8 +108,7 @@ sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
 
 #### Enable HTTP Health Checks
 
-[Google Network Load Balancer](https://cloud.google.com/compute/docs/load-balancing/network) will be used to configure the network between the three API servers. It will allow each of them to terminate TLS connection and validate client certificates.
- Network Load Balancer supports only HTTP health checks, HTTPS is not supported. This can be fixed with nginx which will serve as a proxy. Install and configure nginx to accept health checks on port 80 and proxy the request to `https://127.0.0.1:6443/healthz`.
+Network Load Balancer supports only HTTP health checks, HTTPS is not supported. This can be fixed with nginx which will serve as a proxy. Install and configure nginx to accept health checks on port 80 and proxy the request to `https://127.0.0.1:6443/healthz`.
 
 > The `/healthz` endpoint doesn't require authorization.
 

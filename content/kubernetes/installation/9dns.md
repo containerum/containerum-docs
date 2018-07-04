@@ -23,7 +23,7 @@ Deploy the `kube-dns` cluster add-on:
 Launch `kube-dns`:
 
 ```bash
-kubectl create -f https://storage.googleapis.com/kubernetes-the-hard-way/kube-dns.yaml
+kubectl create -f https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/kube-dns.yaml
 ```
 
 ```
