@@ -15,7 +15,6 @@ draft: false
 ---
 
 # Install Calico
-Calico is a plugin for Kubernetes network security.
 
 ### Installing with the etcd datastore
 

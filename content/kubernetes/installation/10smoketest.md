@@ -16,7 +16,7 @@ draft: false
 
 # Testing
 
-This section describes how to run a full set of tests to make sure that the Kubernetes cluster functions correctly.
+Run the following tests to ensure the cluster is configured correctly.
 
 ### Data encryption
 
