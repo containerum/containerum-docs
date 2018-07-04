@@ -16,4 +16,4 @@ draft: false
 ---
 
 # Kubernetes Installation Overview
-This section describes how to bootstrap a high availability Kubernetes cluster from scratch. Make sure that your VMs meet the [requirements] (/kubernetes/prerequisites) and then proceed to [installation instructions](/kubernetes/installation/1cfssl).
+This section describes how to bootstrap a high availability Kubernetes cluster from scratch. Make sure that your VMs meet the hardware [requirements](/kubernetes/prerequirements) and environment [prerequisites](/kubernetes/prerequisites) and then proceed to [installation instructions](/kubernetes/installation/).
