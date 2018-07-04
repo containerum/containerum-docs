@@ -32,7 +32,7 @@ kubectl create secret generic containerum \
 Print a hexdump of the `containerum` secret stored in etcd:
 
 ```bash
-ssh controller-0 \
+ssh master-1 \
   --command "sudo ETCDCTL_API=3 etcdctl get \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.pem \
