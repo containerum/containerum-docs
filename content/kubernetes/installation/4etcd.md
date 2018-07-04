@@ -25,9 +25,7 @@ Login to each that instance via ssh.
 
 #### Install the etcd package
 
-There's etcd version 3.2.18 in official repos for CentOS.
-
-Run to install it:
+Run to install etcd from official repo:
 ```bash
 {{< highlight bash >}}
 
