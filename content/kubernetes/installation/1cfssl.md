@@ -17,8 +17,6 @@ draft: false
 
 # cfssl setup
 
-Cfssl and cfssljson utilities are required for PKI infrastructure and TLS certificates.
-
 Download and install cfssl and cfssljson from the official repositories:
 
 ```

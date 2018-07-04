@@ -15,8 +15,7 @@ draft: false
 ---
 
 # Bootstrapping the etcd cluster
-Kubernetes stores cluster state information in etcd. This section covers how to launch a 3-node etcd cluster, configure high availability and secure remote access.
-
+This section covers how to launch a 3-node etcd cluster, configure high availability and secure remote access.
 
 ### Bootstrapping an etcd Cluster Member
 **Run each command from this section on each instance, that you would like to use as etcd node**.
