@@ -18,6 +18,8 @@ draft: false
 
 This section covers how to launch three worker nodes and install the following components: [runc](https://github.com/opencontainers/runc), [gVisor](https://github.com/google/gvisor), [container networking plugins](https://github.com/containernetworking/cni), [containerd](https://github.com/containerd/containerd), [kubelet](https://kubernetes.io/docs/admin/kubelet), [kube-proxy](https://kubernetes.io/docs/concepts/cluster-administration/proxies).
 
+> **Don't forget to run all commands on all worker nodes.**
+
 ### Provision a worker node
 
 Install the OS dependencies:
@@ -335,8 +337,6 @@ sudo systemctl start containerd kubelet kube-proxy
 
 {{< / highlight >}}
 ```
-
-> Don't forget to run all the commands on each node.
 
 ### Verification
 

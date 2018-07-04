@@ -19,7 +19,9 @@ Kubernetes stores cluster state information in etcd. This section covers how to 
 
 
 ### Bootstrapping an etcd Cluster Member
-Run each command from this section on each instance, that you would like to use as etcd node. As it described in [prerequirements](../prerequirements.md), you may install etcd to either master node instances or separate instances.
+**Run each command from this section on each instance, that you would like to use as etcd node**.
+
+As it described in [prerequirements](../prerequirements.md), you may install etcd to either master node instances or separate instances.
 
 Login to each that instance via ssh.
 
