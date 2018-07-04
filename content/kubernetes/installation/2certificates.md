@@ -270,6 +270,7 @@ cfssl gencert \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
 
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kubelet clients
@@ -377,7 +378,7 @@ for instance in master-1 master-2 master-3; do
     service-account-key.pem service-account.pem ${instance}:~/
 done
 
-{{< highlight bash >}}
+{{< / highlight >}}
 ```
 
 Done!

@@ -236,7 +236,7 @@ resources:
       - identity: {}
 EOF
 
-{{ < / highlight >}}
+{{< / highlight >}}
 ```
 
 Copy `encryption-config.yaml` to each controller:
@@ -248,7 +248,7 @@ for instance in controller-0 controller-1 controller-2; do
   scp encryption-config.yaml ${instance}:~/
 done
 
-{{ < / highlight >}}
+{{< / highlight >}}
 ```
 
 Done!
