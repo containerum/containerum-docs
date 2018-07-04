@@ -25,20 +25,20 @@ Verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/t
 Create a generic secret:
 
 ```bash
-kubectl create secret generic kubernetes-the-hard-way \
+kubectl create secret generic containerum \
   --from-literal="mykey=mydata"
 ```
 
-Print a hexdump of the `kubernetes-the-hard-way` secret stored in etcd:
+Print a hexdump of the `containerum` secret stored in etcd:
 
 ```bash
-ssh controller-0 \
+ssh master-1 \
   --command "sudo ETCDCTL_API=3 etcdctl get \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.pem \
   --cert=/etc/etcd/kubernetes.pem \
   --key=/etc/etcd/kubernetes-key.pem\
-  /registry/secrets/default/kubernetes-the-hard-way | hexdump -C"
+  /registry/secrets/default/containerum | hexdump -C"
 ```
 
 > Output:

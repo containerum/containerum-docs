@@ -76,11 +76,10 @@ cat > ca-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "Kubernetes",
-      "OU": "CA",
-      "ST": "Oregon"
+      "OU": "CA"
     }
   ]
 }
@@ -106,11 +105,10 @@ cat > admin-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "system:masters",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -143,11 +141,10 @@ cat > kube-controller-manager-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "system:kube-controller-manager",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -178,11 +175,10 @@ cat > kube-scheduler-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "system:kube-scheduler",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -220,11 +216,10 @@ cat > kubernetes-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "Kubernetes",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -259,11 +254,10 @@ cat > service-account-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "Kubernetes",
-      "OU": "Сontainerum",
-      "ST": "Oregon"
+      "OU": "Сontainerum"
     }
   ]
 }
@@ -276,6 +270,7 @@ cfssl gencert \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
 
+{{< / highlight >}}
 ```
 
 #### Generate a certificate for Kubelet clients
@@ -302,11 +297,10 @@ cat > ${NODE_NAME}-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "system:nodes",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -341,11 +335,10 @@ cat > kube-proxy-csr.json <<EOF
   },
   "names": [
     {
-      "C": "US",
-      "L": "Portland",
+      "C": "LV",
+      "L": "Riga",
       "O": "system:node-proxier",
-      "OU": "Kubernetes The Hard Way",
-      "ST": "Oregon"
+      "OU": "Containerum"
     }
   ]
 }
@@ -385,7 +378,7 @@ for instance in master-1 master-2 master-3; do
     service-account-key.pem service-account.pem ${instance}:~/
 done
 
-{{< highlight bash >}}
+{{< / highlight >}}
 ```
 
 Done!
