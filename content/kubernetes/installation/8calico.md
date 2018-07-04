@@ -29,8 +29,10 @@ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/
 
 Download the Calico networking manifest for etcd.
 
+<!-- (TODO): change develop branch to master in link -->
+
 ```bash
-curl https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/calico.yaml -O
+curl -O https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/calico.yaml
 ```
 
 In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP address and port of your etcd server.
@@ -40,6 +42,8 @@ In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP 
 Prepare <a href="/files/calico.yaml" target="_blank">`calico.yaml`</a> file:
 
 - Replace ${ETCD_NODE1_IP}, ${ETCD_NODE2_IP}, ${ETCD_NODE3_IP} to your real etcd node ips.
+- To change the default IP range used for pods, modify the CALICO_IPV4POOL_CIDR section of the calico.yaml. In our case it is `10.200.0.0/16`
+- Change interface in `IP_AUTODETECTION_METHOD` variable to your calico network interface
 - Execute the command below to get kubernetes key:
 
 ```bash
@@ -48,7 +52,10 @@ CERT=$(cat /var/lib/kubernetes/kubernetes.pem | base64 -w 0 )
 CA=$(cat /var/lib/kubernetes/ca.pem | base64 -w 0 )
 ```
 
-- Replace `null` value in `etcd-key` variable to `${KEY}`, in `etcd-cert` to `${CERT}`, `etcd-ca` to `${CA}` in `calico.yaml`
+- Replace `null` value in below variables into `calico.yaml`:
+    + `etcd-key` variable to `${KEY}`
+    + `etcd-cert` to `${CERT}`
+    + `etcd-ca` to `${CA}`
 
 Apply the manifest using the following command.
 
