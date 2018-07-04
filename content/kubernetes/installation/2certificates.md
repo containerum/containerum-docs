@@ -361,7 +361,7 @@ Copy the appropriate certificates and the private key to each node:
 ```bash
 {{< highlight bash >}}
 
-for instance in ${NODE_NAME_1} ${NODE_NAME_2} ${NODE_NAME_3}; do
+for instance in worker-1 worker-2 worker-3; do
   scp ca.pem ${instance}-key.pem ${instance}.pem ${instance}:~/
 done
 
