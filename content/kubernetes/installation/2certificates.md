@@ -276,21 +276,21 @@ cfssl gencert \
 #### Generate a certificate for Kubelet clients
 
 Kubernetes uses a special mode of authorization, Node Authorizer, which also authorizes requests from Kubelet to API.
-To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:${NODE_NAME}` username.
+To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:${HOSTNAME}` username.
 Create a certificate for each node to meet to Node Authorizer requirements.
 
 
 Script example:
 
 Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly. If you don't have private network, you may use only `EXTERNAL_IP`.
-${NODE_NAME} is the hostname of the node, for which a certificate is to be generated.
+${HOSTNAME} is the hostname of the node, for which a certificate is to be generated.
 
 ```bash
 {{< highlight bash >}}
 
-cat > ${NODE_NAME}-csr.json <<EOF
+cat > ${HOSTNAME}-csr.json <<EOF
 {
-  "CN": "system:node:${NODE_NAME}",
+  "CN": "system:node:${HOSTNAME}",
   "key": {
     "algo": "rsa",
     "size": 2048
@@ -313,9 +313,9 @@ cfssl gencert \
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=${NODE_NAME},${EXTERNAL_IP},${INTERNAL_IP} \
+  -hostname=${HOSTNAME},${EXTERNAL_IP},${INTERNAL_IP} \
   -profile=kubernetes \
-  ${NODE_NAME}-csr.json | cfssljson -bare ${NODE_NAME}
+  ${HOSTNAME}-csr.json | cfssljson -bare ${HOSTNAME}
 
 {{< / highlight >}}
 ```
