@@ -34,25 +34,13 @@ sudo mkdir -p /etc/kubernetes/config
 {{< / highlight >}}
 ```
 
-#### Download and install the official Kubernetes binaries
+#### Install Kubernetes master node meta-package
 Run:
 
 ```bash
 {{< highlight bash >}}
 
-curl -O "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-apiserver" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-controller-manager" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kube-scheduler" \
-  "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl"
-
-{{< / highlight >}}
-```
-
-```bash
-{{< highlight bash >}}
-
-chmod +x kube-apiserver kube-controller-manager kube-scheduler kubectl
-sudo mv kube-apiserver kube-controller-manager kube-scheduler kubectl /usr/local/bin/
+sudo yum install kubernetes-master-meta
 
 {{< / highlight >}}
 ```
@@ -69,57 +57,12 @@ sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
 {{< / highlight >}}
 ```
 
-The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `INTERNAL_IP` variable.
+Examine the default kube-apiserver.service systemd unit with `systemctl cat kube-apiserver.service`.
+If you know the default flags don’t match your setup, copy the unit into `/etc/systemd/system/kube-apiserver.server` and make your changes there.
 
-Сreate the `kube-apiserver.service` systemd unit file:
+Otherwise, just update the `/etc/sysconfig/kube-apiserver` file with appropriate IP addresses.
 
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service
-[Unit]
-Description=Kubernetes API Server
-Documentation=https://github.com/kubernetes/kubernetes
-
-[Service]
-ExecStart=/usr/local/bin/kube-apiserver \\
-  --advertise-address=${INTERNAL_IP} \\
-  --allow-privileged=true \\
-  --apiserver-count=3 \\
-  --audit-log-maxage=30 \\
-  --audit-log-maxbackup=3 \\
-  --audit-log-maxsize=100 \\
-  --audit-log-path=/var/log/audit.log \\
-  --authorization-mode=Node,RBAC \\
-  --bind-address=0.0.0.0 \\
-  --client-ca-file=/var/lib/kubernetes/ca.pem \\
-  --enable-admission-plugins=Initializers,NamespaceLifecycle,NodeRestriction,LimitRanger,ServiceAccount,DefaultStorageClass,ResourceQuota \\
-  --enable-swagger-ui=true \\
-  --etcd-cafile=/var/lib/kubernetes/ca.pem \\
-  --etcd-certfile=/var/lib/kubernetes/kubernetes.pem \\
-  --etcd-keyfile=/var/lib/kubernetes/kubernetes-key.pem \\
-  -etcd-servers=https://${ETCD_NODE1_IP}:2379,https://${ETCD_NODE2_IP}:2379,https://${ETCD_NODE3_IP}:2379 \\
-  --event-ttl=1h \\
-  --kubelet-certificate-authority=/var/lib/kubernetes/ca.pem \\
-  --kubelet-client-certificate=/var/lib/kubernetes/kubernetes.pem \\
-  --kubelet-client-key=/var/lib/kubernetes/kubernetes-key.pem \\
-  --kubelet-https=true \\
-  --runtime-config=api/all \\
-  --service-account-key-file=/var/lib/kubernetes/service-account.pem \\
-  --service-cluster-ip-range=10.32.0.0/24 \\
-  --service-node-port-range=30000-32767 \\
-  --tls-cert-file=/var/lib/kubernetes/kubernetes.pem \\
-  --tls-private-key-file=/var/lib/kubernetes/kubernetes-key.pem \\
-  --v=2
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-{{< / highlight >}}
-```
+The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `ADVERTISE_ADDRESS` variable.
 
 >**Note**: You may use --experimental-encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
 
@@ -130,44 +73,12 @@ Move `kube-controller-manager.kubeconfig`
 ```bash
 {{< highlight bash >}}
 
-sudo mv kube-controller-manager.kubeconfig /var/lib/kubernetes/
+sudo mv kube-controller-manager.kubeconfig /etc/kubernetes
 
 {{< / highlight >}}
 ```
 
-Create the `kube-controller-manager.service` systemd unit file:
-
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/systemd/system/kube-controller-manager.service
-[Unit]
-Description=Kubernetes Controller Manager
-Documentation=https://github.com/kubernetes/kubernetes
-
-[Service]
-ExecStart=/usr/local/bin/kube-controller-manager \\
-  --address=0.0.0.0 \\
-  --cluster-cidr=10.200.0.0/16 \\
-  --cluster-name=kubernetes \\
-  --cluster-signing-cert-file=/var/lib/kubernetes/ca.pem \\
-  --cluster-signing-key-file=/var/lib/kubernetes/ca-key.pem \\
-  --kubeconfig=/var/lib/kubernetes/kube-controller-manager.kubeconfig \\
-  --leader-elect=true \\
-  --root-ca-file=/var/lib/kubernetes/ca.pem \\
-  --service-account-private-key-file=/var/lib/kubernetes/service-account-key.pem \\
-  --service-cluster-ip-range=10.32.0.0/24 \\
-  --use-service-account-credentials=true \\
-  --v=2
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-{{< / highlight >}}
-```
+Modify default values in `/etc/sysconfig/kube-controller-manager`.
 
 #### Configure Kubernetes Scheduler
 
@@ -176,48 +87,7 @@ Move `kube-scheduler.kubeconfig`:
 ```bash
 {{< highlight bash >}}
 
-sudo mv kube-scheduler.kubeconfig /var/lib/kubernetes/
-
-{{< / highlight >}}
-```
-
-Create the `kube-scheduler.yaml` configuration file:
-
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/kubernetes/config/kube-scheduler.yaml
-apiVersion: componentconfig/v1alpha1
-kind: KubeSchedulerConfiguration
-clientConnection:
-  kubeconfig: "/var/lib/kubernetes/kube-scheduler.kubeconfig"
-leaderElection:
-  leaderElect: true
-EOF
-
-{{< / highlight >}}
-```
-
-Create the `kube-scheduler.service` systemd unit file:
-
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/systemd/system/kube-scheduler.service
-[Unit]
-Description=Kubernetes Scheduler
-Documentation=https://github.com/kubernetes/kubernetes
-
-[Service]
-ExecStart=/usr/local/bin/kube-scheduler \\
-  --config=/etc/kubernetes/config/kube-scheduler.yaml \\
-  --v=2
-Restart=on-failure
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
-EOF
+sudo mv kube-scheduler.kubeconfig /etc/kubernetes
 
 {{< / highlight >}}
 ```
@@ -228,7 +98,6 @@ Run:
 ```bash
 {{< highlight bash >}}
 
-sudo systemctl daemon-reload
 sudo systemctl enable kube-apiserver kube-controller-manager kube-scheduler
 sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
 
