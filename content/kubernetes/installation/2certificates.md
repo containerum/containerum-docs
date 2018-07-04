@@ -39,8 +39,19 @@ Remove the related .crt and .csr files, edit .conf file to your pleasure and re-
 
 If you want to restore a default config for CSR generation, remove the .conf file.
 
-`./gen-kube-ca.sh default`
+#### Use cases
 
+Run this command to generate all certs:
+ `./gen-kube-ca.sh default`
+
+Run this command to create `.conf` file. Edit `.conf` file for your case:
+`./gen-kube-ca.sh prepare worker-1.conf`
+
+Then run this command to prepare `.csr` file:
+`./gen-kube-ca.sh prepare worker-1.csr`
+
+And run this command to sign certificate:
+`./gen-kube-ca.sh sign worker-1.crt`
 
 ### cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
