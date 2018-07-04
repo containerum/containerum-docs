@@ -26,7 +26,7 @@ Each kubeconfig file requires Kubernetes API Server for connection. To ensure hi
 Specify the `containerum` static IP address:
 
 ```bash
-KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
+KUBERNETES_PUBLIC_IP=${PUBLIC_IP}
 ```
 
 #### Create a kubelet configuration file
@@ -38,11 +38,11 @@ Create a kubeconfig file for each worker:
 ```bash
 {{< highlight bash >}}
 
-for instance in worker-0 worker-1 worker-2; do
+for instance in worker-1 worker-2 worker-3; do
   kubectl config set-cluster containerum \
     --certificate-authority=ca.pem \
     --embed-certs=true \
-    --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+    --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
     --kubeconfig=${instance}.kubeconfig
 
   kubectl config set-credentials system:node:${instance} \
@@ -72,7 +72,7 @@ Create a kubeconfig file for `kube-proxy`:
 kubectl config set-cluster containerum \
   --certificate-authority=ca.pem \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-proxy.kubeconfig
 
 kubectl config set-credentials system:kube-proxy \
@@ -99,7 +99,7 @@ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 kubectl config set-cluster containerum \
   --certificate-authority=ca.pem \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-controller-manager.kubeconfig
 
 kubectl config set-credentials system:kube-controller-manager \
@@ -127,7 +127,7 @@ Create a kubeconfig file for `kube-scheduler`:
 kubectl config set-cluster containerum \
   --certificate-authority=ca.pem \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-scheduler.kubeconfig
 
 kubectl config set-credentials system:kube-scheduler \
@@ -154,7 +154,7 @@ kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 kubectl config set-cluster containerum \
   --certificate-authority=ca.pem \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=admin.kubeconfig
 
 kubectl config set-credentials admin \
