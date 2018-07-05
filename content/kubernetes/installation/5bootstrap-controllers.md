@@ -142,7 +142,7 @@ server {
 
   location /healthz {
      proxy_pass                    https://127.0.0.1:6443/healthz;
-     proxy_ssl_trusted_certificate /var/lib/kubernetes/ca.pem;
+     proxy_ssl_trusted_certificate /var/lib/kubernetes/ca.crt;
   }
 }
 ```
@@ -265,7 +265,7 @@ EOF
 Make an HTTP request to print Kubernetes version:
 
 ```bash
-curl --cacert ca.pem https://${KUBERNETES_PUBLIC_ADDRESS}:6443/version
+curl --cacert ca.crt https://${KUBERNETES_PUBLIC_ADDRESS}:6443/version
 ```
 
 Output:
@@ -286,4 +286,5 @@ Output:
 
 Done!
 
-Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/6bootstrap-workers).
+Now you can proceed to [configuring kubectl](/kubernetes/installation/6configure-kubectl).
+

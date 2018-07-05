@@ -14,5 +14,4 @@ menu:
 draft: false
 ---
 
-FIXME  
 Please, proceed to [Certificate configuration](/kubernetes/installation/2certificates).

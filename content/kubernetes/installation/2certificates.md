@@ -148,6 +148,9 @@ EOF
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
+mv ca.pem ca.crt
+mv ca-key.pem ca.key
+
 {{< / highlight >}}
 ```
 
@@ -176,16 +179,17 @@ cat > admin-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
 
+mv admin.pem admin.crt
+mv admin-key.pem admin.key
+
 {{< / highlight >}}
 ```
-
-
 
 #### Generate a certificate for Kube Controller Manager
 Generate a certificate:
@@ -212,11 +216,14 @@ cat > kube-controller-manager-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
+
+mv kube-controller-manager.pem kube-controller-manager.crt
+mv kube-controller-manager-key.pem kube-controller-manager.key
 
 {{< / highlight >}}
 ```
@@ -246,11 +253,14 @@ cat > kube-scheduler-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
+
+mv kube-scheduler.pem kube-scheduler.crt
+mv kube-scheduler-key.pem kube-scheduler.key
 
 {{< / highlight >}}
 ```
@@ -287,12 +297,15 @@ cat > kubernetes-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
+
+mv kubernetes.pem kubernetes.crt
+mv kubernetes-key.pem kubernetes.key
 
 {{< / highlight >}}
 ```
@@ -326,12 +339,15 @@ cat > etcd-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
   -profile=etcd \
   etcd-csr.json | cfssljson -bare etcd
+
+mv etcd.pem etcd.crt
+mv etcd-key.pem etcd.key
 
 {{< / highlight >}}
 ```
@@ -364,11 +380,14 @@ cat > service-account-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
+
+mv service-account.pem service-account.crt
+mv service-account-key.pem service-account.key
 
 {{< / highlight >}}
 ```
@@ -410,12 +429,15 @@ EXTERNAL_IP=
 INTERNAL_IP=
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -hostname=${HOSTNAME},${EXTERNAL_IP},${INTERNAL_IP} \
   -profile=kubernetes \
   ${HOSTNAME}-csr.json | cfssljson -bare ${HOSTNAME}
+
+mv ${HOSTNAME}.pem ${HOSTNAME}.crt
+mv ${HOSTNAME}-key.pem ${HOSTNAME}.key
 
 {{< / highlight >}}
 ```
@@ -445,11 +467,14 @@ cat > kube-proxy-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
+
+mv kube-proxy.pem kube-proxy.crt
+mv kube-proxy-key.pem kube-proxy.key
 
 {{< / highlight >}}
 ```
@@ -489,6 +514,8 @@ done
 
 {{< / highlight >}}
 ```
+
+> The kube-proxy, kube-controller-manager, kube-scheduler, and kubelet client certificates will be used to generate client authentication configuration files in the next article.
 
 Done!
 

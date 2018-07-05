@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 9
+    weight: 8
 
 draft: false
 ---
@@ -64,21 +64,7 @@ etcd-2               Healthy   {"health":"true"}
 etcd-0               Healthy   {"health":"true"}
 ```
 
-Print the list of cluster nodes:
-
-```bash
-kubectl get nodes
-```
-
-Output:
-
-```
-NAME       STATUS    ROLES     AGE       VERSION
-worker-0   Ready     <none>    1m        v1.10.2
-worker-1   Ready     <none>    1m        v1.10.2
-worker-2   Ready     <none>    1m        v1.10.2
-```
-
 Done!
 
-Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).
+Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/7bootstrap-workers).
+
