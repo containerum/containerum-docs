@@ -269,6 +269,45 @@ cfssl gencert \
 {{< / highlight >}}
 ```
 
+#### Generate a certificate for ETCD
+To generate a certificate you need to provide a static IP address into the the list of domain names for ETCD certificates.
+
+`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE-3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+
+Generate a certificate:
+
+```bash
+{{< highlight bash >}}
+
+cat > etcd-csr.json <<EOF
+{
+  "CN": "ETCD",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "LV",
+      "L": "Riga",
+      "O": "ETCD",
+      "OU": "Containerum"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
+  -profile=etcd \
+  etcd-csr.json | cfssljson -bare etcd
+
+{{< / highlight >}}
+```
+
 ### The service account key pair
 
 Kubernetes Controller Manager uses a key pair to create and sign tokens for the service account.
