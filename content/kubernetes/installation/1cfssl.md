@@ -24,7 +24,7 @@ Download and install cfssl and cfssljson from the official repositories:
 ```
 {{< highlight bash >}}
 curl -O https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 \
-    https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+    -O https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
 sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
 sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson

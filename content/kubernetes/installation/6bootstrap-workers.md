@@ -40,8 +40,7 @@ sudo yum -y install socat conntrack ipset
 ```bash
 {{< highlight bash >}}
 
-curl -O https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
-  -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+curl -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
   -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
   -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
   -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
@@ -73,10 +72,7 @@ Install:
 
 chmod +x runc.amd64 runsc
 sudo mv runc.amd64 runc
-sudo mv runc runsc /usr/local/bin/
-mkdir crictl
-sudo tar -xvf crictl-v1.0.0-beta.0-linux-amd64.tar.gz -C crictl/
-mv crictl/crictl /usr/local/bin/
+sudo mv runc runsc /usr/sbin/
 mkdir cni  
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
 mv cni/ /opt/cni/bin/
@@ -85,6 +81,28 @@ sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
 sudo mv containerd/bin/* /bin/
 
 {{< / highlight >}}
+```
+
+Add google kubernetes repository:
+```bash
+{{< highlight bash >}}
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+{{< / highlight >}}
+```
+
+Install cri-tools for crictl availabity on worker from google kubernetes repository:
+```bash
+sudo yum install cri-tools
 ```
 
 #### Configure the CNI network
