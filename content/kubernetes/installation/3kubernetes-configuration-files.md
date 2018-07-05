@@ -16,6 +16,28 @@ draft: false
 
 # Create authentication kubeconfig files
 
+### Install kubectl
+
+Kubectl communicates with Kubernetes API server. Install and setup kubectl from the official binaries:
+
+```
+{{< highlight bash >}}
+curl -O https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+{{< / highlight >}}
+```
+
+Make sure that kubectl version is 1.10.2 or higher:
+
+```
+{{< highlight bash >}}
+kubectl version --client
+
+Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.2", GitCommit:"81753b10df112992bf51bbc2c2f85208aad78335", GitTreeState:"clean", BuildDate:"2018-04-27T09:22:21Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"linux/amd64"}
+{{< / highlight >}}
+```
+
 ### Client authentication configuration file
 Create kubeconfig for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user.
 
