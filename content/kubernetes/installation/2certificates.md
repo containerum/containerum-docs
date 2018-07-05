@@ -120,7 +120,7 @@ EOF
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
-mv ca.crt ca.crt
+mv ca.pem ca.crt
 mv ca-key.pem ca.key
 
 {{< / highlight >}}
@@ -157,7 +157,7 @@ cfssl gencert \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
 
-mv admin.crt admin.crt
+mv admin.pem admin.crt
 mv admin-key.pem admin.key
 
 {{< / highlight >}}
@@ -194,7 +194,7 @@ cfssl gencert \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 
-mv kube-controller-manager.crt kube-controller-manager.crt
+mv kube-controller-manager.pem kube-controller-manager.crt
 mv kube-controller-manager-key.pem kube-controller-manager.key
 
 {{< / highlight >}}
@@ -231,7 +231,7 @@ cfssl gencert \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 
-mv kube-scheduler.crt kube-scheduler.crt
+mv kube-scheduler.pem kube-scheduler.crt
 mv kube-scheduler-key.pem kube-scheduler.key
 
 {{< / highlight >}}
@@ -276,7 +276,7 @@ cfssl gencert \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
-mv kubernetes.crt kubernetes.crt
+mv kubernetes.pem kubernetes.crt
 mv kubernetes-key.pem kubernetes.key
 
 {{< / highlight >}}
