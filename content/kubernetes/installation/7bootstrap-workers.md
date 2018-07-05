@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 8
+    weight: 9
 
 draft: false
 ---
@@ -258,7 +258,7 @@ sudo systemctl start containerd kubelet kube-proxy
 Print the list of nodes:
 
 ```bash
-kubectl get nodes --kubeconfig admin.kubeconfig
+kubectl get nodes
 ```
 
 > Output

@@ -52,7 +52,7 @@ sudo yum install kubernetes-master-meta
 
 sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
   service-account-key.pem service-account.pem \
-  encryption-config.yaml /var/lib/kubernetes/
+  /var/lib/kubernetes/
 
 {{< / highlight >}}
 ```
