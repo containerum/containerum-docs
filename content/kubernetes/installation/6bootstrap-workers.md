@@ -41,10 +41,10 @@ sudo yum -y install socat conntrack ipset
 {{< highlight bash >}}
 
 curl -O https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
-  https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
-  https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
-  https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
-  https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
+  -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+  -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
+  -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
+  -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
 sudo yum install kubernetes-node-meta
 
 {{< / highlight >}}
@@ -94,7 +94,7 @@ Specify the Pod CIDR IP range for the current node:
 <!-- (TODO): How do we specify POD_CIDR -->
 
 ```bash
-POD_CIDR=POD_CIDR=10.200.0.0/16
+POD_CIDR=10.200.0.0/16
 ```
 
 Create the `bridge` network:
