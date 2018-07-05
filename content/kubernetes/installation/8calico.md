@@ -46,9 +46,9 @@ Prepare <a href="/files/calico.yaml" target="_blank">`calico.yaml`</a> file:
 - Execute the command below to get kubernetes key:
 
 ```bash
-KEY=$(cat /var/lib/kubernetes/kubernetes-key.pem | base64 -w 0 )
-CERT=$(cat /var/lib/kubernetes/kubernetes.pem | base64 -w 0 )
-CA=$(cat /var/lib/kubernetes/ca.pem | base64 -w 0 )
+KEY=$(cat /var/lib/kubernetes/kubernetes.key | base64 -w 0 )
+CERT=$(cat /var/lib/kubernetes/kubernetes.crt | base64 -w 0 )
+CA=$(cat /var/lib/kubernetes/ca.crt | base64 -w 0 )
 ```
 
 - Replace `null` value in below variables into `calico.yaml`:

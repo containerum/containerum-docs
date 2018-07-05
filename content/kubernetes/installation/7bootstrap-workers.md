@@ -223,9 +223,9 @@ EOF
 ```bash
 {{< highlight bash >}}
 
-sudo cp ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
+sudo cp ${HOSTNAME}.key ${HOSTNAME}.crt /var/lib/kubelet/
 sudo cp ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
-sudo cp ca.pem /var/lib/kubernetes/
+sudo cp ca.crt /var/lib/kubernetes/
 
 {{< / highlight >}}
 ```
@@ -274,4 +274,4 @@ worker-2   Ready     <none>    20s       v1.10.2
 
 Done!
 
-Now you can proceed to [configuring kubectl](/kubernetes/installation/7configure-kubectl).
+Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).
