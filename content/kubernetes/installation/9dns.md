@@ -16,8 +16,6 @@ draft: false
 
 # Launch DNS Cluster Add-on
 
-[DNS add-on](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/) is a DNS-based service discovery to applications running in the Kubernetes cluster.
-
 ### DNS Cluster Add-on
 
 Deploy the `kube-dns` cluster add-on:

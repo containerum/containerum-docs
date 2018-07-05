@@ -16,17 +16,21 @@ draft: false
 
 # Certs preparation and generation
 
+You can generate certificates using Containerum script or cfssl.
+
 > **Note**: All of steps in this article can be performed on your host machine on any other machine with the ssh access to all of your nodes.
 
-### Containerum script
+### Generate certs with Containerum script
 
 <a href="/files/gen-kube-ca.sh" target="_blank">`This script`</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 
-default              Initialize a CA and generate default set of certificates.
-prepare file.csr     Generate an extra certificate signing request.
-sign file.crt        Use CA to sign a CSR in file.csr. Result in file.crt.
+default - Initialize a CA and generate default set of certificates.
+
+prepare file.csr - Generate an extra certificate signing request.
+
+sign file.crt - Use CA to sign a CSR in file.csr. Result in file.crt.
 
 The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
 
@@ -44,8 +48,25 @@ If you want to restore a default config for CSR generation, remove the .conf fil
 Run this command to generate all certs:
  `./gen-kube-ca.sh default`
 
-Run this command to create `.conf` file. Edit `.conf` file for your case:
+Run this command to create `.conf` file.
 `./gen-kube-ca.sh prepare worker-1.conf`
+
+Edit `.conf` file for your case:
+`worker-1.conf
+
+[req]
+default_md = sha256
+prompt = no
+utf8 = yes
+req_extensions = req_exts
+distinguished_name = dn
+
+[dn]
+CN = default_commonName
+O = default_organization
+
+[req_exts]
+subjectAltName = IP:$INTERNAL_IP, DNS:$EXTERNAL_IP, DNS:$DOMAIN_NAME`
 
 Then run this command to prepare `.csr` file:
 `./gen-kube-ca.sh prepare worker-1.csr`
@@ -53,7 +74,8 @@ Then run this command to prepare `.csr` file:
 And run this command to sign certificate:
 `./gen-kube-ca.sh sign worker-1.crt`
 
-### cfssl
+
+### Generate certs with cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
 ### Creating a CA
@@ -243,6 +265,45 @@ cfssl gencert \
   -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
+
+{{< / highlight >}}
+```
+
+#### Generate a certificate for ETCD
+To generate a certificate you need to provide a static IP address into the the list of domain names for ETCD certificates.
+
+`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE-3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+
+Generate a certificate:
+
+```bash
+{{< highlight bash >}}
+
+cat > etcd-csr.json <<EOF
+{
+  "CN": "ETCD",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "LV",
+      "L": "Riga",
+      "O": "ETCD",
+      "OU": "Containerum"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
+  -config=ca-config.json \
+  -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
+  -profile=etcd \
+  etcd-csr.json | cfssljson -bare etcd
 
 {{< / highlight >}}
 ```

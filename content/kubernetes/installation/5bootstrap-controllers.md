@@ -16,7 +16,7 @@ draft: false
 
 # Launch Kubernetes Control Plane
 
-This section describes how to launch Kubernetes Control Plane on 3 nodes and configure high availability. It also demonstrates how to create an external load balancer to expose Kubernetes API for remote clients in the external network. The following components will be installed on each node: Kubernetes API Server, Scheduler, Controller Manager.
+The following components should be installed on each master node: Kubernetes API Server, Scheduler, Controller Manager.
 
 > **Don't forget to run all commands on all master nodes.**
 
