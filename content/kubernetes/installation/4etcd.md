@@ -42,6 +42,7 @@ Run:
 {{< highlight bash >}}
 
 sudo cp ca.crt kubernetes.key kubernetes.crt etcd.crt etcd.key /etc/etcd/
+sudo chown etcd:etcd /etc/etcd/*.key /etc/etcd/*.crt
 
 {{< / highlight >}}
 ```
