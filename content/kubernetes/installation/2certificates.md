@@ -277,7 +277,7 @@ Generate a certificate:
 ```bash
 {{< highlight bash >}}
 
-KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
+KUBERNETES_PUBLIC_IP=${PUBLIC_IP}
 cat > kubernetes-csr.json <<EOF
 {
   "CN": "kubernetes",
@@ -300,7 +300,7 @@ cfssl gencert \
   -ca=ca.crt \
   -ca-key=ca.key \
   -config=ca-config.json \
-  -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
+  -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_IP},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
 
@@ -343,7 +343,7 @@ cfssl gencert \
   -ca-key=ca.key \
   -config=ca-config.json \
   -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
-  -profile=etcd \
+  -profile=kubernetes \
   etcd-csr.json | cfssljson -bare etcd
 
 mv etcd.pem etcd.crt
@@ -425,9 +425,6 @@ cat > ${HOSTNAME}-csr.json <<EOF
 }
 EOF
 
-EXTERNAL_IP=
-INTERNAL_IP=
-
 cfssl gencert \
   -ca=ca.crt \
   -ca-key=ca.key \
@@ -508,8 +505,10 @@ Copy the appropriate certificates and the private key to each controller:
 {{< highlight bash >}}
 
 for instance in master-1 master-2 master-3; do
-  scp ca.crt ca.key kubernetes.crt kubernetes.key \
-    service-account.crt service-account.key ${instance}:~/
+
+  scp ca.crt ca.key kubernetes.key kubernetes.crt \
+    service-account.key service-account.crt etcd.key etcd.cert ${instance}:~/
+    
 done
 
 {{< / highlight >}}
