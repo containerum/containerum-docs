@@ -41,7 +41,7 @@ Run:
 ```bash
 {{< highlight bash >}}
 
-sudo cp ca.pem kubernetes-key.pem kubernetes.pem /etc/etcd/
+sudo cp ca.crt kubernetes.key kubernetes.crt etcd.crt etcd.key /etc/etcd/
 
 {{< / highlight >}}
 ```
@@ -66,14 +66,14 @@ ETCD_ADVERTISE_CLIENT_URLS="https://${INTERNAL_IP}:2379"
 ETCD_INITIAL_CLUSTER="master-1=https://${ETCD_NODE-1_IP}:2380,master-2=https://${ETCD_NODE-2_IP}:2380,master-3=https://${ETCD_NODE-3_IP}:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-1"
 ETCD_INITIAL_CLUSTER_STATE="new"
-ETCD_CERT_FILE="/etc/etcd/kubernetes.pem"
-ETCD_KEY_FILE="/etc/etcd/kubernetes-key.pem"
+ETCD_CERT_FILE="/etc/etcd/kubernetes.crt"
+ETCD_KEY_FILE="/etc/etcd/kubernetes.key"
 ETCD_CLIENT_CERT_AUTH="true"
-ETCD_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
-ETCD_PEER_CERT_FILE="/etc/etcd/kubernetes.pem"
-ETCD_PEER_KEY_FILE="/etc/etcd/kubernetes-key.pem"
+ETCD_TRUSTED_CA_FILE="/etc/etcd/ca.crt"
+ETCD_PEER_CERT_FILE="/etc/etcd/etcd.crt"
+ETCD_PEER_KEY_FILE="/etc/etcd/etcd.key"
 ETCD_PEER_CLIENT_CERT_AUTH="true"
-ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.pem"
+ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.crt"
 ```
 
 > **Note**: In the case of one etcd node `ETCD_LISTEN_PEER_URLS`, `ETCD_INITIAL_ADVERTISE_PEER_URLS`, `ETCD_INITIAL_CLUSTER`, `ETCD_PEER_CERT_FILE`, `ETCD_PEER_KEY_FILE`, `ETCD_PEER_CLIENT_CERT_AUTH`, `ETCD_PEER_TRUSTED_CA_FILE`, `ETCD_PEER_CLIENT_CERT_AUTH` variables are not required to provide.
@@ -101,9 +101,9 @@ List the etcd cluster member:
 
 sudo ETCDCTL_API=3 etcdctl member list \
   --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/etcd/ca.pem \
-  --cert=/etc/etcd/kubernetes.pem \
-  --key=/etc/etcd/kubernetes-key.pem
+  --cacert=/etc/etcd/ca.crt \
+  --cert=/etc/etcd/kubernetes.crt \
+  --key=/etc/etcd/kubernetes.key
 
 {{< / highlight >}}
 ```
