@@ -208,7 +208,7 @@ EOF
 {{< highlight bash >}}
 
 sudo cp ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
-sudo cp ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
+sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 sudo cp ca.pem /var/lib/kubernetes/
 
 {{< / highlight >}}
