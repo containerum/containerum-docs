@@ -72,7 +72,7 @@ Install:
 
 chmod +x runc.amd64 runsc
 sudo mv runc.amd64 runc
-sudo mv runc runsc /usr/sbin/
+sudo mv runc runsc /usr/local/bin/
 mkdir cni  
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
 mv cni/ /opt/cni/bin/
@@ -106,6 +106,8 @@ sudo yum install cri-tools
 ```
 
 #### Configure the CNI network
+
+*NOTE! If you are using calico or etc as network plugin do not follow this step*
 
 Specify the Pod CIDR IP range for the current node:
 
@@ -224,7 +226,7 @@ EOF
 {{< highlight bash >}}
 
 sudo cp ${HOSTNAME}.key ${HOSTNAME}.crt /var/lib/kubelet/
-sudo cp ${HOSTNAME}.kubeconfig /var/lib/kubelet/kubeconfig
+sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 sudo cp ca.crt /var/lib/kubernetes/
 
 {{< / highlight >}}
