@@ -225,9 +225,8 @@ EOF
 ```bash
 {{< highlight bash >}}
 
-sudo cp ${HOSTNAME}.key ${HOSTNAME}.crt /var/lib/kubelet/
+sudo cp ca.crt ${HOSTNAME}.crt ${HOSTNAME}.key /etc/kubernetes/pki/
 sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
-sudo cp ca.crt /var/lib/kubernetes/
 
 {{< / highlight >}}
 ```
