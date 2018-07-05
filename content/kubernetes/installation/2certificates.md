@@ -318,7 +318,7 @@ cfssl gencert \
   -profile=etcd \
   etcd-csr.json | cfssljson -bare etcd
 
-mv etcd.crt etcd.crt
+mv etcd.pem etcd.crt
 mv etcd-key.pem etcd.key
 
 {{< / highlight >}}
@@ -358,7 +358,7 @@ cfssl gencert \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
 
-mv service-account.crt service-account.crt
+mv service-account.pem service-account.crt
 mv service-account-key.pem service-account.key
 
 {{< / highlight >}}
@@ -408,7 +408,7 @@ cfssl gencert \
   -profile=kubernetes \
   ${HOSTNAME}-csr.json | cfssljson -bare ${HOSTNAME}
 
-mv ${HOSTNAME}.crt ${HOSTNAME}.crt
+mv ${HOSTNAME}.pem ${HOSTNAME}.crt
 mv ${HOSTNAME}-key.pem ${HOSTNAME}.key
 
 {{< / highlight >}}
@@ -445,7 +445,7 @@ cfssl gencert \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
 
-mv kube-proxy.crt kube-proxy.crt
+mv kube-proxy.pem kube-proxy.crt
 mv kube-proxy-key.pem kube-proxy.key
 
 {{< / highlight >}}
