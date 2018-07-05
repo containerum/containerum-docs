@@ -22,14 +22,12 @@ You can generate certificates using Containerum script or cfssl.
 
 ### Generate certs with Containerum script
 
-<a href="/files/gen-kube-ca.sh" target="_blank">`This script`</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
+<a href="/files/gen-kube-ca.sh" target="_blank">This script</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 
-default - Initialize a CA and generate default set of certificates.
-
-prepare file.csr - Generate an extra certificate signing request.
-
+default - Initialize a CA and generate default set of certificates.  
+prepare file.csr - Generate an extra certificate signing request.  
 sign file.crt - Use CA to sign a CSR in file.csr. Result in file.crt.
 
 The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
@@ -46,14 +44,14 @@ If you want to restore a default config for CSR generation, remove the .conf fil
 #### Use cases
 
 Run this command to generate all certs:
- `./gen-kube-ca.sh default`
+`./gen-kube-ca.sh default`
 
 Run this command to create `.conf` file.
 `./gen-kube-ca.sh prepare worker-1.conf`
 
-Edit `.conf` file for your case:
-`worker-1.conf
+Edit `worker-1.conf` file for your case:
 
+```
 [req]
 default_md = sha256
 prompt = no
@@ -62,11 +60,12 @@ req_extensions = req_exts
 distinguished_name = dn
 
 [dn]
-CN = default_commonName
-O = default_organization
+CN = default_commonName  # replace with worker-1
+O = default_organization # replace with system:nodes
 
 [req_exts]
-subjectAltName = IP:$INTERNAL_IP, DNS:$EXTERNAL_IP, DNS:$DOMAIN_NAME`
+subjectAltName = IP:$INTERNAL_IP, IP:$EXTERNAL_IP, DNS:$DOMAIN_NAME
+```
 
 Then run this command to prepare `.csr` file:
 `./gen-kube-ca.sh prepare worker-1.csr`
@@ -78,7 +77,36 @@ And run this command to sign certificate:
 ### Generate certs with cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
-### Creating a CA
+#### Installing cfssl and cfssljson
+
+Download and install the binaries from the official repositories:
+
+```
+{{< highlight bash >}}
+curl -O https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 \
+    https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
+sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
+sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
+{{< / highlight >}}
+```
+
+Make sure that cfssl version is 1.2.0 or higher:
+
+```
+{{< highlight bash >}}
+cfssl version
+
+> Version: 1.2.0
+>  Revision: dev
+>   Runtime: go1.6
+{{< / highlight >}}
+```
+
+> cfssljson cannot print version to the command line.
+
+
+#### Creating a CA
 Create a configuration file and a private key for CA:
 
 ```bash
@@ -123,7 +151,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 {{< / highlight >}}
 ```
 
-### Client and server certificates
+#### Client and server certificates
 Create certificates for each Kubernetes component and a client certificate for `admin`
 
 ```bash
@@ -428,13 +456,22 @@ cfssl gencert \
 
 ### Distribution of certificates for clients and servers
 
+Apply the traditional naming scheme to certificate files:
+
+```bash
+{{< highlight bash >}}
+for f in *-key.pem; do mv -vi "$f" "${f%-key.pem}.key"; done
+for f in *.pem; do mv -vi "$f" "${f%.pem}.crt"; done
+{{< / highlight >}}
+```
+
 Copy the appropriate certificates and the private key to each node:
 
 ```bash
 {{< highlight bash >}}
 
 for instance in worker-1 worker-2 worker-3; do
-  scp ca.pem ${instance}-key.pem ${instance}.pem ${instance}:~/
+  scp ca.crt ${instance}.crt ${instance}.key ${instance}:~/
 done
 
 {{< / highlight >}}
@@ -446,8 +483,8 @@ Copy the appropriate certificates and the private key to each controller:
 {{< highlight bash >}}
 
 for instance in master-1 master-2 master-3; do
-  scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem ${instance}:~/
+  scp ca.crt ca.key kubernetes.crt kubernetes.key \
+    service-account.crt service-account.key ${instance}:~/
 done
 
 {{< / highlight >}}

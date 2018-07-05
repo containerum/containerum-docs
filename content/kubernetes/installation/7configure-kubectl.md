@@ -30,13 +30,13 @@ Generate the kubeconfig file suitable for authenticating the `admin` user:
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
   --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443
 
 kubectl config set-credentials admin \
-  --client-certificate=admin.pem \
-  --client-key=admin-key.pem
+  --client-certificate=admin.crt \
+  --client-key=admin.key
 
 kubectl config set-context containerum \
   --cluster=containerum \

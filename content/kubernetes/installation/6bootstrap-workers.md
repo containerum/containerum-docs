@@ -207,9 +207,8 @@ EOF
 ```bash
 {{< highlight bash >}}
 
-sudo cp ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
+sudo cp ca.crt ${HOSTNAME}.crt ${HOSTNAME}.key /etc/kubernetes/pki/
 sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
-sudo cp ca.pem /var/lib/kubernetes/
 
 {{< / highlight >}}
 ```
