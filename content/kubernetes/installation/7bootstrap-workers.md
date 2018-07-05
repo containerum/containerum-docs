@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 8
+    weight: 9
 
 draft: false
 ---
@@ -40,11 +40,10 @@ sudo yum -y install socat conntrack ipset
 ```bash
 {{< highlight bash >}}
 
-curl -O https://github.com/kubernetes-incubator/cri-tools/releases/download/v1.0.0-beta.0/crictl-v1.0.0-beta.0-linux-amd64.tar.gz \
-  https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
-  https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
-  https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
-  https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
+curl -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+  -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
+  -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
+  -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
 sudo yum install kubernetes-node-meta
 
 {{< / highlight >}}
@@ -74,9 +73,6 @@ Install:
 chmod +x runc.amd64 runsc
 sudo mv runc.amd64 runc
 sudo mv runc runsc /usr/local/bin/
-mkdir crictl
-sudo tar -xvf crictl-v1.0.0-beta.0-linux-amd64.tar.gz -C crictl/
-mv crictl/crictl /usr/local/bin/
 mkdir cni  
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
 mv cni/ /opt/cni/bin/
@@ -85,6 +81,28 @@ sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
 sudo mv containerd/bin/* /bin/
 
 {{< / highlight >}}
+```
+
+Add google kubernetes repository:
+```bash
+{{< highlight bash >}}
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+{{< / highlight >}}
+```
+
+Install cri-tools for crictl availabity on worker from google kubernetes repository:
+```bash
+sudo yum install cri-tools
 ```
 
 #### Configure the CNI network
@@ -207,9 +225,9 @@ EOF
 ```bash
 {{< highlight bash >}}
 
-sudo cp ${HOSTNAME}-key.pem ${HOSTNAME}.pem /var/lib/kubelet/
+sudo cp ${HOSTNAME}.key ${HOSTNAME}.crt /var/lib/kubelet/
 sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
-sudo cp ca.pem /var/lib/kubernetes/
+sudo cp ca.crt /var/lib/kubernetes/
 
 {{< / highlight >}}
 ```
@@ -242,7 +260,7 @@ sudo systemctl start containerd kubelet kube-proxy
 Print the list of nodes:
 
 ```bash
-kubectl get nodes --kubeconfig admin.kubeconfig
+kubectl get nodes
 ```
 
 > Output
@@ -258,4 +276,4 @@ worker-2   Ready     <none>    20s       v1.10.2
 
 Done!
 
-Now you can proceed to [configuring kubectl](/kubernetes/installation/7configure-kubectl).
+Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).

@@ -35,9 +35,9 @@ Print a hexdump of the `containerum` secret stored in etcd:
 ssh master-1 \
   --command "sudo ETCDCTL_API=3 etcdctl get \
   --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/etcd/ca.pem \
-  --cert=/etc/etcd/kubernetes.pem \
-  --key=/etc/etcd/kubernetes-key.pem\
+  --cacert=/etc/etcd/ca.crt \
+  --cert=/etc/etcd/kubernetes.crt \
+  --key=/etc/etcd/kubernetes.key\
   /registry/secrets/default/containerum | hexdump -C"
 ```
 
