@@ -89,12 +89,14 @@ sudo mv containerd/bin/* /bin/
 
 #### Configure the CNI network
 
+*NOTE! If you are using calico or etc as network plugin do not follow this step*
+
 Specify the Pod CIDR IP range for the current node:
 
 <!-- (TODO): How do we specify POD_CIDR -->
 
 ```bash
-POD_CIDR=POD_CIDR=10.200.0.0/16
+POD_CIDR=10.200.0.0/16
 ```
 
 Create the `bridge` network:
