@@ -7,7 +7,7 @@
 - `EXTERNAL_IP` is an IP address of instance in external network
 - `INTERNAL_IP` is an IP address of instance in internal network
 - `MASTER_NODES_IP` is a sequence of all IP addresses of master nodes. In the case of the only node have a value of `EXTERNAL_IP` of master node.
-- `ETCD_NODE_IP` is an IP address of etcd node. In the case of multiple etcd node it may be declared as `ETCD_NODE-1_IP`, `ETCD_NODE-2_IP` etc.
+- `ETCD_NODE_IP` is an IP address of etcd node. In the case of multiple etcd node it may be declared as `ETCD_NODE_1_IP`, `ETCD_NODE_2_IP` etc.
 
 - `POD_CIDR` is a range of IP addresses for pods
 
