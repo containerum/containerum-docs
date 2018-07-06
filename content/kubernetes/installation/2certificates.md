@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 4
+    weight: 3
 
 draft: false
 ---
