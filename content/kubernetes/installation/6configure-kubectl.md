@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 8
+    weight: 7
 
 draft: false
 ---
@@ -32,7 +32,7 @@ Generate the kubeconfig file suitable for authenticating the `admin` user:
 kubectl config set-cluster containerum \
   --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443
 
 kubectl config set-credentials admin \
   --client-certificate=admin.crt \
