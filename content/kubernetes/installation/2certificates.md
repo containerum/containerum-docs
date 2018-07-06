@@ -26,9 +26,9 @@ You can generate certificates using Containerum script or cfssl.
 
 Arguments:
 
-`init` - Initialize a CA and generate default set of certificates.
-`prepare file.conf` - Prepare configuration for generating an extra CSR.
-`prepare file.csr` - Generate an extra certificate signing request.
+`init` - Initialize a CA and generate default set of certificates.  
+`prepare file.conf` - Prepare configuration for generating an extra CSR.  
+`prepare file.csr` - Generate an extra certificate signing request.  
 `sign file.crt` - Use CA to sign a CSR in file.csr. Result in file.crt.
 
 The script does not remove or overwrite any files with non-zero length - it
