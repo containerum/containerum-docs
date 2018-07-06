@@ -31,7 +31,8 @@ Download the Calico networking manifest for etcd.
 <!-- (TODO): change develop branch to master in link -->
 
 ```bash
-curl -O https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
 In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP address and port of your etcd server.
