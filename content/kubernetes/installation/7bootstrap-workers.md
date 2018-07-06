@@ -114,7 +114,7 @@ Specify the Pod CIDR IP range for the current node:
 <!-- (TODO): How do we specify POD_CIDR -->
 
 ```bash
-POD_CIDR=10.200.0.0/16
+POD_CIDR=10.244.0.0/16
 ```
 
 Create the `bridge` network:

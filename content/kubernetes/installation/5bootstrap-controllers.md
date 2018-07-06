@@ -52,7 +52,7 @@ sudo yum install kubernetes-master-meta
 
 sudo cp ca.crt ca.key kubernetes.crt kubernetes.key \
   service-account.crt service-account.key \
-  encryption-config.yaml /etc/kubernetes/pki/
+  /etc/kubernetes/pki/
 
 {{< / highlight >}}
 ```
@@ -64,7 +64,12 @@ Otherwise, just update the `/etc/sysconfig/kube-apiserver` file with appropriate
 
 The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `ADVERTISE_ADDRESS` variable.
 
->**Note**: You may use --experimental-encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
+>**Note**: You may use --experimental-encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
+> For using `encryption-config.yaml` you should copy it to appropriate directory:
+
+```
+sudo cp encryption-config.yaml /etc/kubernetes/pki
+```
 
 #### Configure Kubernetes Controller Manager
 

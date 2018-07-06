@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 2
+    weight: 1
     identifier: kube-inst-overview
 
 draft: false

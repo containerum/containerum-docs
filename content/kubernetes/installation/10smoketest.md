@@ -253,9 +253,9 @@ kubectl get pods -o wide
 
 ```
 NAME                       READY     STATUS    RESTARTS   AGE       IP           NODE
-busybox-68654f944b-djjjb   1/1       Running   0          5m        10.200.0.2   worker-0
-nginx-65899c769f-xkfcn     1/1       Running   0          4m        10.200.1.2   worker-1
-untrusted                  1/1       Running   0          10s       10.200.0.3   worker-0
+busybox-68654f944b-djjjb   1/1       Running   0          5m        10.244.0.2   worker-0
+nginx-65899c769f-xkfcn     1/1       Running   0          4m        10.244.1.2   worker-1
+untrusted                  1/1       Running   0          10s       10.244.0.3   worker-0
 ```
 
 Request the node where the `untrusted` is running:
