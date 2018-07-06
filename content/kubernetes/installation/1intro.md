@@ -1,7 +1,7 @@
 ---
-title: Variables description
-linktitle: Variables
-description: Description of variables, that will be used in these docs'
+title: Intro
+linktitle: Intro
+description: Description of variables, that will be used in these docs, and description of network configuration
 
 categories: []
 keywords: []
@@ -33,7 +33,7 @@ draft: false
 - `NODE_NAME` is the name of node. Most of all equals to `HOSTNAME`
 - `ETCD_NAME` is the hostname of instance, on which etcd have been installed
 
-## Инфо про сетку
+# Инфо про сетку
 
 Все хосты кластера должны иметь возможность обращаться друг к другу по имени. В нашем случае будет достаточно внести следующие записи в /etc/hosts на каждом сервере:
 192.168.0.4 master
