@@ -147,7 +147,7 @@ server {
 
   location /healthz {
      proxy_pass                    https://127.0.0.1:6443/healthz;
-     proxy_ssl_trusted_certificate /var/lib/kubernetes/ca.crt;
+     proxy_ssl_trusted_certificate /etc/kubernetes/pki/ca.crt;
   }
 }
 ```

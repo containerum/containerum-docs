@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 1.1
+# version 1.2
 
 set -o errexit
 set -o errtrace
@@ -13,7 +13,7 @@ set -o pipefail
 : ${DAYS_SHORT:=730}
 : ${CA_CN:=Kubernetes Certificate Authority}
 : ${CA_O:=Organization}
-: ${CA_OU:=DevOops}
+: ${CA_OU:=DevOps}
 
 # wrapper function to print command and its arguments just before running it
 V() {
@@ -239,7 +239,7 @@ sign_csr() {
 	return $?
 }
 
-main_default() {
+main_init() {
 	[ ! -s ca.key ] && \
 		gen_key ca.key "$KEYSZ_LONG"
 
@@ -281,13 +281,8 @@ main_default() {
 		if [ ! -e "$kcert.conf" ]; then
 			case "$kcert" in
 			kubernetes)
-				set +o nounset
-				if [ -z "$SAN" ]; then
-					echo >&2 "SAN env is empty, defaulting to '127.0.0.1 kubernetes.local'"
-					export SAN="127.0.0.1 kubernetes.local"
-				fi
-				set -o nounset
-				CN=Kubernetes O=Kubernetes \
+				[ -z "${SAN:-}" ] && echo >&2 "SAN env is empty, defaulting to '127.0.0.1 kubernetes.local'"
+				CN=Kubernetes O=Kubernetes SAN="${SAN:-127.0.0.1 kubernetes.local}" \
 					gen_conf "$kcert.conf" CN O SAN
 				;;
 			admin)
@@ -295,7 +290,7 @@ main_default() {
 					gen_conf "$kcert.conf" CN O
 				;;
 			kube-controller-manager)
-				CN=kube-controller-manager O=kube-controller-manager \
+				CN=system:kube-controller-manager O=system:kube-controller-manager \
 					gen_conf "$kcert.conf" CN O
 				;;
 			kube-proxy)
@@ -376,43 +371,40 @@ sign_extra_csr() {
 
 print_help() {
 	cat <<-EOF
-	usage: $0 [ default | prepare cert_name.csr | sign cert_name.crt ]
+	usage: $0 [ init | prepare cert_name.[conf|csr] | sign cert_name.crt ]
 
-	This script generates and maintains a certificate infrastructure sufficient to
-	run a Kubernetes cluster.
+	This script helps generate and maintain certificate infrastructure sufficient
+	to run a Kubernetes cluster.
 
 	Arguments:
 
-	   default             Initialize a CA and generate default set of certificates.
+	   init                Initialize a CA and generate default set of certificates.
 	   prepare file.conf   Prepare configuration for generating an extra CSR.
 	   prepare file.csr    Generate an extra certificate signing request.
 	   sign file.crt       Use CA to sign a CSR in file.csr. Result in file.crt.
 
 	The script does not remove or overwrite any files with non-zero length - it
-	completes the structure to its full state by generating missing files from
-	files they are dependent on.
+	completes the file structure to its full state by generating missing files from
+	the files they are dependent on.
 
 	For example, if you put files admin.key and ca.key into an empty directory, and
-	call this script from there, the script will use .key files provided by you
-	for generation of CA certificate and admin.csr (and, consequtively, admin.crt).
+	call this script from there, it will use .key files provided by you for
+	generation of the CA certificate and admin.csr (and consecutively admin.crt).
+	If you want to re-issue a certificate from the same .csr, just remove its .crt
+	file and rerun the script.
 
-	If you want to re-issue a certificate from the same .csr, remove just its .crt
-	and re-run the script.
+	The init subcommand uses IP addresses and DNS names from the environment
+	variable SAN for the subjectAltName list in kubernetes.crt certificate.
 
-	If you want to update certificate fields (i.e. commonName/CN, organization/O,
-	etc.), you have to re-generate the certificate signing request.
-	Remove the related .crt and .csr files, edit .conf file to your pleasure
-	and re-run the script.
-
-	If you want to restore a default config for CSR generation, remove the .conf
-	file.
+	Similiarly, the prepare subcommand uses environment variables CN, O and SAN
+	to fill in commonName, organization and subjectAltName fields in the CSR.
 
 	EOF
 	return 0
 }
 
-if [ "${1:-}" = "default" ]; then
-	main_default
+if [ "${1:-}" = "init" ]; then
+	main_init
 	exit 0
 elif [ "${1:-}" = "prepare" ]; then
 	shift
@@ -448,6 +440,15 @@ elif [ "${1:-}" = "sign" ]; then
 	for x in "$@"; do
 		sign_extra_csr "${x%.crt}"
 	done
+elif [ "${1:-}" = "revoke" ]; then
+	echo TODO
+	exit 1
+elif [ "${1:-}" = "nodes" ]; then
+	echo TODO
+	exit 1
+elif [ "${1:-}" = "addnode" ]; then
+	echo TODO
+	exit 1
 elif [ "${1:-}" = "--help" -o "${1:-}" = "-help" -o "${1:-}" = "-h" ]; then
 	print_help
 else
