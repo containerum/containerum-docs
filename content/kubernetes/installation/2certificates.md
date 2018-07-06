@@ -22,53 +22,38 @@ You can generate certificates using Containerum script or cfssl.
 
 ### Generate certs with Containerum script
 
-<a href="/files/gen-kube-ca.sh" target="_blank">This script</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
+<a href="/files/gen-kube-ca.sh" target="_blank">This script</a> helps generate and maintain certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 
-default - Initialize a CA and generate default set of certificates.  
-prepare file.csr - Generate an extra certificate signing request.  
-sign file.crt - Use CA to sign a CSR in file.csr. Result in file.crt.
+`init` - Initialize a CA and generate default set of certificates.
+`prepare file.conf` - Prepare configuration for generating an extra CSR.
+`prepare file.csr` - Generate an extra certificate signing request.
+`sign file.crt` - Use CA to sign a CSR in file.csr. Result in file.crt.
 
-The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
+The script does not remove or overwrite any files with non-zero length - it
+completes the file structure to its full state by generating missing files from
+the files they are dependent on.
 
-For example, if you put files admin.key and ca.key into an empty directory, and call this script from there, the script will use .key files provided by you for generation of CA certificate and admin.csr (and, consequtively, admin.crt).
+For example, if you put files `admin.key` and `ca.key` into an empty directory, and
+call this script from there, it will use `.key` files provided by you for
+generation of the CA certificate and `admin.csr` (and consecutively `admin.crt`).
+If you want to re-issue a certificate from the same `.csr`, just remove its `.crt`
+file and rerun the script.
 
-If you want to re-issue a certificate from the same .csr, remove just its .crt and re-run the script.
+The `init` subcommand uses IP addresses and DNS names from the environment
+variable SAN for the subjectAltName list in kubernetes.crt certificate.
 
-If you want to update certificate fields (i.e. commonName/CN, organization/O, etc.), you have to re-generate the certificate signing request.
-Remove the related .crt and .csr files, edit .conf file to your pleasure and re-run the script.
-
-If you want to restore a default config for CSR generation, remove the .conf file.
+Similiarly, the `prepare` subcommand uses environment variables CN, O and SAN
+to fill in commonName, organization and subjectAltName fields in the CSR.
 
 #### Use cases
 
-Run this command to generate all certs:
-`./gen-kube-ca.sh default`
+Run this command to generate all default certs:
+`SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP" ./gen-kube-ca.sh init`
 
-Run this command to create `.conf` file.
-`./gen-kube-ca.sh prepare worker-1.conf`
-
-Edit `worker-1.conf` file for your case:
-
-```
-[req]
-default_md = sha256
-prompt = no
-utf8 = yes
-req_extensions = req_exts
-distinguished_name = dn
-
-[dn]
-CN = default_commonName  # replace with worker-1
-O = default_organization # replace with system:nodes
-
-[req_exts]
-subjectAltName = IP:$INTERNAL_IP, IP:$EXTERNAL_IP, DNS:$DOMAIN_NAME
-```
-
-Then run this command to prepare `.csr` file:
-`./gen-kube-ca.sh prepare worker-1.csr`
+Run this command to create `.csr` file with desired certificate fields.
+`CN=worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
 
 And run this command to sign certificate:
 `./gen-kube-ca.sh sign worker-1.crt`
