@@ -265,7 +265,7 @@ EOF
 Make an HTTP request to print Kubernetes version:
 
 ```bash
-curl --cacert ca.crt https://${KUBERNETES_PUBLIC_ADDRESS}:6443/version
+curl --cacert ca.crt https://${KUBERNETES_PUBLIC_IP}:6443/version
 ```
 
 Output:

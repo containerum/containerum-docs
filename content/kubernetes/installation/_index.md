@@ -46,4 +46,4 @@ Calico is a plugin for Kubernetes network security.
 - run smoke tests  
 This section describes how to run a full set of tests to make sure that the Kubernetes cluster functions correctly.
 
-Begin [Kubernetes installation](/kubernetes/installation/2certificates).
+Begin [Kubernetes installation](/kubernetes/installation/1intro).
