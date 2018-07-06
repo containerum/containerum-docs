@@ -265,23 +265,14 @@ EOF
 Make an HTTP request to print Kubernetes version:
 
 ```bash
-curl --cacert ca.crt https://${KUBERNETES_PUBLIC_ADDRESS}:6443/version
+kubectl verison
 ```
 
 Output:
 
-```json
-{
-  "major": "1",
-  "minor": "10",
-  "gitVersion": "v1.10.2",
-  "gitCommit": "81753b10df112992bf51bbc2c2f85208aad78335",
-  "gitTreeState": "clean",
-  "buildDate": "2018-04-27T09:10:24Z",
-  "goVersion": "go1.9.3",
-  "compiler": "gc",
-  "platform": "linux/amd64"
-}
+```
+Client Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.6", GitCommit:"9f8ebd171479bec0ada837d7ee641dec2f8c6dd1", GitTreeState:"clean", BuildDate:"2018-03-21T15:21:50Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"9", GitVersion:"v1.9.6", GitCommit:"9f8ebd171479bec0ada837d7ee641dec2f8c6dd1", GitTreeState:"clean", BuildDate:"2018-03-21T15:13:31Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"linux/amd64"}
 ```
 
 Done!

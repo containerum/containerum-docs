@@ -31,7 +31,8 @@ Download the Calico networking manifest for etcd.
 <!-- (TODO): change develop branch to master in link -->
 
 ```bash
-curl -O https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/calico.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 ```
 
 In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP address and port of your etcd server.
@@ -60,6 +61,59 @@ Apply the manifest using the following command.
 
 ```bash
 kubectl apply -f calico.yaml
+```
+
+#### Configure the CNI network
+
+*NOTE! If you are using calico or etc as network plugin do not follow this step*
+
+Specify the Pod CIDR IP range for the current node:
+
+<!-- (TODO): How do we specify POD_CIDR -->
+
+```bash
+POD_CIDR=10.200.0.0/16
+```
+
+Create the `bridge` network:
+
+```bash
+{{< highlight bash >}}
+
+cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
+{
+    "cniVersion": "0.3.1",
+    "name": "bridge",
+    "type": "bridge",
+    "bridge": "cnio0",
+    "isGateway": true,
+    "ipMasq": true,
+    "ipam": {
+        "type": "host-local",
+        "ranges": [
+          [{"subnet": "${POD_CIDR}"}]
+        ],
+        "routes": [{"dst": "0.0.0.0/0"}]
+    }
+}
+EOF
+
+{{< / highlight >}}
+```
+
+Create the `loopback` network:
+
+```bash
+{{< highlight bash >}}
+
+cat <<EOF | sudo tee /etc/cni/net.d/99-loopback.conf
+{
+    "cniVersion": "0.3.1",
+    "type": "loopback"
+}
+EOF
+
+{{< / highlight >}}
 ```
 
 Done!
