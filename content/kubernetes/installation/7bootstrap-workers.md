@@ -105,59 +105,6 @@ Install cri-tools for crictl availabity on worker from google kubernetes reposit
 sudo yum install cri-tools
 ```
 
-#### Configure the CNI network
-
-*NOTE! If you are using calico or etc as network plugin do not follow this step*
-
-Specify the Pod CIDR IP range for the current node:
-
-<!-- (TODO): How do we specify POD_CIDR -->
-
-```bash
-POD_CIDR=10.200.0.0/16
-```
-
-Create the `bridge` network:
-
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
-{
-    "cniVersion": "0.3.1",
-    "name": "bridge",
-    "type": "bridge",
-    "bridge": "cnio0",
-    "isGateway": true,
-    "ipMasq": true,
-    "ipam": {
-        "type": "host-local",
-        "ranges": [
-          [{"subnet": "${POD_CIDR}"}]
-        ],
-        "routes": [{"dst": "0.0.0.0/0"}]
-    }
-}
-EOF
-
-{{< / highlight >}}
-```
-
-Create the `loopback` network:
-
-```bash
-{{< highlight bash >}}
-
-cat <<EOF | sudo tee /etc/cni/net.d/99-loopback.conf
-{
-    "cniVersion": "0.3.1",
-    "type": "loopback"
-}
-EOF
-
-{{< / highlight >}}
-```
-
 #### Configure containerd
 
 Create the `containerd` configuration file:
