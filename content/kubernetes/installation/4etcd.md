@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 6
+    weight: 5
 
 draft: false
 ---
@@ -77,7 +77,15 @@ ETCD_PEER_CLIENT_CERT_AUTH="true"
 ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.crt"
 ```
 
-> **Note**: In the case of one etcd node `ETCD_LISTEN_PEER_URLS`, `ETCD_INITIAL_ADVERTISE_PEER_URLS`, `ETCD_INITIAL_CLUSTER`, `ETCD_PEER_CERT_FILE`, `ETCD_PEER_KEY_FILE`, `ETCD_PEER_CLIENT_CERT_AUTH`, `ETCD_PEER_TRUSTED_CA_FILE`, `ETCD_PEER_CLIENT_CERT_AUTH` variables are not required to provide.
+> **Note**: In the case of one etcd node these variables are not required to provide:
+> - `ETCD_LISTEN_PEER_URLS`
+> - `ETCD_INITIAL_ADVERTISE_PEER_URLS`
+> - `ETCD_INITIAL_CLUSTER`
+> - `ETCD_PEER_CERT_FILE`
+> - `ETCD_PEER_KEY_FILE`
+> - `ETCD_PEER_CLIENT_CERT_AUTH`
+> - `ETCD_PEER_TRUSTED_CA_FILE`
+> - `ETCD_PEER_CLIENT_CERT_AUTH` .
 
 #### Launch the etcd server
 

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 4
+    weight: 3
 
 draft: false
 ---
@@ -88,7 +88,7 @@ cfssl version
 {{< / highlight >}}
 ```
 
-> cfssljson cannot print version to the command line.
+> **Note**: cfssljson cannot print version to the command line.
 
 
 #### Creating a CA
@@ -133,9 +133,6 @@ EOF
 
 cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 
-mv ca.pem ca.crt
-mv ca-key.pem ca.key
-
 {{< / highlight >}}
 ```
 
@@ -169,9 +166,6 @@ cfssl gencert \
   -config=ca-config.json \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
-
-mv admin.pem admin.crt
-mv admin-key.pem admin.key
 
 {{< / highlight >}}
 ```
@@ -207,9 +201,6 @@ cfssl gencert \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
 
-mv kube-controller-manager.pem kube-controller-manager.crt
-mv kube-controller-manager-key.pem kube-controller-manager.key
-
 {{< / highlight >}}
 ```
 
@@ -244,16 +235,13 @@ cfssl gencert \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
 
-mv kube-scheduler.pem kube-scheduler.crt
-mv kube-scheduler-key.pem kube-scheduler.key
-
 {{< / highlight >}}
 ```
 
 #### Generate a certificate for Kube API Server
 To generate a certificate you need to provide a static IP address into the the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
 
-`10.32.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
+`10.96.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
 
 `MASTER_NODES_IP` is a sequence of all IP addresses of master nodes. In the case of one master node, only its IP address should be specified there.
 
@@ -285,12 +273,9 @@ cfssl gencert \
   -ca=ca.crt \
   -ca-key=ca.key \
   -config=ca-config.json \
-  -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_IP},127.0.0.1,kubernetes.default \
+  -hostname=10.96.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_IP},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
-
-mv kubernetes.pem kubernetes.crt
-mv kubernetes-key.pem kubernetes.key
 
 {{< / highlight >}}
 ```
@@ -298,7 +283,7 @@ mv kubernetes-key.pem kubernetes.key
 #### Generate a certificate for ETCD
 To generate a certificate you need to provide a static IP address into the the list of domain names for ETCD certificates.
 
-`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE-3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
 
 Generate a certificate:
 
@@ -330,9 +315,6 @@ cfssl gencert \
   -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
   -profile=kubernetes \
   etcd-csr.json | cfssljson -bare etcd
-
-mv etcd.pem etcd.crt
-mv etcd-key.pem etcd.key
 
 {{< / highlight >}}
 ```
@@ -370,9 +352,6 @@ cfssl gencert \
   -config=ca-config.json \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
-
-mv service-account.pem service-account.crt
-mv service-account-key.pem service-account.key
 
 {{< / highlight >}}
 ```
@@ -418,9 +397,6 @@ cfssl gencert \
   -profile=kubernetes \
   ${HOSTNAME}-csr.json | cfssljson -bare ${HOSTNAME}
 
-mv ${HOSTNAME}.pem ${HOSTNAME}.crt
-mv ${HOSTNAME}-key.pem ${HOSTNAME}.key
-
 {{< / highlight >}}
 ```
 
@@ -454,9 +430,6 @@ cfssl gencert \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
-
-mv kube-proxy.pem kube-proxy.crt
-mv kube-proxy-key.pem kube-proxy.key
 
 {{< / highlight >}}
 ```
@@ -493,7 +466,7 @@ for instance in master-1 master-2 master-3; do
 
   scp ca.crt ca.key kubernetes.key kubernetes.crt \
     service-account.key service-account.crt etcd.key etcd.cert ${instance}:~/
-    
+
 done
 
 {{< / highlight >}}
