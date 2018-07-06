@@ -47,8 +47,8 @@ sudo chown etcd:etcd /etc/etcd/*.key /etc/etcd/*.crt
 {{< / highlight >}}
 ```
 
-`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE-3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
-In case of etcd installation to master nodes `ETCD_NODE-1_IP` is equal to `MASTER-1_INTERNAL_IP` etc.
+`ETCD_NODE_1_IP`, `ETCD_NODE_2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+In case of etcd installation to master nodes `ETCD_NODE_1_IP` is equal to `MASTER_1_INTERNAL_IP` etc.
 `INTERNAL_IP` is an IP address of current instance in internal network.
 
 Each etcd node must have a unique name within the cluster. Set the etcd node name to match the current node host name.
@@ -64,7 +64,7 @@ ETCD_LISTEN_CLIENT_URLS="https://127.0.0.1:2379,https://${INTERNAL_IP}:2379"
 ETCD_NAME=${ETCD_NAME}
 ETCD_INITIAL_ADVERTISE_PEER_URLS="https://${INTERNAL_IP}:2380"
 ETCD_ADVERTISE_CLIENT_URLS="https://${INTERNAL_IP}:2379"
-ETCD_INITIAL_CLUSTER="master-1=https://${ETCD_NODE-1_IP}:2380,master-2=https://${ETCD_NODE-2_IP}:2380,master-3=https://${ETCD_NODE-3_IP}:2380"
+ETCD_INITIAL_CLUSTER="master-1=https://${ETCD_NODE_1_IP}:2380,master-2=https://${ETCD_NODE_2_IP}:2380,master-3=https://${ETCD_NODE_3_IP}:2380"
 ETCD_INITIAL_CLUSTER_TOKEN="etcd-cluster-1"
 ETCD_INITIAL_CLUSTER_STATE="new"
 ETCD_CERT_FILE="/etc/etcd/kubernetes.crt"
