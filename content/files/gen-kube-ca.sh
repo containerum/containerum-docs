@@ -1,5 +1,5 @@
 #!/bin/bash
-# version 1.2
+# version 1.3
 
 set -o errexit
 set -o errtrace
@@ -282,7 +282,7 @@ main_init() {
 			case "$kcert" in
 			kubernetes)
 				[ -z "${SAN:-}" ] && echo >&2 "SAN env is empty, defaulting to '127.0.0.1 kubernetes.local'"
-				CN=Kubernetes O=Kubernetes SAN="${SAN:-127.0.0.1 kubernetes.local}" \
+				CN=kubernetes O=Kubernetes SAN="${SAN:-127.0.0.1 kubernetes.local}" \
 					gen_conf "$kcert.conf" CN O SAN
 				;;
 			admin)
