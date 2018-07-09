@@ -30,13 +30,13 @@ This will install the Containerum components and create two Ingresses to expose 
  To be able to reach Containerum Web UI and the API, add the machine IP address to /etc/hosts, e.g.:
 
  ```
- +127.0.0.1 local.containerum.io api.local.containerum.io
+ 127.0.0.1 local.containerum.io api.local.containerum.io
  ```
  where ```127.0.0.1``` is the address of your machine with Containerum.
 
- Now you can access Containerum Web UI at ```local.containerum.io```. To manage your local Containerum platform via chkit CLI, set the API:
+ Now you can access Containerum Web UI at ```local.containerum.io```. To manage your local Containerum platform via chkit CLI, set the API in chkit:
  ```
- +chkit set api api.local.containerum.io
+ chkit set api api.local.containerum.io
  ```
 
  Done!

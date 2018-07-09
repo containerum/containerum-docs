@@ -38,3 +38,5 @@ make single_release CONTAINERUM_API="https://api.containerum.io"
 # or your Containerum API URL
 ```
 then extract executable from tar.gz archive to ```./build to $GOPATH/bin or another $PATH dir```.
+
+Note: if you install chkit to use with Containerum in your cluster, set your local Containerum API URL in the previous step (by default - api.local.containerum.io).
