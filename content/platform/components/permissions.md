@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 6
+    weight: 5
     identifier: platform-permissions
 
 
@@ -33,4 +33,4 @@ Using Helm:
   helm repo update
   helm install containerum/permissions
   ```
-Now you can proceed to [installing the resource component](/platform/components/resource).
+Now you can proceed to [installing the kube-api component](/platform/components/kube-api).

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 4
+    weight: 6
     identifier: platform-kube
 
 
@@ -33,4 +33,4 @@ Using Helm:
   helm repo update
   helm install containerum/kube
 ```
-Now you can proceed to [installing the mail component](/platform/components/mail).
+Now you can proceed to [installing the auth component](/platform/components/auth).

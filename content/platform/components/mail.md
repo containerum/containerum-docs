@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 5
+    weight: 8
     identifier: platform-mail
 
 
@@ -40,4 +40,4 @@ Using Helm:
   helm repo update
   helm install containerum/mail
   ```
-  Now you can proceed to [installing the permissions component](/platform/components/permissions).
+  Now you can proceed to [installing the ui component](/platform/components/ui).

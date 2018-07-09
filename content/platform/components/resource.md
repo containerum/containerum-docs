@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 7
+    weight: 4
     identifier: platform-resource
 
 
@@ -34,4 +34,4 @@ Using Helm:
   helm install containerum/resource
 ```
 
-Now you can proceed to [installing the ui component](/platform/components/ui).
+Now you can proceed to [installing the permissions component](/platform/components/permissions).

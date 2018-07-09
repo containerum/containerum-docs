@@ -33,4 +33,4 @@ Using Helm:
   helm install containerum/api-gateway
   ```
 
-  Now you can proceed to [installing the auth component](/platform/components/auth).
+  Now you can proceed to [installing the user-manager component](/platform/components/user-manager).
