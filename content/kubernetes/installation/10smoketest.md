@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 12
+    weight: 11
 
 draft: false
 ---
@@ -35,9 +35,9 @@ Print a hexdump of the `containerum` secret stored in etcd:
 ssh master-1 \
   --command "sudo ETCDCTL_API=3 etcdctl get \
   --endpoints=https://127.0.0.1:2379 \
-  --cacert=/etc/etcd/ca.pem \
-  --cert=/etc/etcd/kubernetes.pem \
-  --key=/etc/etcd/kubernetes-key.pem\
+  --cacert=/etc/etcd/ca.crt \
+  --cert=/etc/etcd/kubernetes.crt \
+  --key=/etc/etcd/kubernetes.key\
   /registry/secrets/default/containerum | hexdump -C"
 ```
 
@@ -253,21 +253,21 @@ kubectl get pods -o wide
 
 ```
 NAME                       READY     STATUS    RESTARTS   AGE       IP           NODE
-busybox-68654f944b-djjjb   1/1       Running   0          5m        10.200.0.2   worker-0
-nginx-65899c769f-xkfcn     1/1       Running   0          4m        10.200.1.2   worker-1
-untrusted                  1/1       Running   0          10s       10.200.0.3   worker-0
+busybox-68654f944b-djjjb   1/1       Running   0          5m        10.244.0.2   worker-0
+nginx-65899c769f-xkfcn     1/1       Running   0          4m        10.244.1.2   worker-1
+untrusted                  1/1       Running   0          10s       10.244.0.3   worker-0
 ```
 
 Request the node where the `untrusted` is running:
 
 ```bash
-INSTANCE_NAME=$(kubectl get pod untrusted --output=jsonpath='{.spec.nodeName}')
+NODE_NAME=$(kubectl get pod untrusted --output=jsonpath='{.spec.nodeName}')
 ```
 
 SSH to the node:
 
 ```bash
-ssh ${INSTANCE_NAME}
+ssh ${NODE_NAME}
 ```
 
 List the containers running under  gVisor:

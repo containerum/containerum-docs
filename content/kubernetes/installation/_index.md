@@ -10,20 +10,17 @@ menu:
   docs:
     parent: "installation"
     weight: 2
+    weight: 1
     identifier: kube-inst-overview
 
 draft: false
 ---
 
-
 # Kubernetes installation overview
 
-Setting up a high availability Kubernetes cluster consists of several steps:
+This section covers installation of a production-ready Kubernetes cluster from binaries. To set up a high availability Kubernetes cluster follow the instructions in this section step-by-step.
 
-- install cffsl
-Cfssl and cfssljson utilities are required for PKI infrastructure and TLS certificates.
-
-- configure certificates
+- Configure certificates  
 Generating certificates for certain IP, nodes, hostnames, etc. Certificates are needed for traffic encryption.
 
 - configure authentication files for Kubernetes components
@@ -49,3 +46,4 @@ Calico is a plugin for Kubernetes network security.
 
 - run smoke tests
 This section describes how to run a full set of tests to make sure that the Kubernetes cluster functions correctly.
+Begin [Kubernetes installation](/kubernetes/installation/1intro).

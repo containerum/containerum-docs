@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 11
+    weight: 10
 
 draft: false
 ---
@@ -23,7 +23,7 @@ Deploy the `kube-dns` cluster add-on:
 Launch `kube-dns`:
 
 ```bash
-kubectl create -f https://storage.googleapis.com/kubernetes-the-hard-way/kube-dns.yaml
+kubectl create -f https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/kube-dns.yaml
 ```
 
 ```
@@ -76,11 +76,11 @@ kubectl exec -ti $POD_NAME -- nslookup kubernetes
 ```
 
 ```
-Server:    10.32.0.10
-Address 1: 10.32.0.10 kube-dns.kube-system.svc.cluster.local
+Server:    10.96.0.10
+Address 1: 10.96.0.10 kube-dns.kube-system.svc.cluster.local
 
 Name:      kubernetes
-Address 1: 10.32.0.1 kubernetes.default.svc.cluster.local
+Address 1: 10.96.0.1 kubernetes.default.svc.cluster.local
 ```
 
 Congratulations! You've just bootstrapped your Kubernetes cluster.

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 10
+    weight: 9
 
 draft: false
 ---
@@ -41,14 +41,14 @@ In the ConfigMap named calico-config, set the value of etcd_endpoints to the IP 
 Prepare <a href="/files/calico.yaml" target="_blank">`calico.yaml`</a> file:
 
 - Replace ${ETCD_NODE1_IP}, ${ETCD_NODE2_IP}, ${ETCD_NODE3_IP} to your real etcd node ips.
-- To change the default IP range used for pods, modify the CALICO_IPV4POOL_CIDR section of the calico.yaml. In our case it is `10.200.0.0/16`
+- To change the default IP range used for pods, modify the CALICO_IPV4POOL_CIDR section of the calico.yaml. In our case it is `10.244.0.0/16`
 - Change interface in `IP_AUTODETECTION_METHOD` variable to your calico network interface
 - Execute the command below to get kubernetes key:
 
 ```bash
-KEY=$(cat /var/lib/kubernetes/kubernetes-key.pem | base64 -w 0 )
-CERT=$(cat /var/lib/kubernetes/kubernetes.pem | base64 -w 0 )
-CA=$(cat /var/lib/kubernetes/ca.pem | base64 -w 0 )
+KEY=$(cat /var/lib/kubernetes/kubernetes.key | base64 -w 0 )
+CERT=$(cat /var/lib/kubernetes/kubernetes.crt | base64 -w 0 )
+CA=$(cat /var/lib/kubernetes/ca.crt | base64 -w 0 )
 ```
 
 - Replace `null` value in below variables into `calico.yaml`:

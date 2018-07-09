@@ -9,12 +9,34 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 5
+    weight: 4
 
 draft: false
 ---
 
 # Create authentication kubeconfig files
+
+### Install kubectl
+
+Kubectl communicates with Kubernetes API server. Install and setup kubectl from the official binaries:
+
+```
+{{< highlight bash >}}
+curl -O https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+{{< / highlight >}}
+```
+
+Make sure that kubectl version is 1.10.2 or higher:
+
+```
+{{< highlight bash >}}
+kubectl version --client
+
+Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.2", GitCommit:"81753b10df112992bf51bbc2c2f85208aad78335", GitTreeState:"clean", BuildDate:"2018-04-27T09:22:21Z", GoVersion:"go1.9.3", Compiler:"gc", Platform:"linux/amd64"}
+{{< / highlight >}}
+```
 
 ### Client authentication configuration file
 Create kubeconfig for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user.
@@ -26,7 +48,7 @@ Each kubeconfig file requires Kubernetes API Server for connection. To ensure hi
 Specify the `containerum` static IP address:
 
 ```bash
-KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
+KUBERNETES_PUBLIC_IP=${PUBLIC_IP}
 ```
 
 #### Create a kubelet configuration file
@@ -38,16 +60,16 @@ Create a kubeconfig file for each worker:
 ```bash
 {{< highlight bash >}}
 
-for instance in worker-0 worker-1 worker-2; do
+for instance in worker-1 worker-2 worker-3; do
   kubectl config set-cluster containerum \
-    --certificate-authority=ca.pem \
+    --certificate-authority=ca.crt \
     --embed-certs=true \
-    --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+    --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
     --kubeconfig=${instance}.kubeconfig
 
   kubectl config set-credentials system:node:${instance} \
-    --client-certificate=${instance}.pem \
-    --client-key=${instance}-key.pem \
+    --client-certificate=${instance}.crt \
+    --client-key=${instance}.key \
     --embed-certs=true \
     --kubeconfig=${instance}.kubeconfig
 
@@ -70,14 +92,14 @@ Create a kubeconfig file for `kube-proxy`:
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-proxy.kubeconfig
 
 kubectl config set-credentials system:kube-proxy \
-  --client-certificate=kube-proxy.pem \
-  --client-key=kube-proxy-key.pem \
+  --client-certificate=kube-proxy.crt \
+  --client-key=kube-proxy.key \
   --embed-certs=true \
   --kubeconfig=kube-proxy.kubeconfig
 
@@ -97,14 +119,14 @@ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-controller-manager.kubeconfig
 
 kubectl config set-credentials system:kube-controller-manager \
-  --client-certificate=kube-controller-manager.pem \
-  --client-key=kube-controller-manager-key.pem \
+  --client-certificate=kube-controller-manager.crt \
+  --client-key=kube-controller-manager.key \
   --embed-certs=true \
   --kubeconfig=kube-controller-manager.kubeconfig
 
@@ -125,14 +147,14 @@ Create a kubeconfig file for `kube-scheduler`:
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=kube-scheduler.kubeconfig
 
 kubectl config set-credentials system:kube-scheduler \
-  --client-certificate=kube-scheduler.pem \
-  --client-key=kube-scheduler-key.pem \
+  --client-certificate=kube-scheduler.crt \
+  --client-key=kube-scheduler.key \
   --embed-certs=true \
   --kubeconfig=kube-scheduler.kubeconfig
 
@@ -152,14 +174,14 @@ kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443 \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443 \
   --kubeconfig=admin.kubeconfig
 
 kubectl config set-credentials admin \
-  --client-certificate=admin.pem \
-  --client-key=admin-key.pem \
+  --client-certificate=admin.crt \
+  --client-key=admin.key \
   --embed-certs=true \
   --kubeconfig=admin.kubeconfig
 

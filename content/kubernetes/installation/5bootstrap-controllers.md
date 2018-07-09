@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 7
+    weight: 6
 
 draft: false
 ---
@@ -50,9 +50,9 @@ sudo yum install kubernetes-master-meta
 ```bash
 {{< highlight bash >}}
 
-sudo cp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-  service-account-key.pem service-account.pem \
-  encryption-config.yaml /var/lib/kubernetes/
+sudo cp ca.crt ca.key kubernetes.crt kubernetes.key \
+  service-account.crt service-account.key \
+  /etc/kubernetes/pki/
 
 {{< / highlight >}}
 ```
@@ -64,7 +64,12 @@ Otherwise, just update the `/etc/sysconfig/kube-apiserver` file with appropriate
 
 The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `ADVERTISE_ADDRESS` variable.
 
->**Note**: You may use --experimental-encryption-provider-config=/var/lib/kubernetes/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
+>**Note**: You may use --experimental-encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
+> For using `encryption-config.yaml` you should copy it to appropriate directory:
+
+```
+sudo cp encryption-config.yaml /etc/kubernetes/pki
+```
 
 #### Configure Kubernetes Controller Manager
 
@@ -108,8 +113,7 @@ sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
 
 #### Enable HTTP Health Checks
 
-[Google Network Load Balancer](https://cloud.google.com/compute/docs/load-balancing/network) will be used to configure the network between the three API servers. It will allow each of them to terminate TLS connection and validate client certificates.
- Network Load Balancer supports only HTTP health checks, HTTPS is not supported. This can be fixed with nginx which will serve as a proxy. Install and configure nginx to accept health checks on port 80 and proxy the request to `https://127.0.0.1:6443/healthz`.
+Network Load Balancer supports only HTTP health checks, HTTPS is not supported. This can be fixed with nginx which will serve as a proxy. Install and configure nginx to accept health checks on port 80 and proxy the request to `https://127.0.0.1:6443/healthz`.
 
 > The `/healthz` endpoint doesn't require authorization.
 
@@ -143,7 +147,7 @@ server {
 
   location /healthz {
      proxy_pass                    https://127.0.0.1:6443/healthz;
-     proxy_ssl_trusted_certificate /var/lib/kubernetes/ca.pem;
+     proxy_ssl_trusted_certificate /etc/kubernetes/pki/ca.crt;
   }
 }
 ```
@@ -266,7 +270,7 @@ EOF
 Make an HTTP request to print Kubernetes version:
 
 ```bash
-curl --cacert ca.pem https://${KUBERNETES_PUBLIC_ADDRESS}:6443/version
+curl --cacert ca.crt https://${KUBERNETES_PUBLIC_IP}:6443/version
 ```
 
 Output:
@@ -287,4 +291,5 @@ Output:
 
 Done!
 
-Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/6bootstrap-workers).
+Now you can proceed to [configuring kubectl](/kubernetes/installation/6configure-kubectl).
+

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 9
+    weight: 7
 
 draft: false
 ---
@@ -30,13 +30,13 @@ Generate the kubeconfig file suitable for authenticating the `admin` user:
 {{< highlight bash >}}
 
 kubectl config set-cluster containerum \
-  --certificate-authority=ca.pem \
+  --certificate-authority=ca.crt \
   --embed-certs=true \
-  --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443
 
 kubectl config set-credentials admin \
-  --client-certificate=admin.pem \
-  --client-key=admin-key.pem
+  --client-certificate=admin.crt \
+  --client-key=admin.key
 
 kubectl config set-context containerum \
   --cluster=containerum \
@@ -64,21 +64,7 @@ etcd-2               Healthy   {"health":"true"}
 etcd-0               Healthy   {"health":"true"}
 ```
 
-Print the list of cluster nodes:
-
-```bash
-kubectl get nodes
-```
-
-Output:
-
-```
-NAME       STATUS    ROLES     AGE       VERSION
-worker-0   Ready     <none>    1m        v1.10.2
-worker-1   Ready     <none>    1m        v1.10.2
-worker-2   Ready     <none>    1m        v1.10.2
-```
-
 Done!
 
-Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).
+Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/7bootstrap-workers).
+

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 4
+    weight: 3
 
 draft: false
 ---
@@ -22,10 +22,11 @@ You can generate certificates using Containerum script or cfssl.
 
 ### Generate certs with Containerum script
 
-<a href="/files/gen-kube-ca.sh" target="_blank">`This script`</a> generates and maintains certificate infrastructure sufficient to run a Kubernetes cluster.
+<a href="/files/gen-kube-ca.sh" target="_blank">This script</a> helps generate and maintain certificate infrastructure sufficient to run a Kubernetes cluster.
 
 Arguments:
 
+<<<<<<< HEAD
 default - Initialize a CA and generate default set of certificates.
 
 prepare file.csr - Generate an extra certificate signing request.
@@ -33,21 +34,35 @@ prepare file.csr - Generate an extra certificate signing request.
 sign file.crt - Use CA to sign a CSR in file.csr. Result in file.crt.
 
 The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
+=======
+`init` - Initialize a CA and generate default set of certificates.  
+`prepare file.conf` - Prepare configuration for generating an extra CSR.  
+`prepare file.csr` - Generate an extra certificate signing request.  
+`sign file.crt` - Use CA to sign a CSR in file.csr. Result in file.crt.
+>>>>>>> develop
 
-For example, if you put files admin.key and ca.key into an empty directory, and call this script from there, the script will use .key files provided by you for generation of CA certificate and admin.csr (and, consequtively, admin.crt).
+The script does not remove or overwrite any files with non-zero length - it
+completes the file structure to its full state by generating missing files from
+the files they are dependent on.
 
-If you want to re-issue a certificate from the same .csr, remove just its .crt and re-run the script.
+For example, if you put files `admin.key` and `ca.key` into an empty directory, and
+call this script from there, it will use `.key` files provided by you for
+generation of the CA certificate and `admin.csr` (and consecutively `admin.crt`).
+If you want to re-issue a certificate from the same `.csr`, just remove its `.crt`
+file and rerun the script.
 
-If you want to update certificate fields (i.e. commonName/CN, organization/O, etc.), you have to re-generate the certificate signing request.
-Remove the related .crt and .csr files, edit .conf file to your pleasure and re-run the script.
+The `init` subcommand uses IP addresses and DNS names from the environment
+variable SAN for the subjectAltName list in kubernetes.crt certificate.
 
-If you want to restore a default config for CSR generation, remove the .conf file.
+Similiarly, the `prepare` subcommand uses environment variables CN, O and SAN
+to fill in commonName, organization and subjectAltName fields in the CSR.
 
 #### Use cases
 
-Run this command to generate all certs:
- `./gen-kube-ca.sh default`
+Run this command to generate all default certs:
+`SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP" ./gen-kube-ca.sh init`
 
+<<<<<<< HEAD
 Run this command to create `.conf` file.
 `./gen-kube-ca.sh prepare worker-1.conf`
 
@@ -70,6 +85,10 @@ subjectAltName = IP:$INTERNAL_IP, DNS:$EXTERNAL_IP, DNS:$DOMAIN_NAME`
 
 Then run this command to prepare `.csr` file:
 `./gen-kube-ca.sh prepare worker-1.csr`
+=======
+Run this command to create `.csr` file with desired certificate fields.
+`CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
+>>>>>>> develop
 
 And run this command to sign certificate:
 `./gen-kube-ca.sh sign worker-1.crt`
@@ -78,7 +97,36 @@ And run this command to sign certificate:
 ### Generate certs with cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
 
-### Creating a CA
+#### Installing cfssl and cfssljson
+
+Download and install the binaries from the official repositories:
+
+```
+{{< highlight bash >}}
+curl -O https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 \
+    https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+chmod +x cfssl_linux-amd64 cfssljson_linux-amd64
+sudo mv cfssl_linux-amd64 /usr/local/bin/cfssl
+sudo mv cfssljson_linux-amd64 /usr/local/bin/cfssljson
+{{< / highlight >}}
+```
+
+Make sure that cfssl version is 1.2.0 or higher:
+
+```
+{{< highlight bash >}}
+cfssl version
+
+> Version: 1.2.0
+>  Revision: dev
+>   Runtime: go1.6
+{{< / highlight >}}
+```
+
+> **Note**: cfssljson cannot print version to the command line.
+
+
+#### Creating a CA
 Create a configuration file and a private key for CA:
 
 ```bash
@@ -123,7 +171,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 {{< / highlight >}}
 ```
 
-### Client and server certificates
+#### Client and server certificates
 Create certificates for each Kubernetes component and a client certificate for `admin`
 
 ```bash
@@ -148,16 +196,14 @@ cat > admin-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
 
 {{< / highlight >}}
 ```
-
-
 
 #### Generate a certificate for Kube Controller Manager
 Generate a certificate:
@@ -184,8 +230,8 @@ cat > kube-controller-manager-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
@@ -218,8 +264,8 @@ cat > kube-scheduler-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
@@ -230,7 +276,7 @@ cfssl gencert \
 #### Generate a certificate for Kube API Server
 To generate a certificate you need to provide a static IP address into the the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
 
-`10.32.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
+`10.96.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
 
 `MASTER_NODES_IP` is a sequence of all IP addresses of master nodes. In the case of one master node, only its IP address should be specified there.
 
@@ -239,7 +285,7 @@ Generate a certificate:
 ```bash
 {{< highlight bash >}}
 
-KUBERNETES_PUBLIC_ADDRESS=${PUBLIC_IP}
+KUBERNETES_PUBLIC_IP=${PUBLIC_IP}
 cat > kubernetes-csr.json <<EOF
 {
   "CN": "kubernetes",
@@ -259,12 +305,51 @@ cat > kubernetes-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
-  -hostname=10.32.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_ADDRESS},127.0.0.1,kubernetes.default \
+  -hostname=10.96.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_IP},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | cfssljson -bare kubernetes
+
+{{< / highlight >}}
+```
+
+#### Generate a certificate for ETCD
+To generate a certificate you need to provide a static IP address into the the list of domain names for ETCD certificates.
+
+`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+
+Generate a certificate:
+
+```bash
+{{< highlight bash >}}
+
+cat > etcd-csr.json <<EOF
+{
+  "CN": "ETCD",
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "LV",
+      "L": "Riga",
+      "O": "ETCD",
+      "OU": "Containerum"
+    }
+  ]
+}
+EOF
+
+cfssl gencert \
+  -ca=ca.crt \
+  -ca-key=ca.key \
+  -config=ca-config.json \
+  -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
+  -profile=kubernetes \
+  etcd-csr.json | cfssljson -bare etcd
 
 {{< / highlight >}}
 ```
@@ -297,8 +382,8 @@ cat > service-account-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
@@ -309,21 +394,21 @@ cfssl gencert \
 #### Generate a certificate for Kubelet clients
 
 Kubernetes uses a special mode of authorization, Node Authorizer, which also authorizes requests from Kubelet to API.
-To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:${NODE_NAME}` username.
+To authorize with Node Authorizer, Kubelet uses the credentials from the `system:nodes` group and the `system:node:${HOSTNAME}` username.
 Create a certificate for each node to meet to Node Authorizer requirements.
 
 
 Script example:
 
 Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly. If you don't have private network, you may use only `EXTERNAL_IP`.
-${NODE_NAME} is the hostname of the node, for which a certificate is to be generated.
+${HOSTNAME} is the hostname of the node, for which a certificate is to be generated.
 
 ```bash
 {{< highlight bash >}}
 
-cat > ${NODE_NAME}-csr.json <<EOF
+cat > ${HOSTNAME}-csr.json <<EOF
 {
-  "CN": "system:node:${NODE_NAME}",
+  "CN": "system:node:${HOSTNAME}",
   "key": {
     "algo": "rsa",
     "size": 2048
@@ -339,16 +424,13 @@ cat > ${NODE_NAME}-csr.json <<EOF
 }
 EOF
 
-EXTERNAL_IP=
-INTERNAL_IP=
-
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
-  -hostname=${NODE_NAME},${EXTERNAL_IP},${INTERNAL_IP} \
+  -hostname=${HOSTNAME},${EXTERNAL_IP},${INTERNAL_IP} \
   -profile=kubernetes \
-  ${NODE_NAME}-csr.json | cfssljson -bare ${NODE_NAME}
+  ${HOSTNAME}-csr.json | cfssljson -bare ${HOSTNAME}
 
 {{< / highlight >}}
 ```
@@ -378,8 +460,8 @@ cat > kube-proxy-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.pem \
-  -ca-key=ca-key.pem \
+  -ca=ca.crt \
+  -ca-key=ca.key \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
@@ -389,13 +471,22 @@ cfssl gencert \
 
 ### Distribution of certificates for clients and servers
 
+Apply the traditional naming scheme to certificate files:
+
+```bash
+{{< highlight bash >}}
+for f in *-key.pem; do mv -vi "$f" "${f%-key.pem}.key"; done
+for f in *.pem; do mv -vi "$f" "${f%.pem}.crt"; done
+{{< / highlight >}}
+```
+
 Copy the appropriate certificates and the private key to each node:
 
 ```bash
 {{< highlight bash >}}
 
-for instance in ${NODE_NAME_1} ${NODE_NAME_2} ${NODE_NAME_3}; do
-  scp ca.pem ${instance}-key.pem ${instance}.pem ${instance}:~/
+for instance in worker-1 worker-2 worker-3; do
+  scp ca.crt ${instance}.crt ${instance}.key ${instance}:~/
 done
 
 {{< / highlight >}}
@@ -407,12 +498,16 @@ Copy the appropriate certificates and the private key to each controller:
 {{< highlight bash >}}
 
 for instance in master-1 master-2 master-3; do
-  scp ca.pem ca-key.pem kubernetes-key.pem kubernetes.pem \
-    service-account-key.pem service-account.pem ${instance}:~/
+
+  scp ca.crt ca.key kubernetes.key kubernetes.crt \
+    service-account.key service-account.crt etcd.key etcd.cert ${instance}:~/
+
 done
 
 {{< / highlight >}}
 ```
+
+> The kube-proxy, kube-controller-manager, kube-scheduler, and kubelet client certificates will be used to generate client authentication configuration files in the next article.
 
 Done!
 
