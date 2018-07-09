@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 9
+    weight: 7
 
 draft: false
 ---
@@ -27,22 +27,24 @@ Each kubeconfig requires connection to the Kubernetes API Server. To ensure high
 Generate the kubeconfig file suitable for authenticating the `admin` user:
 
 ```bash
-{
-  kubectl config set-cluster kubernetes-the-hard-way \
-    --certificate-authority=ca.pem \
-    --embed-certs=true \
-    --server=https://${KUBERNETES_PUBLIC_ADDRESS}:6443
+{{< highlight bash >}}
 
-  kubectl config set-credentials admin \
-    --client-certificate=admin.pem \
-    --client-key=admin-key.pem
+kubectl config set-cluster containerum \
+  --certificate-authority=ca.crt \
+  --embed-certs=true \
+  --server=https://${KUBERNETES_PUBLIC_IP}:6443
 
-  kubectl config set-context kubernetes-the-hard-way \
-    --cluster=kubernetes-the-hard-way \
-    --user=admin
+kubectl config set-credentials admin \
+  --client-certificate=admin.crt \
+  --client-key=admin.key
 
-  kubectl config use-context kubernetes-the-hard-way
-}
+kubectl config set-context containerum \
+  --cluster=containerum \
+  --user=admin
+
+kubectl config use-context containerum
+
+{{< / highlight >}}
 ```
 
 ### Verification
@@ -62,21 +64,7 @@ etcd-2               Healthy   {"health":"true"}
 etcd-0               Healthy   {"health":"true"}
 ```
 
-Print the list of cluster nodes:
-
-```bash
-kubectl get nodes
-```
-
-Output:
-
-```
-NAME       STATUS    ROLES     AGE       VERSION
-worker-0   Ready     <none>    1m        v1.10.2
-worker-1   Ready     <none>    1m        v1.10.2
-worker-2   Ready     <none>    1m        v1.10.2
-```
-
 Done!
 
-Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).
+Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/7bootstrap-workers).
+

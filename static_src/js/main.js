@@ -9,3 +9,9 @@
 //= "alert.js"
 
 //= "clipboard.js"
+
+//= "google.js"
+
+//= "yandex.js"
+
+//= "pixel.js"

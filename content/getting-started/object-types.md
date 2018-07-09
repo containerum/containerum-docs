@@ -47,7 +47,7 @@ In Containerum a user can generally operate the following objects:
 </ul>
 
 <br/>
-<h4><a name="project">Project</a></h4>
+<h4><a id="project" name="project">Project</a></h4>
 
 Project is the main object of Containerum system. To create a project a user needs to allocate RAM and CPU resources to the project. With <a href="https://github.com/containerum/containerum">Containerum self-hosted</a> a user can allocate as much of the available server resources as necessary. <a href="https://web.containerum.io">Containerum Online</a> offers several preconfigured options (custom configurations available upon [request](https://containerum.com/sales/)). All other system objects (deployments, services, etc.) exist only within a Project. As part of teamwork, project owners can share their projects with other users and set access levels to create new software together.
 
@@ -319,7 +319,7 @@ Deployment consists of the following fields:
 Pod is an object that constitutes one running <a href="#deployment"> deployment </a>replica. Although a deployment contains configuration data, pod is actually a running application. A pod cannot exist without a deployment, while a deployment can have no pods. When a user creates a deployment with 4 replicas, 4 pods will be created. In this case, each of them utilizes the amount of resources utilized by all containers in the parent deployment. When a user deletes a pod, a new one with the same configuration will be created. Containerum allows viewing logs for pods.
 
 <br/>
-<h4><a name="service">Service</a></h4>
+<h4><a id="service" name="service">Service</a></h4>
 
 Service is an object, used by <a href="#deployment"> applications </a> for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. An internal service connects deployments by the internal network of Kubernetes. External services allow users to access the deployment from the Internet. Each service can have several ports using TCP or UDP protocol.
 

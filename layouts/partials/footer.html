@@ -3,6 +3,17 @@
       <span class="italic">docs</span>
       <span>are maintained by</span>
       <span class="label">Exon Lab</span>
+      <div class="version">
+
+        {{ if eq (getenv "TRAVIS_TAG") ""}}
+          Commit:
+          <a href='{{ .Site.Params.github }}/commit/{{ getenv "TRAVIS_COMMIT" }}'>{{ getenv "TRAVIS_COMMIT" }}</a>
+        {{ else }}
+          Version:
+          <a href='{{ .Site.Params.github }}/tree/{{ getenv "TRAVIS_TAG" }}'>{{ getenv "TRAVIS_TAG" }}</a>
+        {{ end }}
+
+      </div>
     </div>
   </body>
 </html>
