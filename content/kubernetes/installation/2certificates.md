@@ -53,7 +53,7 @@ Run this command to generate all default certs:
 `SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP" ./gen-kube-ca.sh init`
 
 Run this command to create `.csr` file with desired certificate fields.
-`CN=worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
+`CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
 
 And run this command to sign certificate:
 `./gen-kube-ca.sh sign worker-1.crt`
