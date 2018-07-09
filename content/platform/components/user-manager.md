@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 9
+    weight: 3
     identifier: platform-user-manager
 
 
@@ -34,4 +34,4 @@ Using Helm:
   helm install containerum/user-manager
 ```
 
-Congratulations! You've just installed Containerum Platform. To learn more about using Containerum, please see our [Web Panel Guide](/web-panel/) and [CLI Guide](/cli).
+Now you can proceed to [installing the resource component](/platform/components/resource).

@@ -26,10 +26,20 @@ You can generate certificates using Containerum script or cfssl.
 
 Arguments:
 
+<<<<<<< HEAD
+default - Initialize a CA and generate default set of certificates.
+
+prepare file.csr - Generate an extra certificate signing request.
+
+sign file.crt - Use CA to sign a CSR in file.csr. Result in file.crt.
+
+The script does not remove or overwrite any files with non-zero length - it completes the structure to its full state by generating missing files from files they are dependent on.
+=======
 `init` - Initialize a CA and generate default set of certificates.  
 `prepare file.conf` - Prepare configuration for generating an extra CSR.  
 `prepare file.csr` - Generate an extra certificate signing request.  
 `sign file.crt` - Use CA to sign a CSR in file.csr. Result in file.crt.
+>>>>>>> develop
 
 The script does not remove or overwrite any files with non-zero length - it
 completes the file structure to its full state by generating missing files from
@@ -52,8 +62,33 @@ to fill in commonName, organization and subjectAltName fields in the CSR.
 Run this command to generate all default certs:
 `SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP" ./gen-kube-ca.sh init`
 
+<<<<<<< HEAD
+Run this command to create `.conf` file.
+`./gen-kube-ca.sh prepare worker-1.conf`
+
+Edit `.conf` file for your case:
+`worker-1.conf
+
+[req]
+default_md = sha256
+prompt = no
+utf8 = yes
+req_extensions = req_exts
+distinguished_name = dn
+
+[dn]
+CN = default_commonName
+O = default_organization
+
+[req_exts]
+subjectAltName = IP:$INTERNAL_IP, DNS:$EXTERNAL_IP, DNS:$DOMAIN_NAME`
+
+Then run this command to prepare `.csr` file:
+`./gen-kube-ca.sh prepare worker-1.csr`
+=======
 Run this command to create `.csr` file with desired certificate fields.
 `CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
+>>>>>>> develop
 
 And run this command to sign certificate:
 `./gen-kube-ca.sh sign worker-1.crt`

@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "components"
-    weight: 3
+    weight: 7
     identifier: platform-auth
 
 
@@ -41,4 +41,4 @@ Using Helm:
   helm repo update
   helm install containerum/auth
   ```
-Now you can proceed to [installing the kube-api component](/platform/components/kube-api).
+Now you can proceed to [installing the mail component](/platform/components/mail).
