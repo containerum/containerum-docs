@@ -51,8 +51,7 @@ hostnamectl set-hostname master
 - публичный eth0:
 
 ```
-BOOT
-PROTO=none
+BOOTPROTO=none
 DEFROUTE=yes
 DEVICE=eth0
 GATEWAY=192.168.0.1
@@ -64,7 +63,8 @@ TYPE=Ethernet
 USERCTL=no
 ```
 
-- приватный eth1
+- приватный eth1:
+
 ```
 BOOTPROTO=none
 DEVICE=eth1
@@ -75,3 +75,29 @@ ONBOOT=yes
 TYPE=Ethernet
 USERCTL=no
 ```
+
+# Containerum RPM repository
+
+## Repository definition
+
+Put this in /etc/yum.repos.d/exonlab.repo
+```
+[exonlab-kubernetes110-testing]
+name=Exon lab kubernetes testing repo for CentOS
+baseurl=http://repo.containerum.io/centos/7/x86_64/
+skip_if_unavailable=False
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-exonlab
+enabled=1
+enabled_metadata=1
+
+```
+
+## GPG package signing key
+
+```
+sudo curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-exonlab
+```
+
+Key fingerprint: `2ED4 CBD2 309F 2C75 1642  CA7B 4E39 9E04 3CDA 4338`

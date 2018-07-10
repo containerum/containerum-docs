@@ -40,7 +40,7 @@ sudo yum -y install socat conntrack ipset
 ```bash
 {{< highlight bash >}}
 
-curl -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+curl -L -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
   -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
   -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
   -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
@@ -73,9 +73,9 @@ Install:
 chmod +x runc.amd64 runsc
 sudo mv runc.amd64 runc
 sudo mv runc runsc /usr/local/bin/
-mkdir cni  
+mkdir cni
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
-mv cni/ /opt/cni/bin/
+sudo mv cni/ /opt/cni/bin/
 mkdir containerd/
 sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
 sudo mv containerd/bin/* /bin/
@@ -225,7 +225,9 @@ EOF
 ```bash
 {{< highlight bash >}}
 
-sudo cp ca.crt ${HOSTNAME}.crt ${HOSTNAME}.key /etc/kubernetes/pki/
+sudo cp ca.crt /etc/kubernetes/pki/
+sudo cp $HOSTNAME.crt /etc/kubernetes/pki/node.crt
+sudo cp $HOSTNAME.key /etc/kubernetes/pki/node.key
 sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 
 {{< / highlight >}}

@@ -123,4 +123,4 @@ $ sudo systemctl start etcd
 Done!
 -->
 
-Now you can proceed to [Kubernetes installation](/kubernetes/installation/1cfssl).
+Now you can proceed to [Kubernetes installation](/kubernetes/installation/1intro).
