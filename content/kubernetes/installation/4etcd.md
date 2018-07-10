@@ -77,7 +77,7 @@ ETCD_PEER_CLIENT_CERT_AUTH="true"
 ETCD_PEER_TRUSTED_CA_FILE="/etc/etcd/ca.crt"
 ```
 
-> **Note**: In the case of one etcd node these variables are not required to provide:
+> **Note**: In the case of one etcd node these variables are not required:
 > - `ETCD_LISTEN_PEER_URLS`
 > - `ETCD_INITIAL_ADVERTISE_PEER_URLS`
 > - `ETCD_INITIAL_CLUSTER`

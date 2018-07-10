@@ -35,6 +35,7 @@ sudo mkdir -p /etc/kubernetes/config
 ```
 
 #### Install Kubernetes master node meta-package
+
 Run:
 
 ```bash
@@ -58,7 +59,7 @@ sudo cp ca.crt ca.key kubernetes.crt kubernetes.key \
 ```
 
 Examine the default kube-apiserver.service systemd unit with `systemctl cat kube-apiserver.service`.
-If you know the default flags don’t match your setup, copy the unit into `/etc/systemd/system/kube-apiserver.server` and make your changes there.
+If you know the default flags don’t match your setup, copy the unit into `/etc/systemd/system/kube-apiserver.service` and make your changes there.
 
 Otherwise, just update the `/etc/sysconfig/kube-apiserver` file with appropriate IP addresses.
 
@@ -141,13 +142,19 @@ sudo yum install -y nginx
 Add the following lines to `/etc/nginx/nginx.conf`:
 
 ```
-server {
-  listen      80;
-  server_name kubernetes.default.svc.cluster.local;
-
-  location /healthz {
-     proxy_pass                    https://127.0.0.1:6443/healthz;
-     proxy_ssl_trusted_certificate /etc/kubernetes/pki/ca.crt;
+worker_processes 1;
+events {
+  worker_connections 1024;
+}
+http {
+  server {
+    listen      80;
+    server_name kubernetes.default.svc.cluster.local;
+  
+    location /healthz {
+      proxy_pass                    https://127.0.0.1:6443/healthz;
+      proxy_ssl_trusted_certificate /etc/kubernetes/pki/ca.crt;
+    }
   }
 }
 ```

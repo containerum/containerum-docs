@@ -47,17 +47,42 @@ variable SAN for the subjectAltName list in kubernetes.crt certificate.
 Similiarly, the `prepare` subcommand uses environment variables CN, O and SAN
 to fill in commonName, organization and subjectAltName fields in the CSR.
 
-#### Use cases
+#### Usage examples
 
 Run this command to generate all default certs:
-`SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP" ./gen-kube-ca.sh init`
+
+```
+{{< highlight bash >}}
+SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP 127.0.0.1" ./gen-kube-ca.sh init
+{{< / highlight >}}
+```
 
 Run this command to create `.csr` file with desired certificate fields.
-`CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr`
+
+```
+{{< highlight bash >}}
+CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr
+{{< / highlight >}}
+```
 
 And run this command to sign certificate:
-`./gen-kube-ca.sh sign worker-1.crt`
 
+```
+{{< highlight bash >}}
+./gen-kube-ca.sh sign worker-1.crt
+{{< / highlight >}}
+```
+
+##### etcd certificate
+
+Don’t forget to generate the certificate for etcd nodes, for example like so:
+
+```
+{{< highlight bash >}}
+CN=ETCD O=ETCD SAN="$ETCD_NODE_1_IP $ETCD_NODE_2_IP $ETCD_NODE_3_IP 127.0.0.1" ./gen-kube-ca.sh prepare etcd.csr
+./gen-kube-ca.sh sign etcd.crt
+{{< / highlight >}}
+```
 
 ### Generate certs with cfssl
 Create a root certificate with cfssl and generate certificates for etcd, kube-apiserver, kube-controller-manager, kube-scheduler, kubelet, and kube-proxy.
@@ -161,8 +186,8 @@ cat > admin-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   admin-csr.json | cfssljson -bare admin
@@ -195,8 +220,8 @@ cat > kube-controller-manager-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-controller-manager-csr.json | cfssljson -bare kube-controller-manager
@@ -229,8 +254,8 @@ cat > kube-scheduler-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-scheduler-csr.json | cfssljson -bare kube-scheduler
@@ -270,8 +295,8 @@ cat > kubernetes-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -hostname=10.96.0.1,${MASTER_NODES_IPS},${KUBERNETES_PUBLIC_IP},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
@@ -283,7 +308,7 @@ cfssl gencert \
 #### Generate a certificate for ETCD
 To generate a certificate you need to provide a static IP address into the the list of domain names for ETCD certificates.
 
-`ETCD_NODE-1_IP`, `ETCD_NODE-2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
+`ETCD_NODE_1_IP`, `ETCD_NODE_2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in internal network, on which etcd have been installed. It will be used to communicate with other cluster peers and serve client requests.
 
 Generate a certificate:
 
@@ -309,10 +334,10 @@ cat > etcd-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=${ETCD_NODE-1_IP},${ETCD_NODE-2_IP},${ETCD_NODE-3_IP},127.0.0.1 \
+  -hostname=${ETCD_NODE_1_IP},${ETCD_NODE_2_IP},${ETCD_NODE_3_IP},127.0.0.1 \
   -profile=kubernetes \
   etcd-csr.json | cfssljson -bare etcd
 
@@ -347,8 +372,8 @@ cat > service-account-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   service-account-csr.json | cfssljson -bare service-account
@@ -390,8 +415,8 @@ cat > ${HOSTNAME}-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -hostname=${HOSTNAME},${EXTERNAL_IP},${INTERNAL_IP} \
   -profile=kubernetes \
@@ -425,8 +450,8 @@ cat > kube-proxy-csr.json <<EOF
 EOF
 
 cfssl gencert \
-  -ca=ca.crt \
-  -ca-key=ca.key \
+  -ca=ca.pem \
+  -ca-key=ca-key.pem \
   -config=ca-config.json \
   -profile=kubernetes \
   kube-proxy-csr.json | cfssljson -bare kube-proxy
@@ -436,7 +461,8 @@ cfssl gencert \
 
 ### Distribution of certificates for clients and servers
 
-Apply the traditional naming scheme to certificate files:
+If you used cfssl to generate the certificates, apply
+the traditional naming scheme to certificate files:
 
 ```bash
 {{< highlight bash >}}
