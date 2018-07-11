@@ -18,6 +18,7 @@ script:
   - chkit get api
   - chkit login -u ${LOGIN} -p ${PASSWORD} -n -
   - docker build -t "$IMAGE_NAME" --build-arg DOCS_COMMIT="${TRAVIS_COMMIT::8}" .
+  - echo "Commit ${TRAVIS_COMMIT::8}"
 
 before_deploy:
   - docker login -u="$DOCKER_LOGIN" -p="$DOCKER_PASSWORD"
