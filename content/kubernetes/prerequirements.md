@@ -113,3 +113,9 @@ Open the SELinux `/etc/selinux/config` file and change `SELINUX=` value to `disa
 ```bash
 SELINUX=disabled
 ```
+
+after reboot:
+
+```bash
+$ sudo reboot
+```

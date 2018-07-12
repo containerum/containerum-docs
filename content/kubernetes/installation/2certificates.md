@@ -53,15 +53,17 @@ Run this command to generate all default certs:
 
 ```
 {{< highlight bash >}}
-SAN="$KUBERNETES_PUBLIC_IP $MASTER_NODES_IP 127.0.0.1" ./gen-kube-ca.sh init
+SAN="kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local $HOSTNAME $KUBERNETES_PUBLIC_IP $MASTER_NODES_IP 10.96.0.1 127.0.0.1" ./gen-kube-ca.sh init
 {{< / highlight >}}
 ```
 
 Run this command to create `.csr` file with desired certificate fields.
+`DOMAIN_NAME` - hostname for node
 
 ```
 {{< highlight bash >}}
-CN=system:node:worker-1 O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare worker-1.csr
+DOMAIN_NAME=worker-1
+CN=system:node:$DOMAIN_NAME O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAIN_NAME" ./gen-kube-ca.sh prepare $DOMAIN_NAME.csr
 {{< / highlight >}}
 ```
 

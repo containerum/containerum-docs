@@ -1,7 +1,7 @@
 ---
-title: Calico Installation
-linktitle: Calico
-description: Installing Calico for network security in the cluster.
+title: Flannel Installation
+linktitle: Flannel
+description: Installing Flannel for network security in the cluster.
 
 categories: []
 keywords: []
@@ -14,6 +14,23 @@ menu:
 draft: false
 ---
 
+# Install Flannel
+
+
+Download the Flannel networking manifest:
+
+```bash
+curl -OL https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+
+If not use pod-cird=10.244.0.0/16 then change it in kube-flannel.  
+Apply the manifest using the following command.:
+
+```
+kubectl apply -f kube-flannel.yml
+```
+
+<!--
 # Install Calico
 
 ### Installing with the etcd datastore
@@ -28,7 +45,7 @@ kubectl apply -f https://docs.projectcalico.org/v3.1/getting-started/kubernetes/
 
 Download the Calico networking manifest for etcd.
 
-<!-- (TODO): change develop branch to master in link -->
+<-- (TODO): change develop branch to master in link --!>
 
 ```bash
 curl -O https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/calico.yaml
@@ -61,6 +78,7 @@ Apply the manifest using the following command.
 ```bash
 kubectl apply -f calico.yaml
 ```
+-->
 
 Done!
 
