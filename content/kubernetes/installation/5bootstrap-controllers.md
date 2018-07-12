@@ -30,6 +30,7 @@ Create a directory for Kubernetes configuration files:
 {{< highlight bash >}}
 
 sudo mkdir -p /etc/kubernetes/config
+sudo mkdir -p /etc/kubernetes/pki
 
 {{< / highlight >}}
 ```

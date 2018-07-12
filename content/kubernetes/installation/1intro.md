@@ -35,10 +35,10 @@ draft: false
 
 # Инфо про сетку
 
-Все хосты кластера должны иметь возможность обращаться друг к другу по имени. В нашем случае будет достаточно внести следующие записи в /etc/hosts на каждом сервере:
-192.168.0.4 master
-192.168.0.5 node-1
-192.168.0.6 node-2
+Все хосты кластера должны иметь возможность обращаться друг к другу по имени. В нашем случае будет достаточно внести следующие записи в /etc/hosts на каждом сервере:  
+192.168.0.4 master  
+192.168.0.5 node-1  
+192.168.0.6 node-2  
 
 И конечно же установить для каждого сервера свой hostname. Для ноды с ролью и именем master:
 ```bash
@@ -88,7 +88,7 @@ baseurl=http://repo.containerum.io/centos/7/x86_64/
 skip_if_unavailable=False
 gpgcheck=1
 repo_gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-exonlab
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ExonLab
 enabled=1
 enabled_metadata=1
 
@@ -97,7 +97,9 @@ enabled_metadata=1
 ## GPG package signing key
 
 ```
-sudo curl -o /etc/pki/rpm-gpg/RPM-GPG-KEY-exonlab
+curl -O http://repo.containerum.io/RPM-GPG-KEY-ExonLab
+sudo mv RPM-GPG-KEY-ExonLab /etc/pki/rpm-gpg/
+sudo chown root:root /etc/pki/rpm-gpg/RPM-GPG-KEY-ExonLab
 ```
 
 Key fingerprint: `2ED4 CBD2 309F 2C75 1642  CA7B 4E39 9E04 3CDA 4338`

@@ -40,10 +40,10 @@ sudo yum -y install socat conntrack ipset
 ```bash
 {{< highlight bash >}}
 
-curl -L -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
-  -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
-  -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
-  -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
+curl -OL https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+  -OL https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
+  -OL https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
+  -OL https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
 sudo yum install kubernetes-node-meta
 
 {{< / highlight >}}
@@ -60,7 +60,8 @@ sudo mkdir -p \
   /var/lib/kubelet \
   /var/lib/kube-proxy \
   /var/lib/kubernetes \
-  /var/run/kubernetes
+  /var/run/kubernetes \
+  /etc/kubernetes/pki
 
 {{< / highlight >}}
 ```
@@ -75,7 +76,7 @@ sudo mv runc.amd64 runc
 sudo mv runc runsc /usr/local/bin/
 mkdir cni
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
-sudo mv cni/ /opt/cni/bin/
+sudo mv cni/* /opt/cni/bin/
 mkdir containerd/
 sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
 sudo mv containerd/bin/* /bin/
