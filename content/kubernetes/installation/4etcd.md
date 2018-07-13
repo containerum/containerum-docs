@@ -110,8 +110,8 @@ List the etcd cluster member:
 sudo ETCDCTL_API=3 etcdctl member list \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/etcd/ca.crt \
-  --cert=/etc/etcd/kubernetes.crt \
-  --key=/etc/etcd/kubernetes.key
+  --cert=/etc/etcd/etcd.crt \
+  --key=/etc/etcd/etcd.key
 
 {{< / highlight >}}
 ```

@@ -113,7 +113,7 @@ sudo systemctl start kube-apiserver kube-controller-manager kube-scheduler
 
 > It can take about 10 seconds or more to initialize the Kubernetes API Server.
 
-#### Enable HTTP Health Checks
+#### Enable HTTP Health Checks (optional)
 
 Network Load Balancer supports only HTTP health checks, HTTPS is not supported. This can be fixed with nginx which will serve as a proxy. Install and configure nginx to accept health checks on port 80 and proxy the request to `https://127.0.0.1:6443/healthz`.
 
@@ -151,7 +151,7 @@ http {
   server {
     listen      80;
     server_name kubernetes.default.svc.cluster.local;
-  
+
     location /healthz {
       proxy_pass                    https://127.0.0.1:6443/healthz;
       proxy_ssl_trusted_certificate /etc/kubernetes/pki/ca.crt;
@@ -300,4 +300,3 @@ Output:
 Done!
 
 Now you can proceed to [configuring kubectl](/kubernetes/installation/6configure-kubectl).
-
