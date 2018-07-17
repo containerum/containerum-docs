@@ -229,7 +229,7 @@ EOF
 sudo cp ca.crt /etc/kubernetes/pki/
 sudo cp $HOSTNAME.crt /etc/kubernetes/pki/node.crt
 sudo cp $HOSTNAME.key /etc/kubernetes/pki/node.key
-sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
+sudo cp $HOSTNAME.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 
 {{< / highlight >}}
 ```
