@@ -22,7 +22,11 @@ You can generate certificates using Containerum script or cfssl.
 
 ### Generate certs with Containerum script
 
-<a href="/files/gen-kube-ca.sh" target="_blank">This script</a> helps generate and maintain certificate infrastructure sufficient to run a Kubernetes cluster.
+Download the script that helps generate and maintain certificate infrastructure sufficient to run a Kubernetes cluster:
+```
+curl -OL https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/gen-kube-ca.sh
+chmod +x gen-kube-ca.sh
+```
 
 Arguments:
 

@@ -66,6 +66,12 @@ Otherwise, just update the `/etc/sysconfig/kube-apiserver` file with appropriate
 
 The node internal IP address will be used to manifest the API server as a cluster member. It must be set in `ADVERTISE_ADDRESS` variable.
 
+```
+ADVERTISE_ADDRESS=167.99.207.46
+BIND_ADDRESS=0.0.0.0
+ETCD_SERVERS=https://127.0.0.1:2379
+```
+
 >**Note**: You may use --experimental-encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml flag for secrets encryption, but you should be **aware**: this feature is quite experimental.
 > For using `encryption-config.yaml` you should copy it to appropriate directory:
 
@@ -86,6 +92,10 @@ sudo mv kube-controller-manager.kubeconfig /etc/kubernetes
 ```
 
 Modify default values in `/etc/sysconfig/kube-controller-manager`.
+
+```
+BIND_ADDRESS=0.0.0.0 - указываем порт на котором все весит в нашем случае publik_ip
+```
 
 #### Configure Kubernetes Scheduler
 
