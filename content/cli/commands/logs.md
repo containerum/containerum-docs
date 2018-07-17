@@ -1,5 +1,5 @@
 ---
-description: 'view pod logs. Aliases: log'
+description: 'View pod logs. Aliases: log'
 draft: false
 linktitle: logs
 menu:
@@ -15,7 +15,7 @@ weight: 2
 
 **Description**:
 
-view pod logs. Aliases: log
+View pod logs. Aliases: log
 
 **Example**:
 
@@ -26,7 +26,6 @@ logs pod_label [container] [--follow] [--prev] [--tail n] [--quiet]
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
 | -f | --follow | follow pod logs | false |
-| -q | --quiet | print only logs and errors | false |
 | -t | --tail | print last <value> log lines | 100 |
 
 

@@ -1,5 +1,5 @@
 ---
-description: Rename resource
+description: rename namespace.
 draft: false
 linktitle: rename
 menu:
@@ -15,7 +15,7 @@ weight: 2
 
 **Description**:
 
-Rename resource
+rename namespace.
 
 **Example**:
 
@@ -29,18 +29,18 @@ Rename resource
 
 **Subcommands**:
 
-* **[rename namespace](#rename_namespace)** 
+* **[rename namespace](#rename_namespace)** . Aliases: ns, namespaces
 
 
 #### <a name="rename_namespace">rename namespace</a>
 
 **Description**:
 
-chkit rename ns $ID $NEW_NAME
+. Aliases: ns, namespaces
 
 **Example**:
 
-chkit rename ns $ID $NEW_NAME
+chkit rename ns $OLD_NAME $NEW_NAME
 
 **Flags**:
 

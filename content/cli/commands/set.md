@@ -1,5 +1,5 @@
 ---
-description: Set configuration variables
+description: set access, containerum api, default namespace, image, replicas.
 draft: false
 linktitle: set
 menu:
@@ -15,7 +15,7 @@ weight: 2
 
 **Description**:
 
-Set configuration variables
+set access, containerum api, default namespace, image, replicas.
 
 **Example**:
 
@@ -29,11 +29,11 @@ Set configuration variables
 
 **Subcommands**:
 
-* **[set access](#set_access)** Set namespace access rights
-* **[set containerum-api](#set_containerum-api)** Set Containerum API URL
-* **[set default-namespace](#set_default-namespace)** Set default namespace
-* **[set image](#set_image)** Set container image for specific deployment.
-* **[set replicas](#set_replicas)** Set deployment replicas
+* **[set access](#set_access)** Set namespace access rights. Aliases: namespace-access, ns-access
+* **[set containerum-api](#set_containerum-api)** Set Containerum API URL. Aliases: api, current-api, api-addr, API
+* **[set default-namespace](#set_default-namespace)** Set default namespace. Aliases: def-ns, default-ns, defns, def-namespace
+* **[set image](#set_image)** Set container image for specific deployment.Aliases: imgs, img, im, images
+* **[set replicas](#set_replicas)** Set deployment replicas. Aliases: re, rep, repl, replica
 
 
 #### <a name="set_replicas">set replicas</a>
@@ -62,7 +62,8 @@ chkit set replicas [-n namespace_label] [-d depl_label] [N_replicas]
 
 **Description**:
 
-Set container image for specific deployment If a deployment contains only one container, the command will use that container by default.
+Set container image for specific deployment
+If a deployment contains only one container, the command will use that container by default.
 
 **Example**:
 
@@ -86,7 +87,7 @@ Set container image for specific deployment If a deployment contains only one co
 
 **Description**:
 
-Set default namespace
+Set default namespace. Aliases: def-ns, default-ns, defns, def-namespace
 
 **Example**:
 
@@ -106,7 +107,7 @@ Set default namespace
 
 **Description**:
 
-Set Containerum API URL
+Set Containerum API URL. Aliases: api, current-api, api-addr, API
 
 **Example**:
 
@@ -127,7 +128,13 @@ Set Containerum API URL
 
 **Description**:
 
-Set namespace access rights. Available access levels are:   none   owner   read   read-delete   write
+Set namespace access rights.
+Available access levels are:
+  none
+  owner
+  read
+  read-delete
+  write
 
 **Example**:
 

@@ -1,5 +1,5 @@
 ---
-description: Replace deployment or service
+description: replace configmap, deployment container, ingress, service.
 draft: false
 linktitle: replace
 menu:
@@ -15,7 +15,7 @@ weight: 2
 
 **Description**:
 
-Replace deployment or service
+replace configmap, deployment container, ingress, service.
 
 **Example**:
 
@@ -25,15 +25,14 @@ Replace deployment or service
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-| -n | --namespace |  |  |
 
 
 **Subcommands**:
 
-* **[replace configmap](#replace_configmap)** 
-* **[replace deployment](#replace_deployment)** Replace deployment.
-* **[replace ingress](#replace_ingress)** Replace ingress with a new one.
-* **[replace service](#replace_service)** Replace service.
+* **[replace configmap](#replace_configmap)** Replace configmap.Aliases: cm, confmap, conf-map, comap
+* **[replace deployment-container](#replace_deployment-container)** Replace deployment container.Aliases: depl-cont, container, dc
+* **[replace ingress](#replace_ingress)** Replace ingress.Aliases: ingr, ingresses, ing
+* **[replace service](#replace_service)** Replace service.Aliases: srv, services, svc, serv
 
 
 #### <a name="replace_service">replace service</a>
@@ -50,14 +49,17 @@ Replace service.\nRuns in one-line mode, suitable for integration with other too
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-|  | --deployment | deployment name, optional |  |
-|  | --domain | service domain, optional |  |
-|  | --file | create service from file |  |
-| -f | --force | suppress confirmation | false |
-|  | --port | service external port, optional | 0 |
-|  | --port-name | service port name |  |
-|  | --protocol | service port protocol, optional | TCP |
-|  | --target-port | service target port, optional | 80 |
+|  | --deployment | service deployment, required |  |
+|  | --export-file | output file |  |
+| -f | --force | suppress confirmation, optional | false |
+|  | --import-file |  |  |
+| -i | --input | input format, json/yaml |  |
+|  | --name | service name, optional |  |
+| -o | --output | output format, json/yaml |  |
+|  | --port | service port, optional | 0 |
+|  | --port-name | service port name, optional |  |
+|  | --protocol | service protocol, optional |  |
+|  | --target-port | service target port, optional | 0 |
 
 
 **Subcommands**:
@@ -78,22 +80,25 @@ chkit replace ingress $INGRESS [--force] [--service $SERVICE] [--port 80] [--tls
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-| -f | --force | replace ingress without confirmation | false |
-|  | --host | ingress host, optional |  |
-|  | --port | ingress endpoint port, optional | 8080 |
-|  | --service | ingress endpoint service, optional |  |
-|  | --tls-secret | ingress tls-secret, use 'letsencrypt' for automatic HTTPS, '-' to use HTTP, optional |  |
+| -f | --force | suppress confirmation, optional | false |
+|  | --host | ingress host (example: prettyblog.io), required |  |
+|  | --name | ingress name, optional |  |
+|  | --path | path to endpoint (example: /content/pages), optional |  |
+|  | --port | ingress endpoint port (example: 80, 443), optional | 0 |
+|  | --service | ingress endpoint service, required |  |
+|  | --tls-secret | TLS secret string, optional |  |
 
 
 **Subcommands**:
 
 
 
-#### <a name="replace_deployment">replace deployment</a>
+#### <a name="replace_deployment-container">replace deployment-container</a>
 
 **Description**:
 
-Replaces deployment. Runs in one-line mode, suitable for integration with other tools, and in interactive wizard mode.
+Replace deployment container.
+Runs in one-line mode, suitable for integration with other tools, and in interactive wizard mode.
 
 **Example**:
 
@@ -103,14 +108,20 @@ Replaces deployment. Runs in one-line mode, suitable for integration with other 
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-|  | --container-name | container name, equal to image name by default |  |
-|  | --cpu | container CPU limit in mCPU, optional | 200 |
-|  | --env | container env variable in KEY0:VALUE0 KEY1:VALUE1 format |  |
-|  | --file | create deployment from file |  |
+|  | --configmap | container configmap mount, CONFIG:MOUNT_PATH or CONFIG (then MOUNTPATH is /etc/CONFIG) |  |
+|  | --container | container name, required on --force |  |
+|  | --cpu | container CPU limit, mCPU | 0 |
+|  | --delete-configmap | configmap to delete |  |
+|  | --delete-env | environment to delete |  |
+|  | --delete-volume | volume to delete |  |
+|  | --deployment | deployment name, required on --force |  |
+|  | --env | container environment variables, NAME:VALUE, 'NAME:$HOST_ENV' or '$HOST_ENV' (to user host env). WARNING: single quotes are required to prevent env from interpolation |  |
 | -f | --force | suppress confirmation | false |
-|  | --image | container image, optional |  |
-|  | --memory | container memory limit im Mb, optional | 256 |
-|  | --replicas | replicas, optional | 1 |
+|  | --image | container image |  |
+|  | --import-file |  |  |
+| -i | --input | input format, json/yaml |  |
+|  | --memory | container memory limit, Mb | 0 |
+|  | --volume | container volume mounts, VOLUME:MOUNT_PATH or VOLUME (then MOUNT_PATH is /mnt/VOLUME) |  |
 
 
 **Subcommands**:
@@ -121,7 +132,7 @@ Replaces deployment. Runs in one-line mode, suitable for integration with other 
 
 **Description**:
 
-
+Replace configmap.Aliases: cm, confmap, conf-map, comap
 
 **Example**:
 
@@ -131,10 +142,14 @@ Replaces deployment. Runs in one-line mode, suitable for integration with other 
 
 | Short | Name | Usage | Default value |
 | ----- | ---- | ----- | ------------- |
-|  | --file | file with configmap data, .json, .yaml, .yml |  |
-|  | --file-item | configmap file item: $KEY:$FILENAME |  |
-|  | --force | suppress confirmation | false |
-|  | --item | configmap item: $KEY:$VALUE |  |
+|  | --export-file | output file |  |
+| -f | --force | suppress confirmation, optional | false |
+|  | --import-file |  |  |
+| -i | --input | input format, json/yaml |  |
+|  | --item-file | configmap file, KEY:FILE_PATH or FILE_PATH |  |
+|  | --item-string | configmap item, KEY:VALUE string pair |  |
+|  | --name | configmap name, optional |  |
+| -o | --output | output format, json/yaml |  |
 
 
 **Subcommands**:
