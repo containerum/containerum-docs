@@ -1,7 +1,7 @@
 ---
 title: Flannel Installation
 linktitle: Flannel
-description: Installing Flannel for network security in the cluster.
+description: Installing Flannel - an overlay network for the cluster.
 
 categories: []
 keywords: []
@@ -16,15 +16,14 @@ draft: false
 
 # Install Flannel
 
-
-Download the Flannel networking manifest:
+Flannel is an etcd backed overlay network for containers. Download the Flannel networking manifest:
 
 ```bash
 curl -OL https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
-If not use pod-cird=10.244.0.0/16 then change it in kube-flannel.  
-Apply the manifest using the following command.:
+If you do not want to use pod-cird=10.244.0.0/16 then change it in kube-flannel.  
+Apply the manifest with:
 
 ```
 kubectl apply -f kube-flannel.yml

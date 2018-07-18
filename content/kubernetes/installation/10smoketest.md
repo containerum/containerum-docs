@@ -14,11 +14,11 @@ menu:
 draft: false
 ---
 
-# Testing
+# Smoke tests
 
-Run the following tests to ensure the cluster is configured correctly.
+Run a series of tests to ensure the cluster is configured correctly.
 
-### Data encryption
+## Data encryption
 
 Verify the ability to [encrypt secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/#verifying-that-data-is-encrypted).
 
@@ -64,10 +64,10 @@ ssh master-1 \
 
 The etcd key must be prefixed with `k8s:enc:aescbc:v1:key1`, which shows that the `aescbc` provider was used for data encryption with `key1`.
 
-### Deployment tests
+## Deployment tests
 Run tests to ensure that deployments are created and managed correctly.
 
-#### Preparation for deployment creation
+### Preparation for deployment creation
 
 Add the epel-release repository:
 
@@ -82,7 +82,7 @@ SELINUX=disabled
 ```
 Then reboot the instance to apply changes.
 
-#### Test the ability to create and manage deployments
+### Test the ability to create and manage deployments
 
 Create an nginx deployment:
 
@@ -103,7 +103,7 @@ NAME                     READY     STATUS    RESTARTS   AGE
 nginx-65899c769f-xkfcn   1/1       Running   0          15s
 ```
 
-#### Port forwarding
+### Port forwarding
 Verify the ability to get remote access to applications.
 
 Get the full name of the `nginx` pod:
@@ -154,7 +154,7 @@ Handling connection for 8080
 ^C
 ```
 
-#### Logs
+### Logs
 
 Get the logs for the `nginx` pod:
 
@@ -168,7 +168,7 @@ kubectl logs $POD_NAME
 127.0.0.1 - - [14/May/2018:13:59:21 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/7.52.1" "-"
 ```
 
-#### Command execution inside pods
+### Command execution inside pods
 
 Print the nginx version with the command `nginx -v` in `nginx` container:
 
@@ -182,7 +182,7 @@ kubectl exec -ti $POD_NAME -- nginx -v
 nginx version: nginx/1.13.12
 ```
 
-### Services
+## Services
 
 Verify the ability to retrieve [services](https://kubernetes.io/docs/concepts/services-networking/service/).
 
@@ -219,7 +219,7 @@ ETag: "5acb8e45-264"
 Accept-Ranges: bytes
 ```
 
-### Untrusted workload
+## Untrusted workload
 
 Verify the ability to launch untrusted workload using [gVisor](https://github.com/google/gvisor).
 
@@ -240,7 +240,7 @@ spec:
 EOF
 ```
 
-#### Verification
+### Verification
 
 Verify that the `untrusted` pod is running under gVisor, inspecting the assigned worker node.
 
@@ -270,7 +270,7 @@ SSH to the node:
 ssh ${NODE_NAME}
 ```
 
-List the containers running under  gVisor:
+List the containers running under gVisor:
 
 ```bash
 sudo runsc --root  /run/containerd/runsc/k8s.io list
@@ -337,4 +337,4 @@ UID       PID       PPID      C         STIME     TIME      CMD
 I0514 14:05:16.501354   15096 x:0] Exiting with status: 0
 ```
 
-Now you can proceed to [Containerum installation](/platform/installation).
+You've just bootstrapped a production-ready Kubernetes cluster with Containerum Kubernetes Package. Now you can proceed to [Containerum platform installation](/platform/installation).

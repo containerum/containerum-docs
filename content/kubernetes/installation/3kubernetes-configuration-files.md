@@ -16,9 +16,9 @@ draft: false
 
 # Create authentication kubeconfig files
 
-### Install kubectl
+## Install kubectl
 
-Kubectl communicates with Kubernetes API server. Install and setup kubectl:
+Kubectl is used to communicate with the Kubernetes API server. Install kubectl:
 
 ```
 {{< highlight bash >}}
@@ -36,10 +36,10 @@ Client Version: version.Info{Major:"1", Minor:"10", GitVersion:"v1.10.5", GitCom
 {{< / highlight >}}
 ```
 
-### Client authentication configuration file
-Create kubeconfig for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user.
+## Client authentication configuration file
+Create the kubeconfig files for `controller manager`, `kubelet`, `kube-proxy`, `scheduler` and `admin` user as described below.
 
-#### Public Kubernetes IP-address
+### Public Kubernetes IP-address
 
 Each kubeconfig file requires Kubernetes API Server for connection. To ensure high availability, the IP-address of your load balancer will determine which Kubernetes API Server will be used.
 
@@ -49,9 +49,9 @@ Specify the `containerum` static IP address:
 KUBERNETES_PUBLIC_IP=${PUBLIC_IP}
 ```
 
-#### Create a kubelet configuration file
+### Create a kubelet configuration file
 
-When generating kubeconfig for Kubelets the client certificate matching the Kubelet's node name must be used. This will ensure Kubelets are properly authorized by the Kubernetes Node Authorizer.
+When generating kubeconfig for Kubelets, a client certificate matching the Kubelet's node hostname must be used (`worker-1 worker-2 worker-3` in the example below). This will ensure Kubelets are properly authorized by the Kubernetes Node Authorizer.
 
 Create a kubeconfig file for each worker:
 
@@ -82,7 +82,7 @@ done
 {{< / highlight >}}
 ```
 
-#### Create a kube-proxy configuraton file
+### Create a kube-proxy configuraton file
 
 Create a kubeconfig file for `kube-proxy`:
 
@@ -111,7 +111,7 @@ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 {{< / highlight >}}
 ```
 
-#### Create a kube-controller-manager configuration file
+### Create a kube-controller-manager configuration file
 
 ```bash
 {{< highlight bash >}}
@@ -138,7 +138,7 @@ kubectl config use-context default --kubeconfig=kube-controller-manager.kubeconf
 {{< / highlight >}}
 ```
 
-#### Create a kube-scheduler configuration file
+### Create a kube-scheduler configuration file
 Create a kubeconfig file for `kube-scheduler`:
 
 ```bash
@@ -166,7 +166,7 @@ kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 {{< / highlight >}}
 ```
 
-####  Create admin user configuration file
+###  Create admin user configuration file
 
 ```bash
 {{< highlight bash >}}
@@ -193,7 +193,7 @@ kubectl config use-context default --kubeconfig=admin.kubeconfig
 {{< / highlight >}}
 ```
 
-### Distribute configuration files
+## Distribute configuration files
 
 Copy the appropriate kubeconfig files for `kubelet` and `kube-proxy` to each worker node:
 
@@ -207,7 +207,7 @@ done
 {{< / highlight >}}
 ```
 
-Copy the appropriate kubeconfig files for `kube-controller-manager` и `kube-scheduler` to each controller:
+Copy the appropriate kubeconfig files for `kube-controller-manager` and `kube-scheduler` to each controller:
 
 ```bash
 {{< highlight bash >}}
@@ -219,11 +219,11 @@ done
 {{< / highlight >}}
 ```
 
-### Create a configuration file for data and key encryption
+## Create a configuration file for data and key encryption
 
 Kubernetes stores data about cluster state, application configuration and secrets. Kubernetes supports encrypting all cluster data.
 
-#### Encryption key
+### Encryption key
 
 Create an encryption key:
 
@@ -233,9 +233,9 @@ ENCRYPTION_KEY=$(head -c 32 /dev/urandom | base64)
 {{< / highlight >}}
 ```
 
-#### Configuration file
+### Configuration file
 
->**Warning**: This part is not required. Secrets encryption is experimental feature in Kubernetes. You may use it only on your own responsibility.
+>**Warning**: This part is not required. Secrets encryption is an experimental feature in Kubernetes. You may use it only at your own risk.
 
 Create `encryption-config.yaml` as follows:
 

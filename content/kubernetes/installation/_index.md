@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Components Installation - Containerum
-linktitle: Overview
-description: Bootsrapping Kubernetes components from binaries.
+linktitle: Intro
+description: Bootstrapping Kubernetes components from binaries.
 
 categories: []
 keywords: []
@@ -19,6 +19,9 @@ draft: false
 
 This section covers installation of a production-ready Kubernetes cluster from binaries. To set up a high availability Kubernetes cluster follow the instructions in this section step-by-step.
 
+- Check out the variables  
+Read through the list of the variables that will be used throughout installation process.
+
 - Configure certificates  
 Generating certificates for certain IP, nodes, hostnames, etc. Certificates are needed for traffic encryption.
 
@@ -31,14 +34,14 @@ Etcd is a key-value store where Kubernetes stores cluster state information.
 - Bootstrap controllers  
 Launching a master node (Kubernetes Control Plane) and configuring high availability. It also demonstrates how to create an external load balancer to expose Kubernetes API for remote clients in the external network.
 
-- Bootstrap workers  
-Launching worker nodes. You can launch as many workers as you need.
-
 - Configure kubectl  
 Kubectl is a CLI tool for Kubernetes.
 
-- Install calico  
-Calico is a plugin for Kubernetes network security.
+- Bootstrap workers  
+Launching worker nodes. You can launch as many workers as you need.
+
+- Install flannel  
+Flannel is a virtual network that attaches IP addresses to containers.
 
 - Configure DNS add-on  
 [DNS add-on](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/) is a DNS-based service discovery to applications running in the Kubernetes cluster.

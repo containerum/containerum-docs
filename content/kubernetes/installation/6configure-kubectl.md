@@ -22,7 +22,7 @@ Execute commands from the same directory used to generate the certificates.
 
 ### Create the configuration file for admin
 
-Each kubeconfig requires connection to the Kubernetes API Server. To ensure high availability we will use the IP address assigned for the external load balancer.
+Each kubeconfig requires connection to the Kubernetes API Server. To ensure high availability we will use the IP address assigned to the external load balancer.
 
 Generate the kubeconfig file suitable for authenticating the `admin` user:
 
@@ -48,7 +48,7 @@ kubectl config use-context containerum
 ```
 
 ### Verification
-
+Check the components status. Run:  
 ```bash
 kubectl get componentstatuses
 ```
@@ -67,4 +67,3 @@ etcd-0               Healthy   {"health":"true"}
 Done!
 
 Now you can proceed to [bootstrapping worker nodes](/kubernetes/installation/7bootstrap-workers).
-
