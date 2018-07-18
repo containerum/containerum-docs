@@ -15,8 +15,9 @@ draft: false
 ---
 
 # Launch DNS Cluster Add-on
+Configure DNS Cluster to enable service discovery to applications running inside the Kubernetes cluster.
 
-### DNS Cluster Add-on
+## DNS Cluster Add-on
 
 Deploy the `kube-dns` cluster add-on:
 
@@ -24,7 +25,8 @@ Launch `kube-dns`:
 
 ```bash
 kubectl create -f https://raw.githubusercontent.com/containerum/containerum-docs/develop/content/files/kube-dns.yaml
-```
+```  
+Output:
 
 ```
 service "kube-dns" created
@@ -37,14 +39,15 @@ List the pods of the `kube-dns` deployment:
 
 ```bash
 kubectl get pods -l k8s-app=kube-dns -n kube-system
-```
+```  
+Output:
 
 ```
 NAME                        READY     STATUS    RESTARTS   AGE
 kube-dns-3097350089-gq015   3/3       Running   0          20s
 ```
 
-### Verification
+## Verification
 
 Create a `busybox` deployment:
 

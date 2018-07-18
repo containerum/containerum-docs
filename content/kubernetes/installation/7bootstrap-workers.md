@@ -20,7 +20,7 @@ This section covers how to launch three worker nodes and install the following c
 
 > **Don't forget to run all commands on all worker nodes.**
 
-### Provision a worker node
+## Provision a worker node
 
 Install the OS dependencies:
 
@@ -35,7 +35,7 @@ sudo yum -y install socat conntrack ipset
 
 > `socat` enables support for `kubectl port-forward` command.
 
-#### Download and install the binaries
+### Download and install the components binaries
 
 ```bash
 {{< highlight bash >}}
@@ -101,14 +101,14 @@ EOF
 {{< / highlight >}}
 ```
 
-Install cri-tools for crictl availabity on worker from google kubernetes repository:
+Install cri-tools for crictl availabity on worker from the google kubernetes repository:
 ```bash
 sudo yum install cri-tools
 ```
 
-#### Configure the CNI network
+### Configure the CNI network
 
-*NOTE! If you are using calico or etc as network plugin do not follow this step*
+*NOTE! If you plan to use calico or other network plugin do not follow this step*
 
 Specify the Pod CIDR IP range for the current node:
 
@@ -159,7 +159,7 @@ EOF
 {{< / highlight >}}
 ```
 
-#### Configure containerd
+### Configure containerd
 
 Create the `containerd` configuration file:
 
@@ -221,7 +221,7 @@ EOF
 {{< / highlight >}}
 ```
 
-#### Configure Kubelet
+### Configure Kubelet
 
 ```bash
 {{< highlight bash >}}
@@ -234,7 +234,7 @@ sudo cp $HOSTNAME.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 {{< / highlight >}}
 ```
 
-#### Configure Kubernetes Proxy
+### Configure Kubernetes Proxy
 
 ```bash
 {{< highlight bash >}}
@@ -244,7 +244,7 @@ sudo mv kube-proxy.kubeconfig /etc/kubernetes
 {{< / highlight >}}
 ```
 
-#### Start services on the slave nodes
+### Start services on the worker nodes
 
 ```bash
 {{< highlight bash >}}
@@ -256,9 +256,7 @@ sudo systemctl start containerd kubelet kube-proxy
 {{< / highlight >}}
 ```
 
-### Verification
-
-
+## Verification
 Print the list of nodes:
 
 ```bash
@@ -274,7 +272,7 @@ worker-1   Ready     <none>    20s       v1.10.2
 worker-2   Ready     <none>    20s       v1.10.2
 ```
 
-**Note**: Some nodes may have a status different from `Ready`. It's alright if some nodes are restarting.
+**Note**: Some nodes may have a status different from `Ready`. It's normal if some nodes are restarting.
 
 Done!
 

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes prerequisites
 linktitle: Prerequisites
-description: Kubernetes can be deployed in any Docker environment.
+description: Kubernetes can be deployed on any virtual or hardware environment.
 
 categories: []
 keywords: []
@@ -11,7 +11,7 @@ menu:
     parent: "kubernetes"
     weight: 3
 
-draft: false
+draft: true
 ---
 
 # Kubernetes prerequisites
