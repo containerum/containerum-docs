@@ -90,7 +90,7 @@ Create an nginx deployment:
 kubectl run nginx --image=nginx
 ```
 
-Lust the pods of the `nginx` deployment:
+List the pods of the `nginx` deployment:
 
 ```bash
 kubectl get pods -l run=nginx

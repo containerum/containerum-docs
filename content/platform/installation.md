@@ -1,6 +1,6 @@
 ---
 title: Containerum installation
-linktitle: Containerum Installation
+linktitle: Installation
 description: How to install Containerum in Kubernetes cluster.
 
 categories: []
@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "platform"
     weight: 2
+    identifier: containerum-install
 
 draft: false
 ---
@@ -17,7 +18,7 @@ draft: false
 
 # Containerum installation
 
-To install Containerum in your Kubernetes Cluster with Containerum configs configs run:
+To install Containerum in your Kubernetes Cluster with Containerum configs run:
 
 ```
 helm repo add containerum https://charts.containerum.io

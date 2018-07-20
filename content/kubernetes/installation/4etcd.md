@@ -18,9 +18,9 @@ draft: false
 This section covers how to launch a 3-node etcd cluster, configure high availability, and secure remote access.
 
 ## Bootstrapping an etcd Cluster Member
-**Run each command from this section on each instance that you would like to use as an etcd node**.
+> **Run each command from this section on each instance that you would like to use as an etcd node**.
 
-As described in [prerequirements](../prerequirements.md), you can install etcd on either master node instances or separate node instances.
+As described in the [requirements](/kubernetes/prerequirements/) section, you can install etcd on either master node instances or separate node instances.
 
 Login to each instance via ssh.
 

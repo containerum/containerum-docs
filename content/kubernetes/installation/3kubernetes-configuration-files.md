@@ -111,7 +111,8 @@ kubectl config use-context default --kubeconfig=kube-proxy.kubeconfig
 {{< / highlight >}}
 ```
 
-### Create a kube-controller-manager configuration file
+### Create a kube-controller-manager configuration file  
+Create a kubeconfig file for `kube-controller-manager`:
 
 ```bash
 {{< highlight bash >}}
@@ -166,7 +167,8 @@ kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 {{< / highlight >}}
 ```
 
-###  Create admin user configuration file
+###  Create admin user configuration file  
+Create a kubeconfig file for `admin` user:
 
 ```bash
 {{< highlight bash >}}
