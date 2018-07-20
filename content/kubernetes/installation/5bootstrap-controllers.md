@@ -20,7 +20,7 @@ The following components should be installed on each master node: Kubernetes API
 
 > **Don't forget to run all commands on all master nodes.**
 
-> **Note**: In the case of launching on one host `PUBLIC_KUBERNETES_IP`(IP address of kubernetes load balancer) can be replaced with `MASTER_IP`
+> **Note**: In the case of launching on one host `PUBLIC_KUBERNETES_IP`  (IP address of kubernetes load balancer) can be replaced with `MASTER_IP`
 
 ## Prepare Kubernetes Control Plane
 
@@ -72,7 +72,7 @@ BIND_ADDRESS=0.0.0.0
 ETCD_SERVERS=https://127.0.0.1:2379
 ```
 
->**Note**: You may use --experimental-encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml flag for secrets encryption, but please be **aware**: this feature is quite experimental.
+>**Note**: You may use --experimental-encryption-provider-config=/etc/kubernetes/pki/encryption-config.yaml flag for secrets encryption, but please **be aware**: this feature is quite experimental.
 > To use `encryption-config.yaml` you should copy it to the appropriate directory:
 
 ```
@@ -81,7 +81,7 @@ sudo cp encryption-config.yaml /etc/kubernetes/pki
 
 ### Configure Kubernetes Controller Manager
 
-Move `kube-controller-manager.kubeconfig`
+Move `kube-controller-manager.kubeconfig`:
 
 ```bash
 {{< highlight bash >}}
@@ -91,7 +91,7 @@ sudo mv kube-controller-manager.kubeconfig /etc/kubernetes
 {{< / highlight >}}
 ```
 
-Modify the default values in `/etc/sysconfig/kube-controller-manager`.  
+Modify the default values in `/etc/sysconfig/kube-controller-manager`:  
 
 ```
 BIND_ADDRESS=0.0.0.0

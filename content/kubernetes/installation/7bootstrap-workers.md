@@ -101,14 +101,14 @@ EOF
 {{< / highlight >}}
 ```
 
-Install cri-tools for crictl availabity on worker from the google kubernetes repository:
+Install cri-tools for crictl availabity on the worker node from the google kubernetes repository:
 ```bash
 sudo yum install cri-tools
 ```
 
 ### Configure the CNI network
 
-*NOTE! If you plan to use calico or other network plugin do not follow this step*
+*NOTE! If you plan to use calico or other network plugin, do not follow this step*
 
 Specify the Pod CIDR IP range for the current node:
 

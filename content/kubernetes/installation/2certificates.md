@@ -48,7 +48,7 @@ file and rerun the script.
 The `init` subcommand uses IP addresses and DNS names from the environment
 variable SAN for the subjectAltName list in kubernetes.crt certificate.
 
-Similiarly, the `prepare` subcommand uses environment variables CN, O and SAN
+Similarly, the `prepare` subcommand uses environment variables CN, O and SAN
 to fill in commonName, organization and subjectAltName fields in the CSR.
 
 ### Usage examples
@@ -61,8 +61,8 @@ SAN="kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc
 {{< / highlight >}}
 ```
 
-Run this command to create a `.csr` file with desired certificate fields.
-`DOMAIN_NAME` - hostname for node
+Run this command to create a `.csr` file with desired certificate fields.  
+`DOMAIN_NAME` is the hostname for node
 
 ```
 {{< highlight bash >}}
@@ -71,7 +71,7 @@ CN=system:node:$DOMAIN_NAME O=system:nodes SAN="$INTERNAL_IP $EXTERNAL_IP $DOMAI
 {{< / highlight >}}
 ```
 
-And run this command to sign the certificate:
+Run this command to sign the certificate:
 
 ```
 {{< highlight bash >}}
@@ -169,7 +169,7 @@ cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 ```
 
 ### Client and server certificates
-Create certificates for each Kubernetes component and a client certificate for `admin`
+Create certificates for each Kubernetes component and a client certificate for `admin`:
 
 ```bash
 {{< highlight bash >}}
@@ -271,7 +271,7 @@ cfssl gencert \
 ```
 
 ### Generate a certificate for Kube API Server
-To generate a certificate you need to provide a static IP address into the the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
+To generate a certificate you need to provide a static IP address to the list of domain names for Kubernetes API Server certificates. This will ensure the certificate can be validated by remote clients.
 
 `10.96.0.1` is an IP address of Kubernetes API server instance in Cluster CIDR.
 
@@ -313,7 +313,7 @@ cfssl gencert \
 ```
 
 ### Generate a certificate for etcd
-To generate a certificate you need to provide a static IP address in the list of domain names for etcd certificates.
+To generate a certificate you need to provide a static IP address to the list of domain names for etcd certificates.
 
 `ETCD_NODE_1_IP`, `ETCD_NODE_2_IP`, `ETCD_NODE_3_IP` are IP addresses of instances in the internal network, on which etcd has been installed. They will be used for communication with other cluster peers and to serve client requests.
 
@@ -397,7 +397,7 @@ Create a certificate for each node to meet the Node Authorizer requirements.
 
 Script example:
 
-Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly. If you don't have private network, you may use only `EXTERNAL_IP`.
+Specify the external and internal IP in `EXTERNAL_IP` and `INTERNAL_IP` correspondingly. If you don't have a private network, you may use only `EXTERNAL_IP`.
 ${HOSTNAME} is the hostname of the node, for which a certificate is to be generated.
 
 ```bash

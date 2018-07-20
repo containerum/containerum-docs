@@ -17,9 +17,8 @@ draft: false
 # Launch DNS Cluster Add-on
 Configure DNS Cluster to enable service discovery to applications running inside the Kubernetes cluster.
 
-## DNS Cluster Add-on
+## Deploy the kube-dns cluster add-on
 
-Deploy the `kube-dns` cluster add-on:
 
 Launch `kube-dns`:
 
@@ -77,6 +76,7 @@ Execute a DNS lookup for the `kubernetes` service inside the `busybox` pod:
 ```bash
 kubectl exec -ti $POD_NAME -- nslookup kubernetes
 ```
+Output:
 
 ```
 Server:    10.96.0.10
