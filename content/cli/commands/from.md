@@ -1,5 +1,5 @@
 ---
-description: ""
+description: from dir, github.
 draft: false
 linktitle: update from
 menu:
@@ -15,7 +15,7 @@ weight: 2
 
 **Description**:
 
-
+from dir, github.
 
 **Example**:
 

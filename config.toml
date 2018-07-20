@@ -22,7 +22,7 @@ pygmentsStyle = "monokai"
   url = "/getting-started/"
 
 [[menu.docs]]
-  name = "Self-Hosted"
+  name = "Containerum"
   weight = 3
   identifier = "platform"
   url = "/platform/"

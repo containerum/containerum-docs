@@ -62,3 +62,9 @@ Now you can run the client with a simple command from any directory:
 ```
 $ chkit
 ```
+
+Note: if you install chkit to use with Containerum in your cluster, set Containerum API URL (by default - api.local.containerum.io):
+
+```
+chkit set api api.local.containerum.io
+```

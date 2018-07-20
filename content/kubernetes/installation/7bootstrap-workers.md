@@ -20,7 +20,7 @@ This section covers how to launch three worker nodes and install the following c
 
 > **Don't forget to run all commands on all worker nodes.**
 
-### Provision a worker node
+## Provision a worker node
 
 Install the OS dependencies:
 
@@ -35,15 +35,15 @@ sudo yum -y install socat conntrack ipset
 
 > `socat` enables support for `kubectl port-forward` command.
 
-#### Download and install the binaries
+### Download and install the components binaries
 
 ```bash
 {{< highlight bash >}}
 
-curl -O https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
-  -O https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
-  -O https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
-  -O https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
+curl -OL https://storage.googleapis.com/kubernetes-the-hard-way/runsc \
+  -OL https://github.com/opencontainers/runc/releases/download/v1.0.0-rc5/runc.amd64 \
+  -OL https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz \
+  -OL https://github.com/containerd/containerd/releases/download/v1.1.0/containerd-1.1.0.linux-amd64.tar.gz
 sudo yum install kubernetes-node-meta
 
 {{< / highlight >}}
@@ -60,7 +60,8 @@ sudo mkdir -p \
   /var/lib/kubelet \
   /var/lib/kube-proxy \
   /var/lib/kubernetes \
-  /var/run/kubernetes
+  /var/run/kubernetes \
+  /etc/kubernetes/pki
 
 {{< / highlight >}}
 ```
@@ -73,9 +74,9 @@ Install:
 chmod +x runc.amd64 runsc
 sudo mv runc.amd64 runc
 sudo mv runc runsc /usr/local/bin/
-mkdir cni  
+mkdir cni
 sudo tar -xvf cni-plugins-amd64-v0.6.0.tgz -C cni/
-mv cni/ /opt/cni/bin/
+sudo mv cni/* /opt/cni/bin/
 mkdir containerd/
 sudo tar -xvf containerd-1.1.0.linux-amd64.tar.gz -C containerd/
 sudo mv containerd/bin/* /bin/
@@ -100,14 +101,14 @@ EOF
 {{< / highlight >}}
 ```
 
-Install cri-tools for crictl availabity on worker from google kubernetes repository:
+Install cri-tools for crictl availabity on the worker node from the google kubernetes repository:
 ```bash
 sudo yum install cri-tools
 ```
 
-#### Configure the CNI network
+### Configure the CNI network
 
-*NOTE! If you are using calico or etc as network plugin do not follow this step*
+*NOTE! If you plan to use calico or other network plugin, do not follow this step*
 
 Specify the Pod CIDR IP range for the current node:
 
@@ -158,7 +159,7 @@ EOF
 {{< / highlight >}}
 ```
 
-#### Configure containerd
+### Configure containerd
 
 Create the `containerd` configuration file:
 
@@ -220,18 +221,20 @@ EOF
 {{< / highlight >}}
 ```
 
-#### Configure Kubelet
+### Configure Kubelet
 
 ```bash
 {{< highlight bash >}}
 
-sudo cp ca.crt ${HOSTNAME}.crt ${HOSTNAME}.key /etc/kubernetes/pki/
-sudo cp ${HOSTNAME}.kubeconfig /etc/kubernetes/kubelet.kubeconfig
+sudo cp ca.crt /etc/kubernetes/pki/
+sudo cp $HOSTNAME.crt /etc/kubernetes/pki/node.crt
+sudo cp $HOSTNAME.key /etc/kubernetes/pki/node.key
+sudo cp $HOSTNAME.kubeconfig /etc/kubernetes/kubelet.kubeconfig
 
 {{< / highlight >}}
 ```
 
-#### Configure Kubernetes Proxy
+### Configure Kubernetes Proxy
 
 ```bash
 {{< highlight bash >}}
@@ -241,7 +244,7 @@ sudo mv kube-proxy.kubeconfig /etc/kubernetes
 {{< / highlight >}}
 ```
 
-#### Start services on the slave nodes
+### Start services on the worker nodes
 
 ```bash
 {{< highlight bash >}}
@@ -253,9 +256,7 @@ sudo systemctl start containerd kubelet kube-proxy
 {{< / highlight >}}
 ```
 
-### Verification
-
-
+## Verification
 Print the list of nodes:
 
 ```bash
@@ -271,7 +272,7 @@ worker-1   Ready     <none>    20s       v1.10.2
 worker-2   Ready     <none>    20s       v1.10.2
 ```
 
-**Note**: Some nodes may have a status different from `Ready`. It's alright if some nodes are restarting.
+**Note**: Some nodes may have a status different from `Ready`. It's normal if some nodes are restarting.
 
 Done!
 
