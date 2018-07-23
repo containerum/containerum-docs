@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "web-panel"
-    weight: 3
+    weight: 4
 
 draft: false
 ---
@@ -19,26 +19,26 @@ draft: false
 Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. External services allow users to access the deployment from the Internet.
 
 Each service can have several ports using TCP or UDP protocol.
-To create a Service a project and a deployment are required.
 
-### Create
+## Requirements
+A project and a deployment are required to create a service.
 
- To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
+## Create
+
+To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
 
  <img src="/img/content/web-panel/serviceInNS.png" width="100%"/>
 
 
-Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](web-panel/deployment) first.
+Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](/web-panel/deployment) first.
 
 Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the fields:
 
-- Service Name: `helloworld-external-service`
+- Service Name - can include a-z, 0-9, -. Example: `helloworld-external-service`
 
-- Ports Name: `helloworld-port`
+- Port Name - can include a-z, 0-9, -. Example: `helloworld-port`
 
-- Target port: `5000`
-
-> Note: external service port must be the same as deployment port.
+- Target port - must be the same as deployment port. Example: `5000`
 
 - Protocol type: `TCP`
 
@@ -46,7 +46,7 @@ Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the
 
 Then click on the `Create Service`. Done.
 
-### View
+## View
 
 You can view all services in the Services tab (`/projects/:idNamespace/services`).
 
@@ -56,9 +56,9 @@ You can also click on a service and see detailed information like IPs, domains, 
 
 <img src="/img/content/web-panel/getService.png" width="100%"/>
 
-### Update
+## Update
 
-You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
+You can update any service by clicking `Update` in the context menu on the Services tab or on the page with detailed information about the service.
 
 <img src="/img/content/web-panel/callContextServiceMenuUpdate.png" width="100%"/>
 
@@ -68,11 +68,11 @@ You can change port parameters, delete or add new ports.
 
 After changing the required information, click on `UPDATE SERVICE`.
 
-### Delete
+## Delete
 
-You can Delete a service by clicking `Delete` in the context menu on the Services tab or on a page with detailed information about the service.
+You can Delete a service by clicking `Delete` in the context menu on the Services tab or on the page with detailed information about the service.
 
 <img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
 
-Please, note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
+Note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.

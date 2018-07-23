@@ -9,14 +9,14 @@ keywords: []
 menu:
   docs:
     parent: "web-panel"
-    weight: 3
+    weight: 5
 
-draft: false
+draft: true
 ---
 
-# How to work with an Domains
+# How to work with a Domain
 
-Domain - это адрес в интернете по которому можно получить доступ к сервису 
+Domain - это адрес в интернете по которому можно получить доступ к сервису
 вашего проекта.
 
 ## Create
@@ -28,7 +28,7 @@ Domain можно создать только для External Service.
 
 <img src="/img/content/web-panel/domains/createDomainAfterCreateService.png" width="100%"/>
 
-Также, чтобы создать Domain можно перейти на вкладку Domains, находясь 
+Также, чтобы создать Domain можно перейти на вкладку Domains, находясь
 на странице проекта , и нажать кнопку Create.
 
 <img src="/img/content/web-panel/domains/projectDomains.png" width="100%"/>
@@ -40,9 +40,9 @@ Domain можно создать только для External Service.
 <img src="/img/content/web-panel/domains/createDomain.png" width="100%"/>
 
 
-## View 
+## View
 
-Все домены проекта вы можете посмотреть перейдя на вкладку Domains 
+Все домены проекта вы можете посмотреть перейдя на вкладку Domains
 на странице проекта
 
 <img src="/img/content/web-panel/domains/viewDomains.png" width="100%"/>
