@@ -25,7 +25,9 @@ Note: You can also use [Let's Kube](https://github.com/containerum/letskube) uti
 - Helm
 - Installed Kubernetes [Ingress Controller](https://github.com/containerum/containerum/blob/master/ingress.md)
 
-> Note: To launch deployments in Containerum you need to have an application node. In case you use only one node, make sure it is labeled as `slave`.  To add the label, run:
+
+Note: To launch deployments in Containerum you need to have an application node. In case you use only one node, make sure it is labeled as `slave`.  To add the label, run:
+
 ```
 kubectl label node ubuntu-01 role=slave
 ```
