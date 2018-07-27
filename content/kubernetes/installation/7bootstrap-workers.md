@@ -276,4 +276,4 @@ worker-2   Ready     <none>    20s       v1.10.2
 
 Done!
 
-Now you can proceed to [configuring Calico](/kubernetes/installation/8calico).
+Now you can proceed to [configuring Flannel](/kubernetes/installation/8flannel).
