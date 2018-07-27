@@ -108,7 +108,7 @@ Open the SELinux `/etc/selinux/config` file and change `SELINUX=` value to `disa
 SELINUX=disabled
 ```
 
-after reboot:
+then reboot:
 
 ```bash
 $ sudo reboot
