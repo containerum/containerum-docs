@@ -105,3 +105,6 @@ sudo chown root:root /etc/pki/rpm-gpg/RPM-GPG-KEY-ExonLab
 ```
 
 Key fingerprint: `2ED4 CBD2 309F 2C75 1642  CA7B 4E39 9E04 3CDA 4338`
+
+Now you can proceed to [configuring certificates.](/kubernetes/installation/2certificates)
+
