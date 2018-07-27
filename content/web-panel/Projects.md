@@ -10,94 +10,90 @@ keywords: []
 menu:
   docs:
     parent: "web-panel"
-    weight: 2
-    weight: 3
+    weight: 1
 
 draft: false
 ---
 
-# How to work with an Project
+# How to work with a Project
 
 ## Description
 
-Project is the main object of Containerum system.
-To create a project a user needs to allocate RAM and CPU 
-resources to the project. With Containerum self-hosted a 
-user can allocate as much of the available server resources
-as necessary. Containerum Online offers several preconfigured 
-options (custom configurations available upon request).
-All other system objects (deployments, services, etc.) 
-exist only within a Project. As part of teamwork, 
-project owners can share their projects with other users 
-and set access levels to create new software together.
+Project is the main object of Containerum. To create a project a user needs to allocate RAM and CPU resources to the project. With Containerum a user can allocate as much of the available resources as necessary. All other system objects (deployments, services, etc.) can exist only within a Project. As part of teamwork, project owners can share their projects with other users and set access levels to build new software together.
 
-Подробное описание свойств проекта находится 
-<a href="/getting-started/object-types/#project">здесь</a>
+A detailed description of the Project entity is available [here](/getting-started/object-types/#project).
 
-## Requarements
-
-Для того чтобы создать проект, необходимо чтобы на вашем счёте 
-было достаточное количество средств.
+## Requirements
+To create a project you need to have enough available resources on your machine(s).
 
 ## Create
 
-Если у вас еще нет ни одного проета нажмите create project на Dashboard
+If you don't have any projects yet, click on the `Create project` button in the Dashboard.
 
 <img src="/img/content/web-panel/project/createProjectDashboard.png" width="100%"/>
 
-or зайти на вкладку project главного меню и там добавьте проект
+or go to the Projects tab in the main menu and click `Add a project` there.
 
 <img src="/img/content/web-panel/project/createProject.png" width="100%"/>
 
-Далее выберите подходящий объём ресурсов для вашего проекта
+ Enter the name and choose the right amount of resources for your project and click `Create project`.
+
+ - Name - can include a-z, 0-9, -. Example: `test-project`.
+
+ - CPU (in mCPU)- must be number. Example: `512`.
+
+ - RAM - must be number. Example: `500`.
+
 
 <img src="/img/content/web-panel/project/size.png" width="100%"/>
 
-Вот и всё, вы создали свой проект.
+That's it, the project has been created.
 
 ## View
 
-Список всех ваших проектов вы можете видеть на Dashboard
+You can view the list of all your projects in the Dashboard.
 
 <img src="/img/content/web-panel/project/projectsDashboard.png" width="100%"/>
 
-or на вкладке projects главного меню
+Or you can view them in the Projects tab of the main menu.
 
 <img src="/img/content/web-panel/project/projects.png" width="100%"/>
 
-## Update 
+## Update
 
-Вы можете изменить размер используемых ресурсов проекта, выбрав 
-соответствующий пункт меню  либо на Dashboard 
+To change the resources allocated to a project, click `Resize` in the project context menu. The menu is available
+
+- in the Dashboard:  
 
 <img src="/img/content/web-panel/project/resizeDashboard.png" width="100%"/>
 
-либо на вкладке project главного меню 
+- in the Project tab:  
 
 <img src="/img/content/web-panel/project/resizeProjects.png" width="100%"/>
 
-либо на странице самого проекта
+- and on the Project page:  
 
 <img src="/img/content/web-panel/project/resizeProject.png" width="100%"/>
 
-далее выберете новый размер ресурсов.
+Now you can change the amount of resources allocated to the project.  
 
 ## Delete
 
-Удалить проект вы можете либо на вкладке project главного меню 
+You can delete a project by clicking `Delete` in the project context menu. The menu is available
+
+- in the Dashboard:  
 
 <img src="/img/content/web-panel/project/resizeProjects.png" width="100%"/>
 
-либо на странице самого проекта
+- and on the Project page:  
 
 <img src="/img/content/web-panel/project/resizeProject.png" width="100%"/>
 
-После удаления проекта удаляются все принадлежащие ему Deployments,
-Services, Domains, Configmaps and Solutions.
+After a project is deleted, all its Deployments, Services, Domains, Configmaps and Solutions will also be deleted.
+Note: This action cannot be undone.
 
-## Relations
+## Teamwork
 
-Над проектом может работать несколько разработчиков.Будучи владельцем 
-проекта, чтобы управлять командой нажмите на manage team на старнице проекта.
+A project can be shared between several users. Admin user  can add users and set access rights to the project by clicking the Manage team button on the project page.
 
-Как работать с командой подробно описанно <a href="">здесь</a>
+<img src="/img/content/web-panel/project/manageTeam.png" width="100%"/>
