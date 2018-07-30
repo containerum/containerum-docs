@@ -17,6 +17,7 @@ draft: false
 # How to work with a Deployment
 
 ## Description
+
 Deployment is an object that contains the configuration of running applications. It has a large number of parameters, that can be set during deployment creation. One of the main parameters is a container. Containers describe images, resources, environment variables, etc. that are necessary for user applications to run properly. One or more applications can run in one deployment.
 Users can describe apps in separate deployments and connect them using [internal services](/getting-started/object-types/#service)
 or describe apps as different containers belonging to the same deployment.

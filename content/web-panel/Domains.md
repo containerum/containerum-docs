@@ -11,62 +11,64 @@ menu:
     parent: "web-panel"
     weight: 5
 
-draft: true
+draft: false
 ---
 
 # How to work with a Domain
 
-Domain - это адрес в интернете по которому можно получить доступ к сервису
-вашего проекта.
+## Description
+
+Domain is the address where you or other Internet users can access your application.
 
 ## Create
 
-Domain можно создать только для External Service.
+Domains can be created for an external service only.
 
-После создания External Service вам предлагается создать Domain для
-этого External Service.
+After creating an external service, you'll be offered to create a domain for it.
 
 <img src="/img/content/web-panel/domains/createDomainAfterCreateService.png" width="100%"/>
 
-Также, чтобы создать Domain можно перейти на вкладку Domains, находясь
-на странице проекта , и нажать кнопку Create.
+You can also create a domain by clicking `Create` in the `Domains` tab on the Project page.
 
 <img src="/img/content/web-panel/domains/projectDomains.png" width="100%"/>
 
-Далее вы попадаете на страницу создания Domain
 
-Заполните все необходимые поля и нажмите Create Domain.
+Fill in the fields:  
+- Service - External service which will be assigned the domain name  (e.g. my-service)  
+- Domain - domain name  (e.g. my-site.io)  
+- /Path - path for the external service on the domain (e.g. `/blog` will bind the service to `my-site.io/blog`)  
+- Enable SSL Security - tick the box if you want to issue a certificate for the domain.  
+
+ Once done, click `Create Domain`.
+
 
 <img src="/img/content/web-panel/domains/createDomain.png" width="100%"/>
 
 
 ## View
 
-Все домены проекта вы можете посмотреть перейдя на вкладку Domains
-на странице проекта
+You can view your domains in the `Domains` tab on the `Project` page:
 
 <img src="/img/content/web-panel/domains/viewDomains.png" width="100%"/>
 
-На странице доменов аккаунта (`/tools => /domains`) вы можете посмотреть все домены со
-всех ваших проектов
+You can also view the domains across **all** projects on the `Domains` page (`/tools => /domains`):
 
 <img src="/img/content/web-panel/domains/globalViewDomains.png" width="100%"/>
 
 ## Update
 
-После создания домен нельзя обновить
+Once created, a domain cannot be updated.
 
 ## Delete
 
-Удалить домен вы можете зайдя в проект на вкладку Domains и
-выбрать соответсвующий пункт меню
+To delete a domain go to the Domains tab on the `Project` page and click `Delete` in the context menu of the Domain you want to delete.
 
 <img src="/img/content/web-panel/domains/deleteDomain.png" width="100%"/>
 
-А также на странице доменов аккаунта (`/tools => /domains`)
+You can also delete domains on the `Domains` page (`/tools => /domains`).
 
 <img src="/img/content/web-panel/domains/globalDeleteDomain.png" width="100%"/>
 
 ## Connections and dependencies
 
-Домен связан с внешним сервисом которому принадлежит
+A domain is bound to the external service it is assigned to.

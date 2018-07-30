@@ -16,6 +16,8 @@ draft: false
 
 # How to work with an External Service
 
+## Description
+
 Service is an object, used by applications for communication with each other within Containerum ecosystem or with external applications. A service can be internal or external. External services allow users to access the deployment from the Internet.
 
 Each service can have several ports using TCP or UDP protocol.
