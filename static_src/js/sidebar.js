@@ -11,4 +11,11 @@ $(function() {
     var component = $(this).parent();
     $(component).find(".sub-sub").addClass("active")
   });
+
+  $("#sidebar-close").click(function() {
+    $("#sidebar").removeClass("show")
+  });
+  $("#sidebar-show").click(function() {
+    $("#sidebar").addClass("show")
+  });
 });
