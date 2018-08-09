@@ -8,9 +8,24 @@
   background: $purple;
   transition: all 0.3s;
   color: #fff;
-  // display: flex;
-  // flex-direction: column;
-  // overflow-y: auto;
+
+  @include media-breakpoint-down(md) {
+    // width: 90vw;
+    width: 0px;
+    max-width: 480px;
+
+    .header {
+      display: none;
+    }
+  }
+
+  &.show {
+    width: 90vw;
+
+    .header {
+      display: block;
+    }
+  }
 
   .header {
     height: 120px;
@@ -20,6 +35,30 @@
     img {
       width: 73%;
     }
+
+    i {
+      display: none;
+    }
+
+    @include media-breakpoint-down(md) {
+      height: auto;
+      width: 100%;
+      padding-bottom: 35px;
+      padding-left: 45px;
+      text-align: left;
+
+      img {
+        width: 55vw;
+      }
+
+      i {
+        position: absolute;
+        display: block;
+        top: 15px;
+        right: 20px;
+        font-size: 32px;
+      }
+    }
   }
 
   .footer {
@@ -27,6 +66,10 @@
     height: 120px;
     padding-top: 25px;
     text-align: center;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
 
     a {
       box-sizing: border-box;
@@ -62,10 +105,14 @@
     overflow-y: auto;
     margin-bottom: 30px;
 
+    @include media-breakpoint-down(md) {
+      height: 100%;
+    }
+
     ul {
       margin: 0;
       padding: 0;
-      
+
       &.parent {
         padding: 0 40px 0;
       }
@@ -91,5 +138,22 @@
       border: 1px solid #8989a7;
       margin: 30px 0px;
     }
+  }
+}
+
+#sidebar-show {
+  display: none;
+  font-size: 26px;
+  padding-top: 18px;
+  padding-left: 35px;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+}
+
+#sidebar-show, #sidebar-close {
+  &:hover {
+    cursor: pointer;
   }
 }
