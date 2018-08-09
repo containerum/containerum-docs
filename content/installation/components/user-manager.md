@@ -34,4 +34,4 @@ Using Helm:
   helm install containerum/user-manager
 ```
 
-Congratulations! You've just installed Containerum Platform. To learn more about using Containerum, please see our [Web Panel Guide](/web-panel/) and [CLI Guide](/cli).
+Congratulations! You've just installed Containerum Platform. To learn more about using Containerum, please see our [Web Panel Guide](/objects/) and [CLI Guide](/cli).

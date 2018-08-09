@@ -8,10 +8,10 @@ keywords: []
 
 menu:
   docs:
-    parent: "getting-started"
+    parent: "objects"
     weight: 3
 
-draft: false
+draft: true
 ---
 
 
@@ -109,4 +109,4 @@ Click on the domain or enter the address manually in a new tab to see your appli
 <img src="/img/content/getting-started/online/result.png" width="100%"/>
 
 
-Congratulations! You've just created a Project and launched an application on Containerum Online Platform. Now it's time to learn more about [Containerum Web Panel](/web-panel/) and [CLI](/cli/).
+Congratulations! You've just created a Project and launched an application on Containerum Online Platform. Now it's time to learn more about [Containerum Web Panel](/objects/) and [CLI](/cli/).

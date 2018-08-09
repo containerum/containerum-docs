@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "web-panel"
+    parent: "objects"
     weight: 5
 
 draft: false
@@ -26,11 +26,11 @@ Domains can be created for an external service only.
 
 After creating an external service, you'll be offered to create a domain for it.
 
-<img src="/img/content/web-panel/domains/createDomainAfterCreateService.png" width="100%"/>
+<img src="/img/content/objects/domains/createDomainAfterCreateService.png" width="100%"/>
 
 You can also create a domain by clicking `Create` in the `Domains` tab on the Project page.
 
-<img src="/img/content/web-panel/domains/projectDomains.png" width="100%"/>
+<img src="/img/content/objects/domains/projectDomains.png" width="100%"/>
 
 
 Fill in the fields:  
@@ -42,18 +42,18 @@ Fill in the fields:
  Once done, click `Create Domain`.
 
 
-<img src="/img/content/web-panel/domains/createDomain.png" width="100%"/>
+<img src="/img/content/objects/domains/createDomain.png" width="100%"/>
 
 
 ## View
 
 You can view your domains in the `Domains` tab on the `Project` page:
 
-<img src="/img/content/web-panel/domains/viewDomains.png" width="100%"/>
+<img src="/img/content/objects/domains/viewDomains.png" width="100%"/>
 
 You can also view the domains across **all** projects on the `Domains` page (`/tools => /domains`):
 
-<img src="/img/content/web-panel/domains/globalViewDomains.png" width="100%"/>
+<img src="/img/content/objects/domains/globalViewDomains.png" width="100%"/>
 
 ## Update
 
@@ -63,11 +63,11 @@ Once created, a domain cannot be updated.
 
 To delete a domain go to the Domains tab on the `Project` page and click `Delete` in the context menu of the Domain you want to delete.
 
-<img src="/img/content/web-panel/domains/deleteDomain.png" width="100%"/>
+<img src="/img/content/objects/domains/deleteDomain.png" width="100%"/>
 
 You can also delete domains on the `Domains` page (`/tools => /domains`).
 
-<img src="/img/content/web-panel/domains/globalDeleteDomain.png" width="100%"/>
+<img src="/img/content/objects/domains/globalDeleteDomain.png" width="100%"/>
 
 ## Connections and dependencies
 

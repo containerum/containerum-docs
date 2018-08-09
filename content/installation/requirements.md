@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "platform"
+    parent: "installation"
     weight: 1
 
 draft: false

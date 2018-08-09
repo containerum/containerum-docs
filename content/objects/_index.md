@@ -9,7 +9,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "getting-started"
+    parent: "objects"
     weight: 1
     identifier: get-started
 

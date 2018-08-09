@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "platform"
+    parent: "installation"
     weight: 2
     identifier: containerum-install
 

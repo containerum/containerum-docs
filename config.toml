@@ -16,23 +16,22 @@ pygmentsStyle = "monokai"
   url = "/about/"
 
 [[menu.docs]]
-  name = "Getting Started"
+  name = "Installation"
   weight = 2
-  identifier = "getting-started"
-  url = "/getting-started/"
+  identifier = "installation"
+  url = "/installation/"
 
 [[menu.docs]]
-  name = "Containerum"
+  name = "Configuration"
   weight = 3
-  identifier = "platform"
-  url = "/platform/"
+  identifier = "configuration"
+  url = "/configuration/"
 
 [[menu.docs]]
-  name = "Web Panel"
+  name = "Objects"
   weight = 4
-  identifier = "web-panel"
-  url = "/web-panel/"
-
+  identifier = "objects"
+  url = "/objects/"
 
 [[menu.docs]]
   name = "CLI"
@@ -81,11 +80,5 @@ pygmentsStyle = "monokai"
   name = "Components"
   weight = 12
   identifier = "components"
-  parent = "platform"
-  url = "/platform/components/"
-
-[[menu.docs]]
-  name = "Configuration"
-  weight = 13
-  identifier = "configuration"
-  url = "/configuration/"
+  parent = "installation"
+  url = "/installation/components/"

@@ -26,7 +26,7 @@ describes **[object types](/getting-started/object-types)**, basic information n
 
 **[Self-hosted](/self-hosted)** describes how to install and use Containerum in your Kubernetes cluster.
 
-**[Web Panel](/web-panel/)** describes how to work with Containerum Web UI.
+**[Web Panel](/objects/)** describes how to work with Containerum Web UI.
 
 **[Kubernetes](/kubernetes/)** contains information on how to bootstrap Kubernetes on-premises.
 

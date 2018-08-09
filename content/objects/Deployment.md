@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "web-panel"
+    parent: "objects"
     weight: 2
 
 draft: false
@@ -33,7 +33,7 @@ A project is required to create a deployment.
 
 To create an Deployment, choose an existing Project, go to Deployments section and click on the `Create` button.
 
- <img src="/img/content/web-panel/Deployment/getDeployments.png" width="100%"/>
+ <img src="/img/content/objects/Deployment/getDeployments.png" width="100%"/>
 
 Fill in the fields:
 
@@ -41,7 +41,7 @@ Fill in the fields:
 
 - Replicas count - must be number. Example: `1`
 
-<img src="/img/content/web-panel/Deployment/createDeployment1.png" width="100%"/>
+<img src="/img/content/objects/Deployment/createDeployment1.png" width="100%"/>
 
 - Container name - can include a-z, 0-9, -. Example: `helloworld`.
 - Docker Image - can include a-z, 0-9, -. Example: `containerum/helloworld`.
@@ -51,7 +51,7 @@ Fill in the fields:
 - Environments:
     - Name - can include a-z, 0-9, -.
     - Value - can include a-z, 0-9, -.
-<img src="/img/content/web-panel/Deployment/createDeployment2.png" width="100%"/>
+<img src="/img/content/objects/Deployment/createDeployment2.png" width="100%"/>
 
 Then click on the `Create Deployment` button. Done!
 
@@ -59,11 +59,11 @@ Then click on the `Create Deployment` button. Done!
 
 You can view all deployments on the Deployments tab (`/projects/:idNamespace/deployments`).
 
-<img src="/img/content/web-panel/Deployment/getDeploymentsList.png" width="100%"/>
+<img src="/img/content/objects/Deployment/getDeploymentsList.png" width="100%"/>
 
 You can also click on a deployment and get detailed information. (`/project/:idNamespace/deployments/:deploymentName`)
 
-<img src="/img/content/web-panel/Deployment/getDeployment.png" width="100%"/>
+<img src="/img/content/objects/Deployment/getDeployment.png" width="100%"/>
 
 ### Update
 
@@ -71,16 +71,16 @@ You can update any deployment by clicking `Update` in the context menu:
 
 - on the Deployments tab
 
-<img src="/img/content/web-panel/Deployment/callContextDeploymentMenuUpdate1.png" width="100%"/>
+<img src="/img/content/objects/Deployment/callContextDeploymentMenuUpdate1.png" width="100%"/>
 
 - or on a page with detailed information about the deployment.
 
-<img src="/img/content/web-panel/Deployment/callContextDeploymentMenuUpdate2.png" width="100%"/>
+<img src="/img/content/objects/Deployment/callContextDeploymentMenuUpdate2.png" width="100%"/>
 
 You can change replicas count, container name, docker image, parameters, environments, add or delete new containers.
 
-<img src="/img/content/web-panel/Deployment/updateDeployment1.png" width="100%"/>
-<img src="/img/content/web-panel/Deployment/updateDeployment2.png" width="100%"/>
+<img src="/img/content/objects/Deployment/updateDeployment1.png" width="100%"/>
+<img src="/img/content/objects/Deployment/updateDeployment2.png" width="100%"/>
 
 After changing the required information, click on `UPDATE DEPLOYMENT`.
 
@@ -90,13 +90,13 @@ You can Delete a deployment by clicking `Delete` in the context menu:
 
 - on the Deployments tab
 
-<img src="/img/content/web-panel/Deployment/callContextDeploymentMenuDelete1.png" width="100%"/>
+<img src="/img/content/objects/Deployment/callContextDeploymentMenuDelete1.png" width="100%"/>
 
 - or on a page with detailed information about the deployment.
 
-<img src="/img/content/web-panel/Deployment/callContextDeploymentMenuDelete2.png" width="100%"/>
+<img src="/img/content/objects/Deployment/callContextDeploymentMenuDelete2.png" width="100%"/>
 
 Then you will be asked to confirm deployment deletion. Enter the deployment name and click `Delete`.
-<img src="/img/content/web-panel/Deployment/deleteDeploymentModal.png" width="100%"/>
+<img src="/img/content/objects/Deployment/deleteDeploymentModal.png" width="100%"/>
 
 Note: by clicking `Delete` you will delete the deployment immediately. This action cannot be undone.

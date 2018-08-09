@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "manuals"
+    parent: "configuration"
     weight: 2
     identifier: externalip
 
@@ -16,9 +16,9 @@ draft: false
 ---
 
 
-# Configuring Containerum external IP 
+# Configuring Containerum external IP
 
-<img src="/img/content/manuals/externalip.png" width="100%"/>
+<img src="/img/content/configuration/externalip.png" width="100%"/>
 
 Go to "Settings".
 

@@ -9,7 +9,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "web-panel"
+    parent: "objects"
     weight: 1
 
 draft: false
@@ -30,11 +30,11 @@ To create a project you need to have enough available resources on your machine(
 
 If you don't have any projects yet, click on the `Create project` button in the Dashboard.
 
-<img src="/img/content/web-panel/project/createProjectDashboard.png" width="100%"/>
+<img src="/img/content/objects/project/createProjectDashboard.png" width="100%"/>
 
 or go to the Projects tab in the main menu and click `Add a project` there.
 
-<img src="/img/content/web-panel/project/createProject.png" width="100%"/>
+<img src="/img/content/objects/project/createProject.png" width="100%"/>
 
  Enter the name and choose the right amount of resources for your project and click `Create project`.
 
@@ -45,7 +45,7 @@ or go to the Projects tab in the main menu and click `Add a project` there.
  - RAM - must be number. Example: `500`.
 
 
-<img src="/img/content/web-panel/project/size.png" width="100%"/>
+<img src="/img/content/objects/project/size.png" width="100%"/>
 
 That's it, the project has been created.
 
@@ -53,11 +53,11 @@ That's it, the project has been created.
 
 You can view the list of all your projects in the Dashboard.
 
-<img src="/img/content/web-panel/project/projectsDashboard.png" width="100%"/>
+<img src="/img/content/objects/project/projectsDashboard.png" width="100%"/>
 
 Or you can view them in the Projects tab of the main menu.
 
-<img src="/img/content/web-panel/project/projects.png" width="100%"/>
+<img src="/img/content/objects/project/projects.png" width="100%"/>
 
 ## Update
 
@@ -65,15 +65,15 @@ To change the resources allocated to a project, click `Resize` in the project co
 
 - in the Dashboard:  
 
-<img src="/img/content/web-panel/project/resizeDashboard.png" width="100%"/>
+<img src="/img/content/objects/project/resizeDashboard.png" width="100%"/>
 
 - in the Project tab:  
 
-<img src="/img/content/web-panel/project/resizeProjects.png" width="100%"/>
+<img src="/img/content/objects/project/resizeProjects.png" width="100%"/>
 
 - and on the Project page:  
 
-<img src="/img/content/web-panel/project/resizeProject.png" width="100%"/>
+<img src="/img/content/objects/project/resizeProject.png" width="100%"/>
 
 Now you can change the amount of resources allocated to the project.  
 
@@ -83,11 +83,11 @@ You can delete a project by clicking `Delete` in the project context menu. The m
 
 - in the Dashboard:  
 
-<img src="/img/content/web-panel/project/resizeProjects.png" width="100%"/>
+<img src="/img/content/objects/project/resizeProjects.png" width="100%"/>
 
 - and on the Project page:  
 
-<img src="/img/content/web-panel/project/resizeProject.png" width="100%"/>
+<img src="/img/content/objects/project/resizeProject.png" width="100%"/>
 
 After a project is deleted, all its Deployments, Services, Domains, Configmaps and Solutions will also be deleted.
 Note: This action cannot be undone.
@@ -96,4 +96,4 @@ Note: This action cannot be undone.
 
 A project can be shared between several users. Admin user  can add users and set access rights to the project by clicking the Manage team button on the project page.
 
-<img src="/img/content/web-panel/project/manageTeam.png" width="100%"/>
+<img src="/img/content/objects/project/manageTeam.png" width="100%"/>

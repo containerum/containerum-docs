@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "web-panel"
+    parent: "objects"
     weight: 4
 
 draft: false
@@ -29,10 +29,10 @@ A project and a deployment are required to create a service.
 
 To create an External service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
 
- <img src="/img/content/web-panel/serviceInNS.png" width="100%"/>
+ <img src="/img/content/objects/serviceInNS.png" width="100%"/>
 
 
-Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](/web-panel/deployment) first.
+Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](/objects/deployment) first.
 
 Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the fields:
 
@@ -44,7 +44,7 @@ Select a Deployment, then click on the `EXTERNAL SERVICE` switch and fill in the
 
 - Protocol type: `TCP`
 
-<img src="/img/content/web-panel/createExternalService.png" width="100%"/>
+<img src="/img/content/objects/createExternalService.png" width="100%"/>
 
 Then click on the `Create Service`. Done.
 
@@ -52,21 +52,21 @@ Then click on the `Create Service`. Done.
 
 You can view all services in the Services tab (`/projects/:idNamespace/services`).
 
-<img src="/img/content/web-panel/getServicesList.png" width="100%"/>
+<img src="/img/content/objects/getServicesList.png" width="100%"/>
 
 You can also click on a service and see detailed information like IPs, domains, ports, and linked deployments. (`/project/:idNamespace/services/:serviceName`)
 
-<img src="/img/content/web-panel/getService.png" width="100%"/>
+<img src="/img/content/objects/getService.png" width="100%"/>
 
 ## Update
 
 You can update any service by clicking `Update` in the context menu on the Services tab or on the page with detailed information about the service.
 
-<img src="/img/content/web-panel/callContextServiceMenuUpdate.png" width="100%"/>
+<img src="/img/content/objects/callContextServiceMenuUpdate.png" width="100%"/>
 
 You can change port parameters, delete or add new ports.
 
-<img src="/img/content/web-panel/updateExternalService.png" width="100%"/>
+<img src="/img/content/objects/updateExternalService.png" width="100%"/>
 
 After changing the required information, click on `UPDATE SERVICE`.
 
@@ -74,7 +74,7 @@ After changing the required information, click on `UPDATE SERVICE`.
 
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on the page with detailed information about the service.
 
-<img src="/img/content/web-panel/callContextServiceMenuDelete.png" width="100%"/>
+<img src="/img/content/objects/callContextServiceMenuDelete.png" width="100%"/>
 
 Note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 If you delete an External service, you won't be able to reach your deployment from the Internet until you create a new External Service.

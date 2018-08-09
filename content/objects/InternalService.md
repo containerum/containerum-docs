@@ -9,7 +9,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "web-panel"
+    parent: "objects"
     weight: 3
 
 draft: false
@@ -30,9 +30,9 @@ A project and a deployment are required to create a service.
 
 To create an Internal service for a Deployment, choose an existing Project, go to Services section and click on the `Create` button.
 
-<img src="/img/content/web-panel/InternalService/services.png" width="100%"/>
+<img src="/img/content/objects/InternalService/services.png" width="100%"/>
 
-Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](/web-panel/deployment) first.
+Please note, that each service has to be linked to a particular deployment. If there are no deployments in your project yet, you have to [create a deployment](/objects/deployment) first.
 
 Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the fields:
 <ul>
@@ -52,34 +52,34 @@ Select a Deployment, then click on the `INTERNAL SERVICE` switch and fill in the
     </li>
 </ul>
 
-<img src="/img/content/web-panel/InternalService/createService.png" width="100%"/>
+<img src="/img/content/objects/InternalService/createService.png" width="100%"/>
 
 
 ## View
 You can view all services in the services tab (`/projects/:idNamespace/services`).
 
-<img src="/img/content/web-panel/InternalService/services.png" width="100%"/>
+<img src="/img/content/objects/InternalService/services.png" width="100%"/>
 
 You can also click on a service and see detailed information like ports and linked deployments. (`/project/:idNamespace/services/:serviceName`).
 
-<img src="/img/content/web-panel/InternalService/servicePage.png" width="100%"/>
+<img src="/img/content/objects/InternalService/servicePage.png" width="100%"/>
 
 
 ## Update
 You can update any service by clicking `Update` in the context menu on the Services tab or on a page with detailed information about the service.
 
-<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
+<img src="/img/content/objects/InternalService/updateInternalService.png" width="100%"/>
 
 You can change port parameters, delete or add new ports, but you cannot change the name of the internal service.
 
-<img src="/img/content/web-panel/InternalService/updateService.png" width="100%"/>
+<img src="/img/content/objects/InternalService/updateService.png" width="100%"/>
 
 After changing the required information, click on `UPDATE SERVICE`.
 
 ## Delete
 You can Delete a service by clicking `Delete` in the context menu on the Services tab or on the page with detailed information about the service.
 
-<img src="/img/content/web-panel/InternalService/updateInternalService.png" width="100%"/>
+<img src="/img/content/objects/InternalService/updateInternalService.png" width="100%"/>
 
 Note: by clicking `Delete` you will delete the service immediately. This action cannot be undone.
 When you delete an Internal Service you will also delete the connection between the deployments that were linked by this service.

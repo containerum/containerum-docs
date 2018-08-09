@@ -1,5 +1,5 @@
 ---
-title: Containerum Platform 
+title: Containerum Platform
 linktitle: Containerum self-hosted
 description: Fast installation of Containerum Platform in your Kubernetes cluster.
 
@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "getting-started"
+    parent: "objects"
     weight: 4
 
 draft: false

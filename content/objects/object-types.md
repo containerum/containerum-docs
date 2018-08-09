@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "getting-started"
+    parent: "objects"
     weight: 2
 
 draft: false

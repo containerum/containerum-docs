@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "manuals"
+    parent: "configuration"
     weight: 2
     identifier: storageclass
 
@@ -16,12 +16,12 @@ draft: false
 ---
 
 
-# Adding storage class 
+# Adding storage class
 
-<img src="/img/content/manuals/storages.png" width="100%"/>
+<img src="/img/content/configuration/storages.png" width="100%"/>
 
 Go to "Settings".
 
-Enter your storage class name, enter its size (in GBs) and click "Add Storage" button. 
+Enter your storage class name, enter its size (in GBs) and click "Add Storage" button.
 
 If you don't know your storage class name you can find it in Heketi.

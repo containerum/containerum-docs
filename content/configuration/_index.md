@@ -8,9 +8,9 @@ keywords: []
 
 menu:
   docs:
-    parent: "manuals"
+    parent: "configuration"
     weight: 1
-    identifier: manuals-overview
+    identifier: configuration-overview
 
 draft: false
 ---
