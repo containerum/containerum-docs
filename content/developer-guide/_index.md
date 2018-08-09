@@ -12,7 +12,7 @@ menu:
     weight: 1
     identifier: devguide-overview
 
-draft: false
+draft: true
 ---
 
 # Developer guide
