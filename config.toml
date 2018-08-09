@@ -95,3 +95,9 @@ pygmentsStyle = "monokai"
   identifier = "installation"
   parent = "kubernetes"
   url = "/kubernetes/installation/"
+
+[[menu.docs]]
+  name = "Manuals"
+  weight = 15
+  identifier = "manuals"
+  url = "/manuals/"
