@@ -83,3 +83,9 @@ pygmentsStyle = "monokai"
   identifier = "components"
   parent = "platform"
   url = "/platform/components/"
+
+[[menu.docs]]
+  name = "Manuals"
+  weight = 13
+  identifier = "manuals"
+  url = "/manuals/"
