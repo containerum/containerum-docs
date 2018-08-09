@@ -6,12 +6,8 @@ description: First steps to start using Containerum Online.
 categories: []
 keywords: []
 
-menu:
-  docs:
-    parent: "objects"
-    weight: 3
 
-draft: true
+draft: false
 ---
 
 

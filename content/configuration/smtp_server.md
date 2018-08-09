@@ -8,7 +8,7 @@ keywords: []
 
 menu:
   docs:
-    parent: "manuals"
+    parent: "configuration"
     weight: 2
     identifier: smtpserver
 
