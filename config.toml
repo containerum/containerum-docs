@@ -85,7 +85,7 @@ pygmentsStyle = "monokai"
   url = "/platform/components/"
 
 [[menu.docs]]
-  name = "Manuals"
+  name = "Configuration"
   weight = 13
-  identifier = "manuals"
-  url = "/manuals/"
+  identifier = "configuration"
+  url = "/configuration/"
