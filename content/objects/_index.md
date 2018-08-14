@@ -1,5 +1,5 @@
 ---
-title: Getting Started Overview - Containerum
+title: Containerum Platform Objects
 linktitle: Overview
 description:
 
@@ -11,11 +11,11 @@ menu:
   docs:
     parent: "objects"
     weight: 1
-    identifier: get-started
+    identifier: objects-overview
 
 draft: false
 ---
 
-# Overview
+# Objects
 
-Getting Started section contains the basics necessary to start working with Containerum. [Object types](/getting-started/object-types) contains information about the core concepts of Containerum. [Self-hosted](/getting-started/self-hosted) describes fast Containerum installation on-premises, while [Online](/getting-started/online) contains the first steps to launch your first application on [Containerum Online](https://containerum.com/online).
+This section describes the objects that a user can operate using Containerum Platform, like Project, Deployment, Service, etc. 

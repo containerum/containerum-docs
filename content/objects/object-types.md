@@ -1,6 +1,6 @@
 ---
 title: Object types
-linktitle: Object types
+linktitle: Objects
 description: The core concepts of Containerum (project, deployment, ingress, etc.).
 
 categories: []
@@ -10,6 +10,7 @@ menu:
   docs:
     parent: "objects"
     weight: 2
+    identifier: object-types
 
 draft: false
 ---

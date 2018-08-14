@@ -1,7 +1,7 @@
 ---
-title: Adding storage class
+title: Adding storage class - Containerum
 linktitle: Add storage class
-description: How to add storage class.
+description: How to add storage class to enable volumes.
 
 categories: []
 keywords: []
@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "configuration"
-    weight: 2
+    weight: 4
     identifier: storageclass
 
 draft: false
@@ -18,10 +18,14 @@ draft: false
 
 # Adding storage class
 
-<img src="/img/content/configuration/storages.png" width="100%"/>
+Go to Settings.
 
-Go to "Settings".
+<img src="/img/content/configuration/settings.png" width="100%"/>
 
 Enter your storage class name, enter its size (in GBs) and click "Add Storage" button.
 
-If you don't know your storage class name you can find it in Heketi.
+<img src="/img/content/configuration/storages.png" width="100%"/>
+
+Enter your storage class name, set the size (in GBs) and click "Add Storage" button.
+
+If you don't know your storage class name, you can find it in Heketi.
