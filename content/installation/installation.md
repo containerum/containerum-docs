@@ -9,7 +9,7 @@ keywords: []
 menu:
   docs:
     parent: "installation"
-    weight: 2
+    weight: 3
     identifier: containerum-install
 
 draft: false
@@ -26,7 +26,7 @@ helm repo update
 helm install containerum/containerum
 ```
 
-This will install the Containerum components and create two Ingresses to expose Containerum. You can view the Ingresses with `kubectl get ingress`.
+This will install the Containerum Platform and create two Ingresses to expose Containerum Platform. You can view the Ingresses with `kubectl get ingress`.
 
  To be able to reach Containerum Web UI and the API, add the machine IP address to /etc/hosts, e.g.:
 
@@ -42,4 +42,9 @@ This will install the Containerum components and create two Ingresses to expose 
 
  Done!
 
- To launch Containerum platform with custom config files, [install](/platform/components/) each Containerum component in manual mode using Helm. Detailed instructions on custom configuration will be available soon.
+You can now access Containerum Platform user the default credentials:  
+login: ```admin@local.containerum.io```  
+password: ```verystrongpassword```   
+Don't forget to change the password right away!
+
+Now [configure](/configuration/) Containerum Platform to make it ready for use in your cluster.

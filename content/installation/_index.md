@@ -1,5 +1,5 @@
 ---
-title: Containerum Platform - Containerum
+title: Containerum Platform Installation
 linktitle: Overview
 description:
 
@@ -14,6 +14,8 @@ menu:
 
 draft: false
 ---
-Containerum is an open source platform for the complete management of Kubernetes clusters. Containerum features tools for simple CI/CD pipelines setup, revision control, project and role management.
+# Containerum Platform Installation
 
-This section covers Containerum installation. Make sure that your cluster meets the [requirements] (/platform/requirements) and then proceed to [quick installation](/platform/installation). To use Containerum in production [bootstrap](/platform/components/) each component manually.
+Containerum Platform is an open source platform for the complete management of applications running on Kubernetes. Containerum features tools for simple CI/CD pipelines setup, revision control, project and role management.
+
+This section covers Containerum installation. Make sure that your cluster meets the [requirements] (/installation/requirements) and then proceed to [quick installation](/installation/installation).

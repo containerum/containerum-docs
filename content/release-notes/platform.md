@@ -1,7 +1,7 @@
 ---
-title: Self-hosted release notes
-linktitle: "Self-hosted"
-description: Release notes for Containerum Self-hosted
+title: Platform release notes
+linktitle: Containerum Platform
+description: Release notes for Containerum Platform
 
 date: 2017-03-23
 
@@ -14,7 +14,7 @@ menu:
     weight: 2
 
 weight: 2
-draft: true
+draft: false
 ---
 
 
