@@ -27,8 +27,8 @@ To create a ConfigMap, choose an existing Project, go to ConfigMaps section and 
 You can also create a ConfigMap by clicking `ConfigMaps` in the `TOOLS` tab on the Dashboard.
 <img src="/img/content/objects/Configmaps/configmapTools.png" width="100%"/>
 
-Заполните поле 'Name of ConfigMap'
-Файл для вашей конфигмапы вы можете добавить вручную заполнив поля "Имя файла" и "Конфигурация". Вы можете добавить несколько файлов нажав кнопку '+FILE'. Также вы можете загрузить готовый файл с конфигурацией нажав кнопку "Add File".
+Заполните поле `Name of ConfigMap`
+Файл для вашей конфигмапы вы можете добавить вручную заполнив поля `Имя файла` и `Конфигурация`. Вы можете добавить несколько файлов нажав кнопку `+FILE`. Также вы можете загрузить готовый файл с конфигурацией нажав кнопку `Add File`.
 <img src="/img/content/objects/Configmaps/createConfigmap.png" width="100%"/>
 
 Then click on the `Create ConfigMap`. Done.

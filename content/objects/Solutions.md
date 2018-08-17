@@ -22,7 +22,7 @@ draft: false
 To create a Solution, choose an existing Project, go to Solutions section and click on the `Create` button.
 <img src="/img/content/objects/Solutions/projectSolutions.png" width="100%"/>
 
-Выберите нужный солюшен из списка и нажмите кнопку 'Deploy'.
+Выберите нужный солюшен из списка и нажмите кнопку `Deploy`.
 
 <img src="/img/content/objects/Solutions/SolutionList.png" width="100%"/>
 
@@ -38,16 +38,17 @@ Then click on the `Deploy`. Done.
 <img src="/img/content/objects/Solutions/SuccessSolutionRun.png" width="100%"/>
 
 Также вы можете создать свой темплейт для солюшена, использовав данные из вашего репозитория на гитхабе.
-Для этого перейдите во вкладку "солюшен" на дашборде и и нажмите кнопку "ADD A SOLUTION"
+Для этого перейдите во вкладку `Solutions` на дашборде и и нажмите кнопку `ADD A SOLUTION`
 <img src="/img/content/objects/Solutions/viewGlobalSolutions.png" width="100%"/>
 
-Заполните поля "Имя солюшена", "URL" и "Параметры"
+Заполните поля `Имя солюшена`, `URL` и `Параметры`
 <img src="/img/content/objects/Solutions/createSolutionTemplate.png" width="100%"/>
 
 Then click on the `Add Solution`. Done. Ваш солюшен будет в конце списка солюшенов для дальнейшего использования.
 <img src="/img/content/objects/Solutions/viewTemplates.png" width="100%"/>
 
 Вы можете удалить ваш шаблон для солюшена нажав на крестик.
+Then you will be asked to confirm deletion. Enter the Solution template name and click `Delete`.
 
 ## View
 
