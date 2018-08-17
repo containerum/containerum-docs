@@ -20,7 +20,7 @@ draft: false
 
 # Features
 
-Containerum is an open source Kubernetes platform for automated delivery and simple CI/CD. It combines the features of resource management and revision control for fast and effortless application delivery.
+Containerum Platform is an open source Kubernetes platform for automated delivery and simple CI/CD. It combines the features of resource management and revision control for fast and effortless application delivery.
 
 - **Revision control**
 
@@ -33,3 +33,11 @@ Containerum automates building CI/CD pipelines for projects using Travis.
 - **Teamwork**
 
 Containerum allows managing groups and roles, access rights and permissions within each project.
+
+- **Node usage metrics**
+
+The dashboard features node usage metrics based on Prometheus.
+
+- **Private registry support**
+
+You can launch application images from Docker Hub or any private registry.
