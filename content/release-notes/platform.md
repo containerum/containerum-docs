@@ -24,7 +24,7 @@ draft: false
 
 ### New features
 
--  **Solutions**  
+#### Solutions
 
 Now users can add their solutions to Containerum Platform. Solutions are pre-configured applications and application stacks that can be launched with a couple of clicks. Only admin users can add and delete solutions, but any user can launch them.
 
@@ -40,7 +40,7 @@ Now users can add their solutions to Containerum Platform. Solutions are pre-con
 
 - Any user with `write` permission can delete a launched Solution. Deleting a Solution also deletes all deployments and services associated with it.
 
-- **Volumes**
+#### Volumes
 
 Current release introduces Volume management. A Volume in Containerum Platform is a PersistentVolumeClaim in Kubernetes. To use Volumes, it is required to have a StorageClass and connect it to Containerum Platform on the Settings page.  
 
@@ -60,11 +60,11 @@ Current release introduces Volume management. A Volume in Containerum Platform i
 
 
 
--  **Email templates**  
+#### Email templates
 
 This release comes with standard email templates. They include registration confirmation, user activation, password reset and account deletion. To use them it is necessary to [connect an SMTP server.](/configuration/smtp_server)
 
-- **Metrics**
+#### Metrics
 
 Aggregated node metrics are now available on the Dashboard. Users can view current CPU, RAM and Storage utilization as well as resource usage history for the last 6 hours. Resource utilization per each node can be accessed on the Per Nodes page on the Dashboard. Users can also see both the current usage and the history for the last 6 hours.
 
