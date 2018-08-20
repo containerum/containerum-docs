@@ -58,11 +58,13 @@ Current release introduces Volume management. A Volume in Containerum Platform i
 
 - Storage instance can be deleted on the Settings page provided that there are no running Volumes that use this Storage.
 
-#### Email templates  
+
+
+-  **Email templates**  
 
 This release comes with standard email templates. They include registration confirmation, user activation, password reset and account deletion. To use them it is necessary to [connect an SMTP server.](/configuration/smtp_server)
 
-#### Metrics
+- **Metrics**
 
 Aggregated node metrics are now available on the Dashboard. Users can view current CPU, RAM and Storage utilization as well as resource usage history for the last 6 hours. Resource utilization per each node can be accessed on the Per Nodes page on the Dashboard. Users can also see both the current usage and the history for the last 6 hours.
 
