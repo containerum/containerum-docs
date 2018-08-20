@@ -1,20 +1,3 @@
----
-title: Online Platform
-linktitle: Containerum Online
-description: First steps to start using Containerum Online.
-
-categories: []
-keywords: []
-
-menu:
-  docs:
-    parent: "getting-started"
-    weight: 3
-
-draft: false
----
-
-
 # Getting started with Containerum Online
 Here are the fist steps to launch your first application on Containerum Online.
 

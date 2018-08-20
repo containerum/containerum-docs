@@ -12,7 +12,7 @@ menu:
     weight: 1
     identifier: overview-release
 
-draft: false
+draft: true
 ---
 
 # Release Notes Overview

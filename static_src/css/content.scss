@@ -8,6 +8,11 @@
   top: 0;
   right: 0;
 
+
+  @include media-breakpoint-down(md) {
+    width: 100vw;
+  }
+
   h1 {
     margin-bottom: 1.5rem;
   }
@@ -40,6 +45,10 @@
   .home {
     text-align: center;
     margin-top: 10vh;
+
+    @include media-breakpoint-down(md) {
+      margin-top: 2vh;
+    }
 
     h1 {
       margin: 15px;
