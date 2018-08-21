@@ -14,7 +14,7 @@ menu:
     weight: 2
 
 weight: 2
-draft: false
+draft: true
 ---
 
 
@@ -47,6 +47,7 @@ Current release introduces Volume management. A Volume in Containerum Platform i
 - Storage can only be added by admin user. To do it, enter the size and name of the corresponding StorageClass in Kubernetes.  
 
 - The list of connected Storage instances is available on the Setting page. You can view their names, size and space utilization.  
+
 
 - Only admin users can create Volumes. Like a majority of Containerum Platform objects, Volumes exist within a Project. To create a Volume it is necessary to enter its name, size and the Storage it will use.  
 
