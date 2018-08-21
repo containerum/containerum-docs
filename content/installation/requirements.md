@@ -26,9 +26,8 @@ Note: You can also use [Let's Kube](https://github.com/containerum/letskube) uti
 - Installed Kubernetes [Ingress Controller](https://github.com/containerum/containerum/blob/master/ingress.md)
 
 
-Note: In case you use only one node, make sure it is labeled as `slave` to be able to launch applications.  To add the label, run:
+Note: In case you use only one node, make sure Kubernetes is able to schedule pods on the master:
 
 ```
-kubectl label node ubuntu-01 role=slave
+kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
-where `ubuntu-01` is the name of your node.
