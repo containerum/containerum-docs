@@ -23,6 +23,7 @@ To install Containerum in your Kubernetes Cluster with Containerum configs run:
 ```
 helm repo add containerum https://charts.containerum.io
 helm repo update
+helm install containerum/prometheus-operator
 helm install containerum/containerum
 ```
 
