@@ -3,7 +3,7 @@ title: Platform release notes
 linktitle: Containerum Platform
 description: Release notes for Containerum Platform
 
-date: 2017-03-23
+date: 2018-08-21
 
 categories: ["top"]
 keywords: []
@@ -20,7 +20,7 @@ draft: false
 
 # Containerum Platform Release Notes  
 
-## Containerum 1.0.20 - released on 21.08.2018  
+## Containerum 1.1.0 - released on 21.08.2018  
 
 ### New features
 
@@ -57,12 +57,6 @@ Current release introduces Volume management. A Volume in Containerum Platform i
 - Volumes can be deleted by an admin user on the Volumes tab.  
 
 - Storage instance can be deleted on the Settings page provided that there are no running Volumes that use this Storage.
-
-
-
-[//]: # #### Email templates
-
-[//]: # This release comes with standard email templates. They include registration confirmation, user activation, password [//]: # reset and account deletion. To use them it is necessary to [connect an SMTP server.](/configuration/smtp_server)
 
 #### Metrics
 
