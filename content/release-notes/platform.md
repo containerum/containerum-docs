@@ -60,9 +60,9 @@ Current release introduces Volume management. A Volume in Containerum Platform i
 
 
 
-#### Email templates
+[//]: # #### Email templates
 
-This release comes with standard email templates. They include registration confirmation, user activation, password reset and account deletion. To use them it is necessary to [connect an SMTP server.](/configuration/smtp_server)
+[//]: # This release comes with standard email templates. They include registration confirmation, user activation, password [//]: # reset and account deletion. To use them it is necessary to [connect an SMTP server.](/configuration/smtp_server)
 
 #### Metrics
 
