@@ -20,6 +20,38 @@ draft: false
 
 # Containerum Platform Release Notes  
 
+## Containerum 1.2.0 - released on 4.09.2018  
+
+### New features
+
+#### Import cluster to Containerum
+
+Отныне Containerum может импортировать ресурсы Kubernetes. Это означает, что созданными ранее установки неймспейсами, деплойментами и т.д. можно будет управлять так же, как и созданными через Containerum. Для того, чтобы начать импорт, зайдите на страницу Settings и нажмите кнопку `Import`. При установке Containerum можно указать неймпейсы, которые импортировать не нужно. Для этого укажите их в параметре `--set kube-importer.env.global.CH_KUBE_IMPORTER_EXCLUDED_NS="default,kube-system"`.
+
+#### Mail templates autoimport
+
+Подключив smtp-сервер, можно больше не заботиться о почтовых шаблонах. По умолчанию с Containerum идут пять: подтверждение регистрации, активация аккаунта, смена и восстановление пароля, удаление аккаунта.
+
+#### Prometheus-operator requirement removed
+
+Containerum больше не требует установки prometheus-operator. Можно поставить prometheus вместе с Containerum, либо воспользоваться своим. Для того, чтобы подключить свой prometheus нужно при установке указать `--set nodemetrics.env.local.PROMETHEUS_ADDR=http://{PROMETHEUS_SVC_NAME}:{PROMETHEUS_SVC_PORT}`. Containerum совместим с версией prometheus `6.7.4` из официального репозитория Helm.
+
+#### Warnings
+
+Для повышения удобства пользователей система информирует об отсутствии внешнего IP адреса и стораджа на страницах создания сервиса и вольюма соответственно.
+
+#### Groups
+
+Теперь при добавлении пользователя в группу доступен выбор из списка существующих пользователей.
+
+### Bug fixes
+
+- Icon failure from solution page removed
+- Check free space on storage added
+- Storage "used" calculation fixed
+- Ingress host validation fixed
+- Action button from volume tab on project page for role "user" removed
+
 ## Containerum 1.1.0 - released on 21.08.2018  
 
 ### New features
