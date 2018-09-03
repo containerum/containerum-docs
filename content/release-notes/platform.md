@@ -3,7 +3,7 @@ title: Platform release notes
 linktitle: Containerum Platform
 description: Release notes for Containerum Platform
 
-date: 2017-03-23
+date: 2018-08-21
 
 categories: ["top"]
 keywords: []
@@ -18,57 +18,54 @@ draft: false
 ---
 
 
-# Containerum Self-hosted Release Notes
+# Containerum Platform Release Notes  
 
-## Containerum Release 1.0.20 - 21.08.2018
+## Containerum 1.1.0 - released on 21.08.2018  
 
-### Added
+### New features
 
 #### Solutions
 
-Отныне пользователи смогут добавлять свои собственные solutions в Containerum Self-hosted. Добавление и удаление solutions доступно только администраторам системы, но запускать их могут все пользователи.
+Now users can add their solutions to Containerum Platform. Solutions are pre-configured applications and application stacks that can be launched with a couple of clicks. Only admin users can add and delete solutions, but any user can launch them.
 
-- Добавить шаблон solution в систему может только адиминистратор. Для этого нужно указать его имя, путь к публичному репозиторию на Github и рекомендуемые ресурсы для его запуска. Для корректного отображения информации о solution, в репозитории необходимо описать его в файле README.md и вложить картинку для него в файл с именем репозитория.
+- Only an admin user can add a solution to the Platform. To do this, it is necessary to set a name, the path to a public repository on GitHub, add solution description in README.md and a .png image that will be used as a logo. The image name must be the same as the repo name, e.g. 'Grafana-Solution' and 'Grafana-Solution.png'. [Read more.](/manuals/solution)  
 
-- Получение списка шаблонов solution доступно всем пользователям на вкладке Solutions. Из списка можно перейти на конкретный элемент и ознакомиться с инфомацией о нем.
+- Any user can see the list of all solutions on the Solutions tab.   
 
-- Получение списка запущенных solution доступно всем пользователям на странице проекта.
+- Any user can view launched Solutions on the Project page.  
 
-- Запуск доступен для всех пользователей, у которых есть доступ `write` к проектам, как из списка, так и со страницы конкретного шаблона solution. Для запуска необходимо указать проект, в котором он будет запущен, и имя, по которому его можно будет найти на странице проекта на вкладке Solutions. Можно также изменить любую переменную окружения в конфигурации solution.
+- Any user with `write` permission can launch solutions from both the list of solutions and solution pages. To launch a solution it is necessary to choose the Project, where it will be launched, and a name, which will be displayed on the Solutions tab in the Project. Users can also change any variable before launching the solution.  
 
-- Удаление шаблона solution доступно только администратору. Удаление происходит со страницы списка solutions.
+- Solution templates can be deleted on the Solutions tab by admin user.  
 
-- Удаление запущенного solution доступно для всех пользователей, у которых есть доступ `write` к проектам. При удалении запущенного solution происходит очистка деплойментов и сервисов, относящихся к нему.
+- Any user with `write` permission can delete a launched Solution. Deleting a Solution also deletes all deployments and services associated with it.
 
 #### Volumes
 
-Этот релиз включает в себя функционал управления volumes. Volumes - это объект, представляющий PersistentVolumeClaim в Kubernetes. Для его использования у пользователя должен быть настроен StorageClass, который необходимо добавить в систему со страницы Settings.
+Current release introduces Volume management. A Volume in Containerum Platform is a PersistentVolumeClaim in Kubernetes. To use Volumes, it is required to have a StorageClass and connect it to Containerum Platform on the Settings page.  
 
-- Добавить storage в систему может только администратор. Для этого необходимо ввести его размер и имя соответствующего StorageClass в k8s.
+- Storage can only be added by admin user. To do it, enter the size and name of the corresponding StorageClass in Kubernetes.  
 
-- Список подключенных storage можно увидеть на странице Settings. Там отображается их имена, размеры и занятое пространство.
+- The list of connected Storage instances is available on the Setting page. You can view their names, size and space utilization.  
 
-- Создать volume также привилегия администратора. Volume, как и большинство объектов, находится внутри проекта. При создании указываются имя, размер и storage, в котором будет выделяться пространство. 
 
-- Список volumes доступен для всех пользователей, у которых есть доступ `write` к проектам. При создании деплоймента можно выбрать один или несколько вольюмов и примонтировать их к контейнерам. Это защищает от потери данных при рестарте приложений.
+- Only admin users can create Volumes. Like a majority of Containerum Platform objects, Volumes exist within a Project. To create a Volume it is necessary to enter its name, size and the Storage it will use.  
 
-- Изменение размера volume также возможно только для администратора. Разрешается только увеличивать его размер.
+- The list of Volumes is available to all users with `write` permission in a Project. It is possible to choose one or several Volumes and mount them to containers. It allows saving application data when an app is restarted.  
 
-- Удаление volume доступно со страницы проекта, вкладки Volumes. Админская функция.
+- Only admin user can upgrade and Volume size. Downgrading is not supported.  
 
-- Удаление storage возможно только при отсутствии работающих volumes. Доступно со страницы Settings.
+- Volumes can be deleted by an admin user on the Volumes tab.  
 
-#### Email templates
-
-Теперь в систему зашиты стандартные шаблоны для email-рассылок. В них входят шаблоны для подтверждения регистрации, активации пользователя, а также для сброса и смены пароля и удаления аккаунта.
+- Storage instance can be deleted on the Settings page provided that there are no running Volumes that use this Storage.
 
 #### Metrics
 
-На дашборд добавлены суммарные метрики по нодам. Можно посмотреть моментальные значения по использованию cpu, ram и storage, а также историю по cpu и ram за последние 6 часов. Также добавлены отдельные метрики по нодам, их можно посмотреть, если перейти на вкладку Per Nodes с блока статистики на дашборде. Там можно увидеть историю по cpu и ram за последние 6 часов по каждой ноде.
+Aggregated node metrics are now available on the Dashboard. Users can view current CPU, RAM and Storage utilization as well as resource usage history for the last 6 hours. Resource utilization per each node can be accessed on the Per Nodes page on the Dashboard. Users can also see both the current usage and the history for the last 6 hours.
 
-### Bugfix
+### Bug fixes
 
-- Исправили конфликты миграций в Postgres
-- Исправлена декативация пользователя админом
-- Удалена страница Settings для роли "пользователь"
-- Исправлены роуты в туре на дашборде
+- PostgreSQL Migration conflicts - fixed
+- User deactivation by admin user - fixed
+- Settings page in non-admin account - fixed
+- Routes in the Tour section on the Dashboard page - updated

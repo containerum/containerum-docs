@@ -18,7 +18,7 @@ draft: false
 
 # Containerum installation
 
-To install Containerum in your Kubernetes Cluster with Containerum configs run:
+To launch Containerum on your Kubernetes Cluster without metrics collection run: 
 
 ```
 helm repo add containerum https://charts.containerum.io
@@ -26,7 +26,24 @@ helm repo update
 helm install containerum/containerum
 ```
 
-This will install the Containerum Platform and create two Ingresses to expose Containerum Platform. You can view the Ingresses with `kubectl get ingress`.
+To enable collecting resource utilization metrics, install Containerum with Prometheus Operator:
+
+```
+helm repo add containerum https://charts.containerum.io
+helm repo update
+helm install containerum/prometheus-operator
+helm install containerum/containerum —set tags.monitoring=true
+```
+
+If you already have Prometheus in your cluster and want to use it to display node utilization in Containerum Platform, install Containerum Platform with the following parameters:
+
+```
+helm repo add containerum https://charts.containerum.io
+helm repo update
+helm install containerum/containerum —set nodemetrics.env.local.PROMETHEUS_ADDR=http://{PROMETHEUS_SVC_NAME}:{PROMETHEUS_SVC_PORT}
+```
+
+ This will install the Containerum Platform and create two Ingresses to expose Containerum Platform. You can view the Ingresses with `kubectl get ingress`.
 
  To be able to reach Containerum Web UI and the API, add the machine IP address to /etc/hosts, e.g.:
 
