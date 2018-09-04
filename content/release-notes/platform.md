@@ -26,31 +26,40 @@ draft: false
 
 #### Import cluster to Containerum
 
-Отныне Containerum может импортировать ресурсы Kubernetes. Это означает, что созданными ранее установки неймспейсами, деплойментами и т.д. можно будет управлять так же, как и созданными через Containerum. Для того, чтобы начать импорт, зайдите на страницу Settings и нажмите кнопку `Import`. При установке Containerum можно указать неймпейсы, которые импортировать не нужно. Для этого укажите их в параметре `--set kube-importer.env.global.CH_KUBE_IMPORTER_EXCLUDED_NS="default,kube-system"`.
+Now Containerum Platform can import and manage Kubernetes resources. It means that namespaces, deployments, etc. that had already been created in Kubernetes clusters before Containerum Platform installation can be managed via Containerum. To import the resources go to `Settings` and click `Import`. You can specify which namespaces should not be imported by the following parameter during installation via Helm:
+```
+--set kube-importer.env.global.CH_KUBE_IMPORTER_EXCLUDED_NS="default,kube-system"
+```
 
-#### Mail templates autoimport
+#### Mail templates
 
-Подключив smtp-сервер, можно больше не заботиться о почтовых шаблонах. По умолчанию с Containerum идут пять: подтверждение регистрации, активация аккаунта, смена и восстановление пароля, удаление аккаунта.
+It is possible to connect an smtp server to use mail templates. By default Containerum Platform features five templates: registration confirmation, account activation, password change, password reset, and account deletion.
+
 
 #### Prometheus-operator requirement removed
 
-Containerum больше не требует установки prometheus-operator. Можно поставить prometheus вместе с Containerum, либо воспользоваться своим. Для того, чтобы подключить свой prometheus нужно при установке указать `--set nodemetrics.env.local.PROMETHEUS_ADDR=http://{PROMETHEUS_SVC_NAME}:{PROMETHEUS_SVC_PORT}`. Containerum совместим с версией prometheus `6.7.4` из официального репозитория Helm.
+Now Containerum Platform doesn't require prometheus-operator for metrics.  
+
+To enable node utilizatin metrics you can install Prometheus with Containerum or use a Prometheus instance that has already been deployed in your cluster. Containerum Platform is compatible with Prometheus `6.7.4` from the official Helm repository. To enable your Prometheus set the following tag when installing Containerum Platform:
+```
+--set nodemetrics.env.local.PROMETHEUS_ADDR=http://{PROMETHEUS_SVC_NAME}:{PROMETHEUS_SVC_PORT}
+```
 
 #### Warnings
 
-Для повышения удобства пользователей система информирует об отсутствии внешнего IP адреса и стораджа на страницах создания сервиса и вольюма соответственно.
+Containerum Platform informs users in case an External IP or Storage have not been configured when attempting to create a Service or a Volume accordingly.
 
 #### Groups
 
-Теперь при добавлении пользователя в группу доступен выбор из списка существующих пользователей.
+When adding members to groups, Admin users can choose members from the list of existing users.
 
 ### Bug fixes
 
 - Icon failure from solution page removed
-- Check free space on storage added
-- Storage "used" calculation fixed
-- Ingress host validation fixed
-- Action button from volume tab on project page for role "user" removed
+- Check free space on storage - added
+- Used Storage calculation - fixed
+- Ingress host validation - fixed
+- Active button from volume tab on project page for the role "user" - removed
 
 ## Containerum 1.1.0 - released on 21.08.2018  
 
