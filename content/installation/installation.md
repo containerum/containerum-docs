@@ -34,6 +34,7 @@ helm repo update
 helm install containerum/containerum —set tags.monitoring=true
 ```
 
+
 If you already have Prometheus in your cluster and want to use it to display node utilization in Containerum Platform, install Containerum Platform with the parameters below. Containerum Platform is compatible with Prometheus `6.7.4` from the official Helm repository.
 
 ```
