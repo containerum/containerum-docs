@@ -37,32 +37,32 @@ deploy:
     on:
       tags: true
 
-  - provider: script
-    script: docker push "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
-    skip_cleanup: true
-    on:
-      branch: develop
-  - provider: script
-    script:
-      - export DEPLOY="docs-dev"
-      - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
-      - chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
-      - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
-    skip_cleanup: true
-    on:
-      branch: develop
-
-  - provider: script
-    script: docker push "${IMAGE_NAME}:release" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
-    skip_cleanup: true
-    on:
-      branch: master
-  - provider: script
-    script:
-      - export DEPLOY="docs-production"
-      - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
-      - chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
-      - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
-    skip_cleanup: true
-    on:
-      branch: master
+  # - provider: script
+  #   script: docker push "${IMAGE_NAME}:dev" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
+  #   skip_cleanup: true
+  #   on:
+  #     branch: develop
+  # - provider: script
+  #   script:
+  #     - export DEPLOY="docs-dev"
+  #     - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
+  #     - chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
+  #     - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
+  #   skip_cleanup: true
+  #   on:
+  #     branch: develop
+  #
+  # - provider: script
+  #   script: docker push "${IMAGE_NAME}:release" && docker push "${IMAGE_NAME}:${TRAVIS_COMMIT::8}"
+  #   skip_cleanup: true
+  #   on:
+  #     branch: master
+  # - provider: script
+  #   script:
+  #     - export DEPLOY="docs-production"
+  #     - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
+  #     - chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
+  #     - chkit get deploy ${DEPLOY} -n ${NAMESPACE}
+  #   skip_cleanup: true
+  #   on:
+  #     branch: master
