@@ -20,6 +20,26 @@ draft: false
 
 # Containerum Platform Release Notes  
 
+## Containerum 1.2.1 - released on 3.10.2018
+
+### New features
+
+#### Support of Prometheus NodeExporter 0.16.0
+
+Containerum Platform supports Helm charts for Prometheus 7+.
+
+### Bug fixes
+
+- All dependencies of Containerum Platform have imagePullPolicy: IfNotPresent
+- Authorization IP address dependency - removed
+- Action button on the Secrets tab for the role "user" - removed
+- "Reset password" modal box - fixed
+- Alerts: Project deleted - added
+- Alerts: Volume updated - added
+- Alerts: Secret created - added
+- Markup on Volume update page - fixed
+- Settings menu on the account page for the role "user" - removed
+
 ## Containerum 1.2.0 - released on 4.09.2018  
 
 ### New features
