@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/containerum/containerum-docs.svg?branch=master)](https://travis-ci.org/containerum/containerum-docs)
 
 [Stable documentation](https://docs.containerum.com)  
-[Staging documentation](http://docs-stage.hub.containerum.io)
+[Staging documentation](https://dev.docs.containerum.com)
 
 Containerum docs is a documentation project for [Containerum Platform](https://github.com/containerum/containerum). It contains  guides on installing and configuring Containerum Platform, manuals, CI/CD instructions, etc.
 Containerum Platform Docs can be launched locally with YARN and Hugo. We strive to make docs as clear and substantial as possible, so we welcome contributions and advice.
