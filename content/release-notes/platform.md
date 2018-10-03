@@ -26,19 +26,19 @@ draft: false
 
 #### Support of Prometheus NodeExporter 0.16.0
 
-Now Containerum Platform supports helm charts Prometheus 7+.
+Containerum Platform supports Helm charts for Prometheus 7+.
 
 ### Bug fixes
 
 - All dependencies of Containerum Platform have imagePullPolicy: IfNotPresent
-- Authorization IP addr dependency - removed
-- Action button from secret tab on project page for role "user" - removed
-- Creation user modal title "Reset password" - fixed
-- Alert of successful project deletion from project page - added
-- Alert of successful volume update action - added
-- Alert of successful secret create action - added
-- Markup on volume updating page - fixed
-- Settings block from account page for role "user" - removed
+- Authorization IP address dependency - removed
+- Action button on the Secrets tab for the role "user" - removed
+- "Reset password" modal box - fixed
+- Alerts: Project deleted - added
+- Alerts: Volume updated - added
+- Alerts: Secret created - added
+- Markup on Volume update page - fixed
+- Settings menu on the account page for the role "user" - removed
 
 ## Containerum 1.2.0 - released on 4.09.2018  
 
