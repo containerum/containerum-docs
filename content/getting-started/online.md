@@ -1,20 +1,3 @@
----
-title: Online Platform
-linktitle: Containerum Online
-description: First steps to start using Containerum Online.
-
-categories: []
-keywords: []
-
-menu:
-  docs:
-    parent: "getting-started"
-    weight: 3
-
-draft: false
----
-
-
 # Getting started with Containerum Online
 Here are the fist steps to launch your first application on Containerum Online.
 
@@ -109,4 +92,4 @@ Click on the domain or enter the address manually in a new tab to see your appli
 <img src="/img/content/getting-started/online/result.png" width="100%"/>
 
 
-Congratulations! You've just created a Project and launched an application on Containerum Online Platform. Now it's time to learn more about [Containerum Web Panel](/web-panel/) and [CLI](/cli/).
+Congratulations! You've just created a Project and launched an application on Containerum Online Platform.
