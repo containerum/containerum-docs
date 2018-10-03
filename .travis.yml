@@ -43,7 +43,7 @@ deploy:
     on:
       branch: develop
   - provider: script
-    script: DEPLOY="docs-dev" chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
+    script: chkit set image --deployment docs-dev --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
     skip_cleanup: true
     on:
       branch: develop
@@ -54,7 +54,7 @@ deploy:
     on:
       branch: master
   - provider: script
-    script: DEPLOY="docs-production" chkit set image --deployment ${DEPLOY} --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
+    script: chkit set image --deployment docs-production --image "${IMAGE_NAME}:${TRAVIS_COMMIT::8}" --force -n ${NAMESPACE}
     skip_cleanup: true
     on:
       branch: master
