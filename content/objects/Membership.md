@@ -48,8 +48,16 @@ Membership страница управления всеми юзерами в с
 <img src="/img/content/objects/Membership/UserPage.png" width="100%"/>
 
 Здесь же можно сбросить пароль пользователю, нажав на кнопку `Reset Password`. После чего появится окно с новым паролем для пользователя.
-<img src="/img/content/objects/Membership/MembershipCreateUser.png.png" width="100%"/>
+<img src="/img/content/objects/Membership/MembershipCreateUser.png" width="100%"/>
 
-## Delete
+## Добавление пользователя к проекту
+Администратор может добавлять пользователей к проекту. Перейдите на страницу проекта, и нажмите кнопку *Manage Team*.
+<img src="/img/content/objects/Membership/projectPage.png" width="100%"/>
+Нажмите кнопку *Add User*, и введите эл.почту и уровень доступа к проекту WRITE или READ и нажмите кнопку *Add*
+<img src="/img/content/objects/Membership/AddUserToProject.png" width="100%"/>
+READ - может только видеть объекты внутри проекта.
+WRITE - может управлять объектами внутри проекта, но не может изменять/удалять сам проект.
+<img src="/img/content/objects/Membership/ProjectTeam.png" width="100%"/>
 
-Для удаления пользователя можно нажать иконку корзины напроотив выбранного пользователя или нажать кнопку `Delete` на странице юзера.
+## Deactivation
+Для деактивации пользователя, нажмите иконку корзины напротив выбранного пользователя или нажмите кнопку `Deactivate` на странице юзера. Then you will be asked to confirm User deactivation. Enter the user email and click `Deactivate`.
