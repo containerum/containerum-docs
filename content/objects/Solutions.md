@@ -1,5 +1,5 @@
 ---
-title: Solutions- Containerum
+title: Solutions - Containerum
 linktitle: Solutions
 description: How to create, update, view and delete a Solutions.
 

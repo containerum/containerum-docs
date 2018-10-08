@@ -1,103 +1,81 @@
 # Getting started with Containerum
 Here are the fist steps to launch your first application on Containerum.
 
-##### 1.Create a Project
+##### 1. Create a Project
 
-Now create your first Project.
+To start launching and managing applications on Containerum you need to create a Project.
 
 Go to the Projects tab and click *Add a project*.
 
 <img src="/img/content/getting-started/admin/moveToCreateProject.png" width="100%"/>
 
-Заполните поля имя и параметры вычислительных ресурсов проекта.
+Fill in the required fields: project name, CPU and RAM that you want to allocate to the project.
 
 <img src="/img/content/getting-started/admin/chooseSize.png" width="100%"/>
 
 
-Now that you have created a Project you can go the Project page.
+Now that you have created a Project you can go to the Project page.
 
-You can access all your Projects at the Projects tab in the main menu.
+You can access all your Projects on the Projects tab in the main menu.
 
 ##### 2. Create a Deployment
 
-Let's create your first Deployment. Click *Create* on the *Deployment* page.
+Let's create your first Deployment. We will use nginx. Click *Create* on the *Deployment* page.
+To use an image from a private registry, add a Secret for the deployment. You can find the instructions
+ [here](https://docs.containerum.com/configuration/private-registry/).
+
+Enter the Deployment name and the number of replicas, e.g., 1.
 
 <img src="/img/content/getting-started/admin/createDepl1.png" width="100%"/>
 
-Для того чтобы использовать образ из приватного регистра, вы можете прикрепить секрет к деплойменту. Инструкция по созданию секрета доступна по этой ссылке: https://docs.containerum.com/configuration/private-registry/
 
-Enter the Deployment name and the number of replicas - 1.
+Enter the following data:  
+- container name - nginx-container.  
+- docker image you want to use - nginx.  
+- CPU (in mCPU) and RAM (in Mi) - 500.  
 
 <img src="/img/content/getting-started/admin/createDepl2.png" width="100%"/>
-
-Enter the following data:
-- container name - nginx-container.
-- docker image you want to use - nginx.
-- CPU (in mCPU) and RAM (in Mi) - 500.
-
 
 
 Then click *Create deployment*.
 
 ##### 3. Create a Service
 
-Now let's create an external service for your project to make it accessible from the outside.
+Now let's create an external service for your application to make it accessible from the outside.
 
-On the *Services* tab click *Create*.
+Click *Create* on the *Services* tab.
 
 <img src="/img/content/getting-started/admin/moveToCreateService.png" width="100%"/>
 
 
-Now create an external service.
-
-Choose the target deployment, enter the service name, port name and port address (80).
+Choose the target deployment, enter the service name, port name and port number (80).
 
 <img src="/img/content/getting-started/admin/createService.png" width="100%"/>
 
 Done!
 
-##### 4. Как посмотреть запущенное приложение по внешнему IP.
+##### 4. How to access an application by External IP.
 
-Теперь давайте посмотрим запущенное приложение по внешнему IP. Перейдите во вкладку *Services* на странице проекта.
+Let's access the application by External IP. Go to the *Services* tab on the Project page.
 <img src="/img/content/getting-started/admin/serviceTab.png" width="100%"/>
-Далее перейдите на страницу внешнего сервиса и нажмите на сформированную ссылку *Link* на списке портов.  
+Go the the Service page by clicking on the service and then click on the *Link* with the port.
 <img src="/img/content/getting-started/admin/service.png" width="100%"/>
-Готово! Вы увидите окно приветствия у сервиса nginx.
+Done! You have accessed nginx by the external IP.
 <img src="/img/content/getting-started/admin/nginx.png" width="100%"/>
 
-##### 5. Как добавить пользователя в систему.
-Чтобы добавить нового пользователя в систему, пройдите на страницу *Membership* и во вкладке *Users* нажмите кнопку *Add User*. Введите эл.почту нового юзера и нажмите *Add* Появится модальное окно с паролем для нового пользователя.
-##### 6. Как добавить пользователя в проект.
-Чтобы добавить пользователя в проект, пройдите на страницу проекта и нажмите кнопку *Manage Team*. Далее нажмите кнопку *Add User*. Введите эл.почту юзера, выберите уровень доступа и нажмите *Add*.
 
 
+##### 5. How to add a new user.
+To add a new user to Containerum, go to *Membership* page and click on the *Add User* button on *Users* tab. Enter the email of a new user and click *Add*. After that you will see a modal box with randomly generated user password.
+
+<img src="/img/content/objects/Membership/MembershipCreateUser.png" width="100%"/>
+
+##### 6. How to add a user to a project.
+To add a user to a project, go to the Project page and click on the *Manage Team* button.
+<img src="/img/content/objects/Membership/projectPage.png" width="100%"/>
+
+Then click *Add User*, enter user's email address, choose the permissions (*read*, *write*) and click *Add*.
+<img src="/img/content/objects/Membership/AddUserToProject.png" width="100%"/>
 
 
-
-
-
-
-
-
-##### 6. Create a Domain
-
-Now let's create a domain for this external service. Click *Create domain*.
-
-<img src="/img/content/getting-started/admin/serviceTab.png" width="100%"/>
-
-Enter the domain name and check *Enable SSL Security* box.
-
-<img src="/img/content/getting-started/admin/createDomain.png" width="100%"/>
-
-##### 7. Go to the domain page
-
-Go to the *Tools* tab in the main menu and choose *Domains*. You will see the list of your domains.
-
-<img src="/img/content/getting-started/admin/domains.png" width="100%"/>
-
-Click on the domain or enter the address manually in a new tab to see your application.
-
-<img src="/img/content/getting-started/admin/result.png" width="100%"/>
-
-
-Congratulations! You've just created a Project and launched an application on Containerum Online Platform.
+Please, see [docs](https://docs.containerum.com) for more details about configuring and using Containerum Platform.

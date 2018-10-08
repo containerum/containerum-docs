@@ -9,15 +9,15 @@ keywords: []
 menu:
   docs:
     parent: "objects"
-    weight: 11
+    weight: 12
 
-draft: false
+draft: true
 ---
 
-# How to work with a Groups
+# How to work with Groups
 
 ## Description
-Группы объединяют юзеров для доступа к проекту.
+Users can be united into groups and added to Projects.
 
 ## View Groups
 Для перехода на страницу групп нажмите на кнопку `Membership` в контекстном меню пользователя.
@@ -25,12 +25,12 @@ draft: false
 В ней переключитесь на вкладку `Groups`.
 <img src="/img/content/objects/Groups/GroupsTab1.png" width="100%"/>
 
-## Create Group
+## Create a Group
 Для создания новой группы нажмите кнопку `Add Group` и введите имя группы.
 <img src="/img/content/objects/Groups/CreateGroup.png" width="100%"/>
 
 
-## Manage Group
+## Manage Groups
 Администратор может добавлять и удалять пользователей из группы.
 
 ### Add users to Group
