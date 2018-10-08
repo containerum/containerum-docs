@@ -11,7 +11,7 @@ menu:
     parent: "objects"
     weight: 12
 
-draft: true
+draft: false
 ---
 
 # How to work with Groups
@@ -20,35 +20,34 @@ draft: true
 Users can be united into groups and added to Projects.
 
 ## View Groups
-Для перехода на страницу групп нажмите на кнопку `Membership` в контекстном меню пользователя.
-<img src="/img/content/objects/Groups/dashboardContextMenuGrouppng" width="100%"/>
-В ней переключитесь на вкладку `Groups`.
-<img src="/img/content/objects/Groups/GroupsTab1.png" width="100%"/>
+To view groups go to page `Membership` in the user context menu. Click on the `Groups` tab.
+<img src="/img/content/objects/Groups/GroupsTab.png" width="100%"/>
 
 ## Create a Group
-Для создания новой группы нажмите кнопку `Add Group` и введите имя группы.
+To create a new group click `Add Group` and enter the group name.
 <img src="/img/content/objects/Groups/CreateGroup.png" width="100%"/>
 
 
 ## Manage Groups
-Администратор может добавлять и удалять пользователей из группы.
+Admin users can add and delete users from groups.
 
 ### Add users to Group
-Для добавления юзера в группу, перейдите на страницу группы и  нажмите кнопку 'Add Users'.
+You can add new users on the Group page by clicking `Add Users`.
 <img src="/img/content/objects/Groups/AddUsers.png" width="100%"/>
-Можно добавить несколько пользователей за один раз, нажав кнопку `+`.
+To add several users click  `+`.
 
 ### Delete users from Group
-Для удаления пользователя из группы нажмите иконку корзины напротив выбранного пользователя.
-Then you will be asked to confirm user deletion. Enter the User name and click `Delete`.
+To delete a user from the group click on the bin icon to the right of the user's email.
+Then you will be asked to confirm user deletion. Enter the user's email and click `Delete`.
 <img src="/img/content/objects/Groups/GroupUserDeleteModal.png" width="100%"/>
 
+
 ### Set user access to project
-Для изменения доступа к проекту выберите уровень доступа `read` или `write` в выпадающем списке, выбранного пользователя.
+You can set permissions for each group member to `read` ot `write` on the group page.
 <img src="/img/content/objects/Groups/groupSetAccess.png" width="100%"/>
 
 ## Delete Group
-Для удаления группы нажмите иконку корзины напротив выбранной группы, или на странице группы, нажав кнопку `Delete Group`
+To deactivate a group, click on the bin icon to the right of the group or go to the group page and click `Delete Group`.
 
 Then you will be asked to confirm Group deletion. Enter the Group name and click `Delete`.
 <img src="/img/content/objects/Groups/GroupUserDeleteModal.png" width="100%"/>

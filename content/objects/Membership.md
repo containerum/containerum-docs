@@ -58,4 +58,4 @@ Users with WRITE permissions can manage objects within the project, but cannot r
 <img src="/img/content/objects/Membership/ProjectTeam.png" width="100%"/>
 
 ## Deactivation
-To deactivate a user, click on the bin icon to the right of the user's email or go to the User page and click 'Delete'. Then you will be asked to confirm User deactivation. Enter the user email and click `Delete`.
+To deactivate a user, click on the bin icon to the right of the user's email or go to the User page and click `Delete`. Then you will be asked to confirm User deactivation. Enter the user email and click `Delete`.
