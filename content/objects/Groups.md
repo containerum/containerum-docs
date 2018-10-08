@@ -48,5 +48,6 @@ You can set permissions for each group member to `read` ot `write` on the group 
 
 ## Delete Group
 To deactivate a group, click on the bin icon to the right of the group or go to the group page and click `Delete Group`.
+
 Then you will be asked to confirm Group deletion. Enter the Group name and click `Delete`.
 <img src="/img/content/objects/Groups/GroupUserDeleteModal.png" width="100%"/>
