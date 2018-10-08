@@ -1,5 +1,5 @@
 ---
-title: External Service
+title: External Service - Containerum
 linktitle: External Service
 description: How to create, update, view and delete an External service.
 
