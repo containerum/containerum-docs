@@ -50,7 +50,7 @@ In Containerum a user can generally operate the following objects:
 <br/>
 <h4><a id="project" name="project">Project</a></h4>
 
-Project is the main object of Containerum system. To create a project a user needs to allocate RAM and CPU resources to the project. With <a href="https://github.com/containerum/containerum">Containerum self-hosted</a> a user can allocate as much of the available server resources as necessary. <a href="https://web.containerum.io">Containerum Online</a> offers several preconfigured options (custom configurations available upon [request](https://containerum.com/sales/)). All other system objects (deployments, services, etc.) exist only within a Project. As part of teamwork, project owners can share their projects with other users and set access levels to create new software together.
+Project is the main object of Containerum system. To create a project a user needs to allocate RAM and CPU resources to the project. All other system objects (deployments, services, etc.) exist only within a Project. As part of teamwork, project owners can share their projects with other users and set access levels to create new software together.
 
 Project consists of the following fields:
 
@@ -395,9 +395,9 @@ Service consists of the following fields:
 </table>
 
 <br/>
-<h4><a name="ingress">Ingress</a></h4>
+<h4><a name="ingress">Domain (Ingress)</a></h4>
 
-Ingress is an object that controls access to <a href="#service"> services </a> through DNS. Ingresses can work through http or secure https protocols and support TLS-protocol. Users can use standard Containerum TLS certs or their own certificates. Ingresses can contain rules for routing across several domains and different paths. For example, an Ingress connects <i>hello.hub.containerum.io/</i> to the service <i>svc0</i> of the main application, while <i>hello.hub.containerum.io/blog</i> is connected to the service <i>svc1</i> of the blog application.
+Domain (Ingress) is an object that controls access to <a href="#service"> services </a> through DNS which is available at the Domains tab in Containerum Platform. Domains (Ingresses) can work through http or secure https protocols and support TLS-protocol. Users can use standard Let's Encrypt certs or their own certificates. Domains (Ingresses) can contain rules for routing across several domains and different paths. For example, a Domain <i>hello.hub.containerum.io/</i> leads to the service <i>svc0</i> of the main application, while <i>hello.hub.containerum.io/blog</i> is connected to the service <i>svc1</i> of the blog application.
 
 Ingress consists of the following fields:
 
@@ -427,7 +427,7 @@ Ingress consists of the following fields:
 				</ul>
 			</td>
 			<td><i>string</i></td>
-			<td>URL Domain. Containerum Online currently supports subdomains only for hub.containerum.io, but on request our team will help to set up any other domain name. Containerum self-hosted has no domain restrictions.</td>
+			<td>Domain URL.</td>
 			<td>hello.hub.containerum.io</td>
 		</tr>
 		<tr>
