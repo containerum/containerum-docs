@@ -54,9 +54,9 @@ Choose the target deployment, enter the service name, port name and port number 
 
 Done!
 
-##### 4. How to access an application by External IP.
+##### 4. Access applications by External IP.
 
-Let's access the application by External IP. Go to the *Services* tab on the Project page.
+In case a DNS name is provided for Containerum UI, you can access applications by External IP. Go to the *Services* tab on the Project page.
 <img src="/img/content/getting-started/admin/serviceTab.png" width="100%"/>
 Go the the Service page by clicking on the service and then click on the *Link* with the port.
 <img src="/img/content/getting-started/admin/service.png" width="100%"/>
